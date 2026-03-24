@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeIn, staggerContainer, fadeInUp } from "@/lib/motion";
+import { fadeIn, fadeInUp, staggerContainer } from "@/lib/motion";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -16,26 +16,24 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
-  const handleNavClick = (href: string) => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollTo = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
     if (el) {
@@ -43,88 +41,74 @@ export default function Navbar() {
     }
   };
 
+  // Hamburger line variants
+  const topLine = {
+    closed: { rotate: 0, y: 0 },
+    open: { rotate: 45, y: 5 },
+  };
+  const bottomLine = {
+    closed: { rotate: 0, y: 0 },
+    open: { rotate: -45, y: -5 },
+  };
+
   return (
     <>
       <motion.nav
-        initial="hidden"
-        animate="visible"
         variants={fadeIn}
+        initial="initial"
+        animate="animate"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-bg/80 backdrop-blur-xl border-b border-sage/10"
+            ? "bg-bg/80 backdrop-blur-xl border-b border-white/5"
             : "bg-transparent"
         }`}
       >
-        <div className="section-padding flex items-center justify-between h-16 md:h-20">
-          {/* Monogram */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="font-serif text-2xl md:text-3xl font-semibold text-accent tracking-tight select-none"
+        <div className="mx-auto flex items-center justify-between px-6 md:px-10 py-4 max-w-[1440px]">
+          {/* Logo / Name */}
+          <button
+            onClick={scrollToTop}
+            className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary hover:text-accent transition-colors duration-300"
           >
-            WR
-          </a>
+            William Radiyeh
+          </button>
 
-          {/* Desktop Nav Links */}
-          <motion.ul
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="hidden md:flex items-center gap-10"
-          >
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <motion.li key={link.label} variants={fadeInUp}>
+              <li key={link.href}>
                 <button
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-sm tracking-wide text-text-secondary hover:text-accent transition-colors duration-300 link-underline"
+                  onClick={() => scrollTo(link.href)}
+                  className="font-mono text-xs uppercase tracking-wider text-text-muted hover:text-accent transition-colors duration-300"
                 >
                   {link.label}
                 </button>
-              </motion.li>
+              </li>
             ))}
-          </motion.ul>
+          </ul>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile hamburger */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative z-50 w-8 h-8 flex flex-col items-center justify-center gap-1.5"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="relative z-50 flex md:hidden flex-col items-center justify-center w-8 h-8 gap-[6px]"
+            aria-label="Toggle menu"
           >
             <motion.span
-              animate={
-                mobileOpen
-                  ? { rotate: 45, y: 6, backgroundColor: "#2D5A4B" }
-                  : { rotate: 0, y: 0, backgroundColor: "#1A1A1A" }
-              }
-              transition={{ duration: 0.3 }}
-              className="block w-6 h-[1.5px] origin-center"
+              variants={topLine}
+              animate={mobileOpen ? "open" : "closed"}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="block w-6 h-[1px] bg-text-primary origin-center"
             />
             <motion.span
-              animate={
-                mobileOpen
-                  ? { opacity: 0, scaleX: 0 }
-                  : { opacity: 1, scaleX: 1 }
-              }
-              transition={{ duration: 0.2 }}
-              className="block w-6 h-[1.5px] bg-text-primary"
-            />
-            <motion.span
-              animate={
-                mobileOpen
-                  ? { rotate: -45, y: -6, backgroundColor: "#2D5A4B" }
-                  : { rotate: 0, y: 0, backgroundColor: "#1A1A1A" }
-              }
-              transition={{ duration: 0.3 }}
-              className="block w-6 h-[1.5px] origin-center"
+              variants={bottomLine}
+              animate={mobileOpen ? "open" : "closed"}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="block w-6 h-[1px] bg-text-primary origin-center"
             />
           </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Fullscreen Overlay */}
+      {/* Mobile full-screen overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -132,25 +116,25 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-2xl flex items-center justify-center"
           >
-            <motion.div
+            <motion.ul
               variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col items-center justify-center h-full gap-8"
+              initial="initial"
+              animate="animate"
+              className="flex flex-col items-center gap-8"
             >
               {navLinks.map((link) => (
-                <motion.div key={link.label} variants={fadeInUp}>
+                <motion.li key={link.href} variants={fadeInUp}>
                   <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="font-serif text-3xl text-text-primary hover:text-accent transition-colors duration-300"
+                    onClick={() => scrollTo(link.href)}
+                    className="text-2xl font-light tracking-widest uppercase text-text-primary hover:text-accent transition-colors duration-300"
                   >
                     {link.label}
                   </button>
-                </motion.div>
+                </motion.li>
               ))}
-            </motion.div>
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>

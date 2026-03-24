@@ -10,40 +10,36 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#FAFAF8",
-          dark: "#0F1110",
-          card: "#F3F2EF",
-          "card-dark": "#1A1D1C",
+          DEFAULT: "#08080A",
+          surface: "#111114",
+          card: "#16161A",
+          hover: "#1C1C21",
         },
         text: {
-          primary: "#1A1A1A",
-          secondary: "#6B6B6B",
-          muted: "#9B9B9B",
+          primary: "#F5F5F0",
+          secondary: "#A0A0A0",
+          muted: "#5A5A5A",
         },
         accent: {
-          DEFAULT: "#2D5A4B",
-          light: "#3D7A65",
-          dark: "#1E3D33",
-        },
-        sand: {
-          DEFAULT: "#C4A882",
-          light: "#D4C4A8",
-          dark: "#A48862",
-        },
-        sage: {
-          DEFAULT: "#8B9A8E",
-          light: "#B8C4BB",
-          dark: "#5E6B61",
+          DEFAULT: "#C9A87C",
+          light: "#E0C9A3",
+          dark: "#A08050",
+          blue: "#6B8AFF",
         },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["'Playfair Display'", "Georgia", "serif"],
+        display: ["Inter", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       animation: {
         "fade-in": "fadeIn 0.8s ease-out forwards",
         "slide-up": "slideUp 0.8s ease-out forwards",
         "grain": "grain 8s steps(10) infinite",
+        "marquee": "marquee 30s linear infinite",
+        "marquee-reverse": "marquee-reverse 30s linear infinite",
+        "float": "float 6s ease-in-out infinite",
+        "glow": "glow 3s ease-in-out infinite alternate",
       },
       keyframes: {
         fadeIn: {
@@ -65,6 +61,22 @@ const config: Config = {
           "70%": { transform: "translate(0%, 15%)" },
           "80%": { transform: "translate(3%, 35%)" },
           "90%": { transform: "translate(-10%, 10%)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        glow: {
+          "0%": { opacity: "0.4" },
+          "100%": { opacity: "1" },
         },
       },
     },

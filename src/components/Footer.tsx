@@ -10,25 +10,28 @@ export default function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="border-t border-sage/20 py-8 section-padding"
+      className="py-8 section-padding border-t border-white/5"
     >
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-text-muted">
-          &copy; 2026 William Radiyeh
-        </p>
+        <span className="font-mono text-xs uppercase tracking-wider text-text-muted/40">
+          &copy; 2026 WILLIAM RADIYEH
+        </span>
 
-        <div className="flex items-center gap-0 text-sm text-text-muted">
+        <div className="font-mono text-xs uppercase tracking-wider text-text-muted/40">
           <a
             href="https://www.linkedin.com/in/william-radiyeh/"
             target="_blank"
             rel="noopener noreferrer"
-            className="link-underline"
+            className="hover:text-accent transition-colors duration-300"
           >
-            LinkedIn
+            LINKEDIN
           </a>
-          <span className="mx-3">&middot;</span>
-          <a href="mailto:will.rads@outlook.com" className="link-underline">
-            Email
+          <span className="divider-pipe">|</span>
+          <a
+            href="mailto:will.rads@outlook.com"
+            className="hover:text-accent transition-colors duration-300"
+          >
+            EMAIL
           </a>
         </div>
       </div>

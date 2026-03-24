@@ -3,64 +3,20 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 
-const contactCards = [
+const contactLinks = [
   {
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M22 4 12 13 2 4" />
-      </svg>
-    ),
-    label: "Email",
+    label: "EMAIL",
     value: "will.rads@outlook.com",
     href: "mailto:will.rads@outlook.com",
   },
   {
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect x="2" y="9" width="4" height="12" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-    label: "LinkedIn",
-    value: "William Radiyeh",
+    label: "LINKEDIN",
+    value: "linkedin.com/in/william-radiyeh",
     href: "https://www.linkedin.com/in/william-radiyeh/",
+    external: true,
   },
   {
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-      </svg>
-    ),
-    label: "Phone",
+    label: "PHONE",
     value: "(+961) 81 940 801",
     href: "tel:+96181940801",
   },
@@ -68,59 +24,63 @@ const contactCards = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-32 section-padding">
+    <section id="contact" className="py-32 md:py-40 section-padding relative">
+      {/* Glow spot */}
+      <div className="glow-spot w-[500px] h-[500px] bg-accent/10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+
       <motion.div
+        variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="bg-bg-card rounded-3xl p-12 md:p-16"
+        viewport={{ once: true, amount: 0.2 }}
+        className="relative z-10 max-w-4xl"
       >
-        <motion.p
-          variants={fadeInUp}
-          className="text-sm uppercase tracking-widest text-accent mb-4"
-        >
-          Get in Touch
+        {/* Label */}
+        <motion.p variants={fadeInUp} className="label mb-6">
+          CONTACT
         </motion.p>
 
-        <motion.h2 variants={fadeInUp} className="heading-lg mb-4">
-          Let&apos;s Build Something
+        {/* Heading */}
+        <motion.h2
+          variants={fadeInUp}
+          className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95]"
+        >
+          Let&apos;s Build
+          <br />
+          <span className="text-accent">Something</span>
         </motion.h2>
 
-        <motion.p variants={fadeInUp} className="body-md max-w-xl mb-12">
-          Whether you&apos;re looking for a marketing leader, an AI
-          implementation partner, or just want to connect — I&apos;d love to
-          hear from you.
+        {/* Subtext */}
+        <motion.p
+          variants={fadeInUp}
+          className="text-lg text-text-secondary font-light mt-6 max-w-xl mb-16"
+        >
+          Whether you need a marketing leader, an AI implementation partner, or
+          just want to connect.
         </motion.p>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {contactCards.map((card) => (
-            <motion.a
-              key={card.label}
-              variants={fadeInUp}
-              href={card.href}
-              target={card.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                card.href.startsWith("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-              className="text-center p-6 rounded-xl transition-colors hover:bg-white group"
-            >
-              <span className="inline-block text-accent mb-3">{card.icon}</span>
-
-              <p className="text-sm text-text-muted mb-1">{card.label}</p>
-
-              <p className="text-text-primary font-medium">{card.value}</p>
-            </motion.a>
+        {/* Contact rows */}
+        <div>
+          {contactLinks.map((link) => (
+            <motion.div key={link.label} variants={fadeInUp}>
+              <motion.a
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                whileHover={{ x: 8 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="flex items-center justify-between py-6 border-b border-white/5 group cursor-pointer"
+              >
+                <span className="font-mono text-xs uppercase text-text-muted tracking-wider">
+                  {link.label}
+                </span>
+                <span className="text-lg md:text-xl font-medium text-text-primary group-hover:text-accent transition-colors duration-300">
+                  {link.value}
+                </span>
+              </motion.a>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
