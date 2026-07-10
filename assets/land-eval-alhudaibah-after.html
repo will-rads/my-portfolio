@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Land Evaluation Report — Al Hudaibah Commercial/Residential Plot — Namou Properties</title><style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+    :root {
+      --forest: #003D2E;
+      --forest-ink: #0a2e24;
+      --deep-forest: #273D37;
+      --mint: #87C6AE;
+      --mint-soft: #b8dccb;
+      --mint-white: #F7FBF8;
+      --mint-light: #eef6f1;
+      --mint-tint: #f2f8f5;
+      --mint-border: #c2ddd0;
+      --sage: #457C68;
+      --sage-light: #6a9685;
+      --white: #FFFFFF;
+      --ink-1: #0c1512;
+      --ink-2: #3a4a44;
+      --ink-3: #6b7b75;
+      --ink-4: #9aa8a3;
+      --hairline: #e4ebe7;
+      --hairline-strong: #cddbd3;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+      background: #E8EBE9;
+      color: var(--ink-1);
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1123px;
+      height: 1123px;
+      margin: 32px auto;
+      background: var(--white);
+      position: relative;
+      box-shadow: 0 4px 28px rgba(10, 46, 36, 0.08);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 44px 20px;
+      overflow: hidden;
+    }
+
+    .masthead {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .brand-sub {
+      margin-top: 5px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--sage);
+      text-transform: uppercase;
+    }
+
+    .doc-meta { text-align: right; }
+
+    .doc-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 5px;
+    }
+
+    .doc-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+    }
+
+    .doc-subtitle {
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-top: 3px;
+      font-style: italic;
+    }
+
+    .property-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .property-name {
+      font-size: 12px;
+      color: var(--forest-ink);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .property-marks { display: flex; align-items: center; gap: 14px; }
+
+    .mark {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mark::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--mint);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .section { padding-top: 12px; }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .section-heading .eyebrow { margin: 0; }
+
+    .section-heading .rule {
+      flex: 1;
+      height: 1px;
+      background: var(--hairline);
+      margin-left: 14px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .kpi {
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 10px;
+      padding: 13px 15px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .kpi-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .kpi-value {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      letter-spacing: -0.2px;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .kpi-value .unit {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--ink-3);
+      margin-right: 2px;
+    }
+
+    .kpi-sub { font-size: 10px; color: var(--ink-3); font-weight: 400; }
+
+    .prose {
+      font-size: 11.3px;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    .prose strong { color: var(--forest-ink); font-weight: 600; }
+    .prose p + p { margin-top: 8px; }
+
+    .exec-highlights {
+      display: flex;
+      gap: 14px;
+      margin: 8px 0 4px;
+    }
+
+    .exec-highlight {
+      flex: 1;
+      padding: 10px 14px;
+      background: var(--mint-tint);
+      border-left: 3px solid var(--mint);
+      border-radius: 4px;
+      font-size: 10.8px;
+      color: var(--ink-2);
+      line-height: 1.5;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .exec-highlight strong {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 4px;
+    }
+
+    .comps-table {
+      margin-top: 8px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .comps-table thead th {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-align: left;
+      padding: 8px 10px 8px 0;
+      border-bottom: 1.5px solid var(--mint-border);
+    }
+
+    .comps-table thead th.center { text-align: center; }
+    .comps-table thead th.right { text-align: right; padding-right: 0; }
+
+    .comps-table tbody td {
+      padding: 9px 10px 9px 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--ink-2);
+      vertical-align: middle;
+    }
+
+    .comps-table tbody td.right { text-align: right; padding-right: 0; }
+    .comps-table tbody td.center { text-align: center; }
+    .comps-table tbody tr:last-child td { border-bottom: none; }
+
+    .comp-loc { font-weight: 500; color: var(--forest-ink); }
+
+    .comp-loc .sub {
+      display: block;
+      font-size: 9.5px;
+      color: var(--ink-3);
+      font-weight: 400;
+      font-style: italic;
+      margin-top: 1px;
+    }
+
+    .comp-link {
+      color: var(--sage);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 500;
+    }
+
+    .comp-link:hover { color: var(--forest); }
+
+    .comp-rate {
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .comps-summary {
+      margin-top: 6px;
+      padding: 8px 14px;
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .comps-summary-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .comps-summary-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .assumptions-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .assumption {
+      background: var(--mint-tint);
+      border: 1px solid var(--mint-border);
+      border-radius: 8px;
+      padding: 10px 11px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .assumption-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .assumption-val {
+      font-size: 11.2px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.25;
+    }
+
+    .scenarios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .scenario {
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .scenario-hero {
+      background: var(--white);
+      border: 1.5px solid var(--forest);
+      box-shadow: 0 0 0 3px var(--mint-light);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .scenario-aspirational {
+      background: var(--mint-tint);
+      border: 1.5px dashed var(--mint-border);
+      opacity: 0.92;
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--mint-border);
+    }
+
+    .scenario-tag {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .scenario-hero .scenario-tag { color: var(--forest); }
+    .scenario-aspirational .scenario-tag { color: var(--ink-3); }
+
+    .scenario-rate {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      letter-spacing: -0.4px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .scenario-rate .per {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: 0;
+    }
+
+    .scenario-revenue {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 3px 0 7px;
+      border-bottom: 1px dashed var(--mint-border);
+    }
+
+    .rev-label { font-size: 10px; color: var(--ink-3); font-weight: 400; }
+
+    .rev-val {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .scenario-margins { display: flex; flex-direction: column; gap: 2px; }
+
+    .scenario-margins-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2px;
+    }
+
+    .margin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 2px 0;
+      gap: 6px;
+    }
+
+    .margin-label { font-size: 10px; color: var(--ink-2); font-weight: 500; }
+
+    .margin-val {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .scenario-hero .margin-val { color: var(--forest); font-weight: 700; }
+
+    .scenario-footnote {
+      margin-top: 4px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .scenario-hero .scenario-footnote .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: var(--forest);
+      color: var(--mint);
+      border-radius: 999px;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .scenario-hero .scenario-footnote .pill-tag::before {
+      content: "★";
+      font-size: 9px;
+      line-height: 1;
+      color: var(--mint);
+    }
+
+    .scenario-aspirational .scenario-footnote .caption {
+      font-size: 9px;
+      color: var(--ink-3);
+      font-style: italic;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.4;
+      padding: 0 4px;
+    }
+
+    .conclusion {
+      margin-top: 10px;
+      padding: 14px 18px;
+      background: var(--forest);
+      color: var(--white);
+      border-radius: 10px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .conclusion-body {
+      font-size: 11px;
+      line-height: 1.65;
+      color: var(--white);
+    }
+
+    .conclusion-body strong { color: var(--mint); font-weight: 600; }
+    .conclusion-body p + p { margin-top: 8px; }
+
+    .recommendation-anchor {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(135, 198, 174, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .rec-anchor-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+
+    .rec-anchor-headline {
+      font-size: 12px;
+      color: var(--white);
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
+    .rec-anchor-price {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.4px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .rec-anchor-price .vs {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--mint);
+      text-align: right;
+      margin-top: 2px;
+      letter-spacing: 0;
+    }
+
+    .quote-block {
+      margin-top: 8px;
+      padding: 10px 20px 8px 28px;
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 10px;
+      position: relative;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .quote-mark {
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      font-size: 28px;
+      color: var(--mint);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      font-size: 10.5px;
+      color: var(--ink-2);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .quote-attribution {
+      margin-top: 8px;
+      font-size: 9.5px;
+      color: var(--sage);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      font-style: normal;
+    }
+
+    .disclaimer {
+      margin-top: 8px;
+      padding: 8px 14px;
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .disclaimer-mark {
+      font-size: 13px;
+      color: var(--sage);
+      font-style: italic;
+      line-height: 1;
+      padding-top: 1px;
+    }
+
+    .disclaimer-body {
+      font-size: 9px;
+      color: var(--ink-3);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .disclaimer-body strong {
+      font-weight: 600;
+      font-style: normal;
+      color: var(--ink-2);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      font-size: 8.5px;
+    }
+
+    .page-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--ink-4);
+    }
+
+    .page-footer .left { display: flex; align-items: center; gap: 12px; }
+
+    .page-footer .dot {
+      width: 3.5px;
+      height: 3.5px;
+      border-radius: 50%;
+      background: var(--mint);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page-footer .right { display: flex; align-items: center; gap: 14px; }
+
+    .page-footer a {
+      color: var(--forest);
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .page-num {
+      font-size: 9px;
+      color: var(--ink-4);
+      letter-spacing: 1.2px;
+    }
+
+    /* ── RLV Table ── */
+    .rlv-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .rlv-table tbody td {
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--ink-2);
+      vertical-align: middle;
+    }
+
+    .rlv-table tbody td.right { text-align: right; padding-right: 0; }
+
+    .rlv-table tbody tr:last-child td { border-bottom: none; }
+
+    .rlv-table .step-label {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sage);
+      padding-top: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--mint-border);
+    }
+
+    .rlv-table .step-label.right { text-align: right; padding-right: 0; }
+
+    .rlv-row-key { font-weight: 400; color: var(--ink-2); }
+    .rlv-row-val { font-weight: 600; color: var(--forest-ink); font-variant-numeric: tabular-nums; }
+    .rlv-row-val.featured { font-size: 13px; color: var(--forest); }
+
+    .rlv-final {
+      margin-top: 6px;
+      padding: 10px 14px;
+      background: var(--mint-white);
+      border: 1.5px solid var(--mint-border);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .rlv-final-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .rlv-final-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--forest-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Arabic / RTL Pages ── */
+    .page.rtl {
+      direction: rtl;
+      text-align: right;
+    }
+
+    .page.rtl .masthead,
+    .page.rtl .property-line,
+    .page.rtl .section-heading,
+    .page.rtl .comps-summary,
+    .page.rtl .rlv-final,
+    .page.rtl .recommendation-anchor,
+    .page.rtl .page-footer,
+    .page.rtl .page-footer .left,
+    .page.rtl .page-footer .right,
+    .page.rtl .scenario-revenue,
+    .page.rtl .margin-row,
+    .page.rtl .disclaimer {
+      direction: rtl;
+    }
+
+    .page.rtl .doc-meta { text-align: left; }
+    .page.rtl .property-name { flex-direction: row-reverse; }
+    .page.rtl .property-marks { flex-direction: row-reverse; }
+    .page.rtl .section-heading .rule { margin-left: 0; margin-right: 14px; }
+    .page.rtl .exec-highlight { border-left: 0; border-right: 3px solid var(--mint); }
+    .page.rtl .quote-block { padding: 10px 28px 8px 20px; }
+    .page.rtl .quote-mark { left: auto; right: 12px; }
+    .page.rtl .rec-anchor-price .vs { text-align: left; }
+
+    .page.rtl .comps-table thead th,
+    .page.rtl .comps-table tbody td,
+    .page.rtl .rlv-table tbody td {
+      text-align: right;
+      padding: 8px 0 8px 10px;
+    }
+
+    .page.rtl .comps-table thead th.right,
+    .page.rtl .comps-table tbody td.right,
+    .page.rtl .rlv-table tbody td.right {
+      text-align: left;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+
+    .page.rtl .comps-table thead th.center,
+    .page.rtl .comps-table tbody td.center { text-align: center; }
+
+    .page.rtl .masthead { direction: rtl; }
+    .page.rtl .brand { text-align: right; }
+    .page.rtl .brand svg { margin-left: auto; margin-right: 0; display: block; }
+    .page.rtl .brand-sub { letter-spacing: 2px; }
+    .page.rtl .eyebrow,
+    .page.rtl .doc-label,
+    .page.rtl .kpi-label,
+    .page.rtl .assumption-label,
+    .page.rtl .scenario-tag,
+    .page.rtl .scenario-margins-label,
+    .page.rtl .rec-anchor-label,
+    .page.rtl .comps-summary-label,
+    .page.rtl .rlv-final-label,
+    .page.rtl .mark {
+      letter-spacing: 0.2px;
+    }
+
+    .page.rtl .rlv-table .step-label.right { text-align: left; }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0mm;
+      }
+
+      html, body {
+        width: 210mm;
+        height: auto;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page {
+        width: 210mm !important;
+        min-height: 0 !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 11mm 14mm 8mm !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .page:last-of-type {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+  </style></head><body>
+
+<!-- PAGE 1 — EN -->
+<div class="page">
+<div class="masthead"><div class="brand"><svg viewBox="0 0 200 58" width="120" xmlns="http://www.w3.org/2000/svg"><text fill="#003D2E" font-family="'DM Sans', sans-serif" font-size="34" font-weight="700" letter-spacing="1.5" x="0" y="38">NAMOU</text></svg><div class="brand-sub">Properties · RAK</div></div><div class="doc-meta"><div class="doc-label">Land Evaluation Report</div><div class="doc-title">Al Hudaibah<br/>Commercial / Residential Plot</div><div class="doc-subtitle">Prepared June 2026 · Evaluated by Namou · Ras Al Khaimah</div></div></div>
+
+<div class="property-line"><div class="property-name"><svg fill="none" height="13" stroke="#457C68" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="13"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>5,714 sqft mixed-use plot · Al Hudaibah, Ras Al Khaimah — 25° 48' 28.2" N 55° 58' 58.6" E</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Key Metrics</span><span class="rule"></span></div><div class="kpi-grid">
+<div class="kpi"><div class="kpi-label">Plot Area</div><div class="kpi-value">5,714 <span class="unit">sqft</span></div><div class="kpi-sub">Commercial / Residential mixed-use land</div></div>
+<div class="kpi"><div class="kpi-label">Location</div><div class="kpi-value">Al Hudaibah</div><div class="kpi-sub">Established central district, RAK</div></div>
+<div class="kpi"><div class="kpi-label">Zoning</div><div class="kpi-value">Commercial / Res.</div><div class="kpi-sub">Dual-use designation</div></div>
+<div class="kpi"><div class="kpi-label">Permitted Build</div><div class="kpi-value">G + 1</div><div class="kpi-sub">50% BUA footprint per floor</div></div>
+<div class="kpi"><div class="kpi-label">Total GFA</div><div class="kpi-value">5,714 <span class="unit">sqft</span></div><div class="kpi-sub">Across both floors combined</div></div>
+<div class="kpi"><div class="kpi-label">Road Access</div><div class="kpi-value">Secondary</div><div class="kpi-sub">Natural surface — value-add stage</div></div>
+</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Executive Summary</span><span class="rule"></span></div><div class="prose"><p>The subject property is a <strong>5,714 sq.ft commercial/residential plot</strong> located in the established and highly accessible Al Hudaibah district of Ras Al Khaimah. It sits in a mature, central neighbourhood offering excellent connectivity to key city infrastructure and proximity to primary road arteries.</p><p>Permitted development allows for <strong>Ground + 1 Floor (G+1)</strong> with a maximum 50% BUA footprint per level, yielding a total GFA of 5,714 sq.ft. The current natural-surface secondary access represents a classic value-add opportunity — the plot can be acquired below peak rates, with built-in appreciation once the municipality finalises road paving.</p></div><div class="exec-highlights"><div class="exec-highlight"><strong>Study 01</strong>Market Context — comparable mixed-use plots in the immediate micro-market are currently listing at AED 143–200 per sqft.</div><div class="exec-highlight"><strong>Study 02</strong>RLV &amp; Pricing — the Residual Land Value model returns AED 948,000 (≈ AED 166/sqft) as the fair market anchor.</div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Study 01 — Neighbourhood / Secondary Market Context</span><span class="rule"></span></div><div class="prose"><p>Commercial and mixed-use land within central RAK districts commands a strong premium due to scarcity and high rental demand. Active comparable listings in the immediate micro-market currently span <strong>AED 143–200 per sqft</strong>, with main-road positioning commanding the top of the range.</p><p>The subject plot's natural-surface secondary access positions it below the AED 180–200 peak tier, creating a clear discount-to-value entry point ahead of infrastructure formalisation.</p></div>
+<table class="comps-table"><thead><tr><th>Comparable Mixed-Use Plots</th><th class="center">Land Size</th><th class="center">Asking</th><th class="right">Rate</th></tr></thead><tbody>
+<tr><td><span class="comp-loc">Al Hudaibah / New Al Muairidh<span class="sub">Main-road positioning</span></span></td><td class="center">15,000 sqft</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">AED 3,000,000</span></td><td class="right comp-rate">AED 200 / sqft</td></tr>
+<tr><td><span class="comp-loc">Al Mamourah (Adjacent)<span class="sub">Commercial plot</span></span></td><td class="center">3,600 sqft</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">AED 650,000</span></td><td class="right comp-rate">AED 180 / sqft</td></tr>
+<tr><td><span class="comp-loc">Al Juwais<span class="sub">Mixed-use plot</span></span></td><td class="center">3,900 sqft</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">AED 560,000</span></td><td class="right comp-rate">AED 143 / sqft</td></tr>
+</tbody></table><div class="comps-summary"><span class="comps-summary-label">Active Market Listing Range — Al Hudaibah / Al Mamourah</span><span class="comps-summary-val">AED 143 – 200 / sqft</span></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Core Assumptions</span><span class="rule"></span></div><div class="assumptions-row">
+<div class="assumption"><span class="assumption-label">Plot Size</span><span class="assumption-val">5,714 sqft</span></div>
+<div class="assumption"><span class="assumption-label">Use</span><span class="assumption-val">Mixed-Use G+1</span></div>
+<div class="assumption"><span class="assumption-label">Net Sellable</span><span class="assumption-val">4,857 sqft (85%)</span></div>
+<div class="assumption"><span class="assumption-label">Construction</span><span class="assumption-val">AED 240 / GFA sqft</span></div>
+<div class="assumption"><span class="assumption-label">Soft Costs</span><span class="assumption-val">15% of hard costs</span></div>
+<div class="assumption"><span class="assumption-label">Dev. Margin</span><span class="assumption-val">20% of GDV</span></div>
+</div></div>
+
+<div class="page-footer"><div class="left"><span>Namou Properties LLC</span><span class="dot"></span><span>Julphar Office Tower, 1411, Ras Al-Khaimah, UAE</span></div><div class="right"><a href="https://namou.ae" target="_blank">NAMOU.AE</a><span class="page-num">01 / 04</span></div></div>
+</div>
+
+<!-- PAGE 2 — EN -->
+<div class="page">
+<div class="masthead"><div class="brand"><svg viewBox="0 0 200 58" width="120" xmlns="http://www.w3.org/2000/svg"><text fill="#003D2E" font-family="'DM Sans', sans-serif" font-size="34" font-weight="700" letter-spacing="1.5" x="0" y="38">NAMOU</text></svg><div class="brand-sub">Properties · RAK</div></div><div class="doc-meta"><div class="doc-label">Study 02 · Conclusion</div><div class="doc-title">RLV, Valuation &amp; Recommendation</div><div class="doc-subtitle">5,714 sqft plot · Al Hudaibah — Commercial / Residential</div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Residual Land Value (RLV) Calculation</span><span class="rule"></span></div>
+<table class="rlv-table"><tbody>
+<tr><td class="rlv-row-key">Gross Development Value — 4,857 NSA sqft × AED 650</td><td class="right rlv-row-val featured">AED 3,157,050</td></tr>
+<tr><td class="rlv-row-key">Total Development Costs — construction + soft costs (15%)</td><td class="right rlv-row-val">AED 1,577,064</td></tr>
+<tr><td class="rlv-row-key">Developer Profit — 20% of GDV</td><td class="right rlv-row-val">AED 631,410</td></tr>
+</tbody></table>
+<div class="rlv-final"><span class="rlv-final-label">Residual Land Value — Fair Market Anchor</span><span class="rlv-final-val">AED 948,576 · ≈ AED 166 / sqft</span></div>
+</div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Scenarios — Seller Pricing Strategy</span><span class="rule"></span></div><div class="scenarios">
+<div class="scenario"><div class="scenario-header"><div class="scenario-tag">Quick Liquidation Price</div><div class="scenario-rate">AED 825K <span class="per">fast sale</span></div></div><div class="scenario-revenue"><span class="rev-label">Rate / land sqft</span><span class="rev-val">~AED 144</span></div><div class="scenario-margins"><div class="scenario-margins-label">Basis</div><div class="margin-row"><span class="margin-label">Market logic →</span><span class="margin-val">Discount to RLV</span></div><div class="margin-row"><span class="margin-label">Suitable for →</span><span class="margin-val">Immediate sale</span></div></div></div>
+<div class="scenario scenario-hero"><div class="scenario-header"><div class="scenario-tag">Recommended Selling Price</div><div class="scenario-rate">AED 950K <span class="per">fair market</span></div></div><div class="scenario-revenue"><span class="rev-label">Rate / land sqft</span><span class="rev-val">~AED 166</span></div><div class="scenario-margins"><div class="scenario-margins-label">Basis</div><div class="margin-row"><span class="margin-label">Offer range →</span><span class="margin-val">AED 900K–1.00M</span></div><div class="margin-row"><span class="margin-label">Suitable for →</span><span class="margin-val">Mid-tier developers</span></div></div><div class="scenario-footnote"><span class="pill-tag">Recommended Frame</span></div></div>
+<div class="scenario scenario-aspirational"><div class="scenario-header"><div class="scenario-tag">Maximum Cap / Hold Price</div><div class="scenario-rate">AED 1.05M <span class="per">upside target</span></div></div><div class="scenario-revenue"><span class="rev-label">Rate / land sqft</span><span class="rev-val">~AED 183</span></div><div class="scenario-margins"><div class="scenario-margins-label">Basis</div><div class="margin-row"><span class="margin-label">Requires →</span><span class="margin-val">Selective buyer</span></div><div class="margin-row"><span class="margin-label">Timeline →</span><span class="margin-val">Longer hold</span></div></div><div class="scenario-footnote"><span class="caption">Achievable only once municipality road formalisation raises the asset's retail &amp; commercial profile</span></div></div>
+</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Conclusion</span><span class="rule"></span></div><div class="conclusion"><div class="conclusion-body"><p>The plot represents a <strong>highly attractive, optimised commercial opportunity</strong> in Al Hudaibah. A total capital outlay of approximately <strong>AED 2.52M</strong> — land at fair market value plus all development costs — comfortably yields a GDV north of <strong>AED 3.15M</strong>, delivering a clean 20% developer margin.</p><p>Ground-floor tenants should target destination-driven businesses such as medical clinics, corporate offices, or boutique wellness centres — uses insulated from the current secondary road access. Once paving is formalised, the retail profile will naturally elevate.</p></div><div class="recommendation-anchor"><div><div class="rec-anchor-label">Recommended Anchor Price</div><div class="rec-anchor-headline">Market to mid-tier developers and local build-to-rent investors</div></div><div class="rec-anchor-price">AED 950,000<span class="vs">quick sale floor AED 825,000</span></div></div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">Recommendation</span><span class="rule"></span></div><div class="quote-block"><span class="quote-mark">&quot;</span><div class="quote-text">Anchor negotiations confidently around AED 950,000 — directly supported by the RLV model. For swift liquidity, any serious offer approaching AED 825,000 should trigger an immediate transaction. Offers above AED 1,000,000 are achievable but will require a slightly longer holding period for a buyer specifically targeting the infrastructure upside.</div><div class="quote-attribution">— Namou Properties Advisory Note</div></div></div>
+
+<div class="disclaimer"><span class="disclaimer-mark">§</span><div class="disclaimer-body"><strong>Confidential — For Addressee Only</strong> — This report has been prepared by Namou Properties LLC as a complimentary valuation for advisory and discussion purposes in relation to the subject property. The analysis and pricing guidance are based on provided plot information, observed market positioning, and current market conditions as of June 2026. All figures are estimates only and should not be relied upon as a formal valuation or investment advice.</div></div>
+
+<div class="page-footer"><div class="left"><span>Namou Properties LLC</span><span class="dot"></span><span>Julphar Office Tower, 1411, Ras Al-Khaimah, UAE</span></div><div class="right"><a href="https://namou.ae" target="_blank">NAMOU.AE</a><span class="page-num">02 / 04</span></div></div>
+</div>
+
+<!-- PAGE 3 — AR -->
+<div class="page rtl" dir="rtl" lang="ar">
+<div class="masthead"><div class="brand"><svg viewBox="0 0 200 58" width="120" xmlns="http://www.w3.org/2000/svg"><text fill="#003D2E" font-family="'DM Sans', sans-serif" font-size="34" font-weight="700" letter-spacing="1.5" x="0" y="38">NAMOU</text></svg><div class="brand-sub">Properties · RAK</div></div><div class="doc-meta"><div class="doc-label">تقرير تقييم أرض</div><div class="doc-title">الحديبة<br/>أرض تجارية / سكنية</div><div class="doc-subtitle">تم الإعداد في يونيو 2026 · التقييم من نامو · رأس الخيمة</div></div></div>
+
+<div class="property-line"><div class="property-name"><svg fill="none" height="13" stroke="#457C68" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="13"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>قطعة أرض متعددة الاستخدامات بمساحة 5,714 قدم مربع · الحديبة، رأس الخيمة</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">المؤشرات الرئيسية</span><span class="rule"></span></div><div class="kpi-grid">
+<div class="kpi"><div class="kpi-label">مساحة الأرض</div><div class="kpi-value">5,714 <span class="unit">قدم²</span></div><div class="kpi-sub">أرض تجارية / سكنية متعددة الاستخدام</div></div>
+<div class="kpi"><div class="kpi-label">الموقع</div><div class="kpi-value">الحديبة</div><div class="kpi-sub">حي مركزي راسخ في رأس الخيمة</div></div>
+<div class="kpi"><div class="kpi-label">التصنيف</div><div class="kpi-value">تجاري / سكني</div><div class="kpi-sub">تصنيف استخدام مزدوج</div></div>
+<div class="kpi"><div class="kpi-label">البناء المسموح</div><div class="kpi-value">G + 1</div><div class="kpi-sub">50% نسبة بناء لكل طابق</div></div>
+<div class="kpi"><div class="kpi-label">إجمالي المساحة البنائية</div><div class="kpi-value">5,714 <span class="unit">قدم²</span></div><div class="kpi-sub">على الطابقين مجتمعين</div></div>
+<div class="kpi"><div class="kpi-label">الوصول</div><div class="kpi-value">طريق ثانوي</div><div class="kpi-sub">سطح طبيعي — مرحلة إضافة قيمة</div></div>
+</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">الملخص التنفيذي</span><span class="rule"></span></div><div class="prose"><p>العقار موضوع التقييم هو <strong>قطعة أرض تجارية/سكنية بمساحة 5,714 قدم مربع</strong> في حي الحديبة الراسخ والذي يتميز بسهولة الوصول في رأس الخيمة. تقع في حي مركزي ناضج يوفر اتصالاً ممتازاً بالبنية التحتية الحيوية للمدينة وقرباً من المحاور الرئيسية.</p><p>يسمح البناء المرخص بـ <strong>أرضي + أول (G+1)</strong> بنسبة بناء أقصاها 50% لكل طابق، مما يوفر إجمالي مساحة بنائية 5,714 قدم مربع. يمثل الطريق الثانوي ذو السطح الطبيعي فرصة كلاسيكية لإضافة القيمة — إمكانية الاستحواذ على الأصل دون أسعار الذروة مع استيعاب التقدير المدمج فور تعبيد الطرق.</p></div><div class="exec-highlights"><div class="exec-highlight"><strong>الدراسة 01</strong>سياق السوق — القطع المماثلة متعددة الاستخدام في المنطقة المباشرة تُعرض حالياً بين 143 و200 درهم للقدم المربع.</div><div class="exec-highlight"><strong>الدراسة 02</strong>القيمة المتبقية للأرض والتسعير — يُرجع نموذج القيمة المتبقية للأرض مبلغ 948,000 درهم (≈ 166 درهم/قدم²) كمرساة القيمة السوقية العادلة.</div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">الدراسة 01 — الحي / سياق السوق الثانوي</span><span class="rule"></span></div><div class="prose"><p>تحظى الأراضي التجارية ومتعددة الاستخدام في أحياء رأس الخيمة المركزية بعلاوة قوية بسبب الندرة والطلب الإيجاري المرتفع. تتراوح القوائم المماثلة النشطة في المنطقة المباشرة بين <strong>143 و200 درهم للقدم المربع</strong>، حيث تتصدر الأسعار القطعُ ذات الموقع على الطريق الرئيسي.</p><p>يضع وصول القطعة الثانوي ذو السطح الطبيعي قيمتها دون نطاق الذروة البالغ 180–200 درهم، مما يوفر نقطة دخول واضحة بخصم على القيمة قبيل تحديث البنية التحتية.</p></div>
+<table class="comps-table"><thead><tr><th>قطع متعددة الاستخدام للمقارنة</th><th class="center">مساحة الأرض</th><th class="center">السعر المطلوب</th><th class="right">معدل السعر</th></tr></thead><tbody>
+<tr><td><span class="comp-loc">الحديبة / المعيريض الجديد<span class="sub">موقع على الطريق الرئيسي</span></span></td><td class="center">15,000 قدم²</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">3,000,000 درهم</span></td><td class="right comp-rate">200 درهم / قدم²</td></tr>
+<tr><td><span class="comp-loc">المعمورة (مجاور)<span class="sub">قطعة تجارية</span></span></td><td class="center">3,600 قدم²</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">650,000 درهم</span></td><td class="right comp-rate">180 درهم / قدم²</td></tr>
+<tr><td><span class="comp-loc">الجويس<span class="sub">قطعة متعددة الاستخدام</span></span></td><td class="center">3,900 قدم²</td><td class="center"><span style="font-size:10.5px;color:var(--sage);font-weight:500;">560,000 درهم</span></td><td class="right comp-rate">143 درهم / قدم²</td></tr>
+</tbody></table><div class="comps-summary"><span class="comps-summary-label">نطاق القوائم السوقية النشطة — الحديبة / المعمورة</span><span class="comps-summary-val">143 – 200 درهم / قدم²</span></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">الافتراضات الأساسية</span><span class="rule"></span></div><div class="assumptions-row">
+<div class="assumption"><span class="assumption-label">مساحة الأرض</span><span class="assumption-val">5,714 قدم²</span></div>
+<div class="assumption"><span class="assumption-label">الاستخدام</span><span class="assumption-val">متعدد — G+1</span></div>
+<div class="assumption"><span class="assumption-label">المساحة القابلة للبيع</span><span class="assumption-val">4,857 قدم² (85%)</span></div>
+<div class="assumption"><span class="assumption-label">تكلفة البناء</span><span class="assumption-val">240 درهم / قدم²</span></div>
+<div class="assumption"><span class="assumption-label">التكاليف الناعمة</span><span class="assumption-val">15% من الصلبة</span></div>
+<div class="assumption"><span class="assumption-label">هامش المطور</span><span class="assumption-val">20% من GDV</span></div>
+</div></div>
+
+<div class="page-footer"><div class="left"><span>Namou Properties LLC</span><span class="dot"></span><span>Julphar Office Tower, 1411, Ras Al-Khaimah, UAE</span></div><div class="right"><a href="https://namou.ae" target="_blank">NAMOU.AE</a><span class="page-num">03 / 04</span></div></div>
+</div>
+
+<!-- PAGE 4 — AR -->
+<div class="page rtl" dir="rtl" lang="ar">
+<div class="masthead"><div class="brand"><svg viewBox="0 0 200 58" width="120" xmlns="http://www.w3.org/2000/svg"><text fill="#003D2E" font-family="'DM Sans', sans-serif" font-size="34" font-weight="700" letter-spacing="1.5" x="0" y="38">NAMOU</text></svg><div class="brand-sub">Properties · RAK</div></div><div class="doc-meta"><div class="doc-label">الدراسة 02 · الخلاصة</div><div class="doc-title">القيمة المتبقية والتوصية</div><div class="doc-subtitle">قطعة أرض 5,714 قدم مربع · الحديبة — تجاري / سكني</div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">حساب القيمة المتبقية للأرض (RLV)</span><span class="rule"></span></div>
+<table class="rlv-table"><tbody>
+<tr><td class="rlv-row-key">إجمالي قيمة التطوير — 4,857 قدم² صافية × 650 درهم</td><td class="right rlv-row-val featured">3,157,050 درهم</td></tr>
+<tr><td class="rlv-row-key">إجمالي تكاليف التطوير — بناء + تكاليف ناعمة (15%)</td><td class="right rlv-row-val">1,577,064 درهم</td></tr>
+<tr><td class="rlv-row-key">ربح المطور — 20% من إجمالي قيمة التطوير</td><td class="right rlv-row-val">631,410 درهم</td></tr>
+</tbody></table>
+<div class="rlv-final"><span class="rlv-final-label">القيمة المتبقية للأرض — مرساة القيمة السوقية العادلة</span><span class="rlv-final-val">948,576 درهم · ≈ 166 درهم / قدم²</span></div>
+</div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">السيناريوهات — استراتيجية تسعير البائع</span><span class="rule"></span></div><div class="scenarios">
+<div class="scenario"><div class="scenario-header"><div class="scenario-tag">سعر التصفية السريعة</div><div class="scenario-rate">825,000 درهم <span class="per">بيع فوري</span></div></div><div class="scenario-revenue"><span class="rev-label">السعر / قدم² أرض</span><span class="rev-val">~144 درهم</span></div><div class="scenario-margins"><div class="scenario-margins-label">الأساس</div><div class="margin-row"><span class="margin-label">منطق السوق ←</span><span class="margin-val">خصم على RLV</span></div><div class="margin-row"><span class="margin-label">مناسب لـ ←</span><span class="margin-val">بيع فوري</span></div></div></div>
+<div class="scenario scenario-hero"><div class="scenario-header"><div class="scenario-tag">سعر البيع الموصى به</div><div class="scenario-rate">950,000 درهم <span class="per">القيمة العادلة</span></div></div><div class="scenario-revenue"><span class="rev-label">السعر / قدم² أرض</span><span class="rev-val">~166 درهم</span></div><div class="scenario-margins"><div class="scenario-margins-label">الأساس</div><div class="margin-row"><span class="margin-label">نطاق العروض ←</span><span class="margin-val">900K–1.00M درهم</span></div><div class="margin-row"><span class="margin-label">مناسب لـ ←</span><span class="margin-val">مطورون متوسطون</span></div></div><div class="scenario-footnote"><span class="pill-tag">الإطار الموصى به</span></div></div>
+<div class="scenario scenario-aspirational"><div class="scenario-header"><div class="scenario-tag">سعر الاحتفاظ / الأقصى</div><div class="scenario-rate">1.05M درهم <span class="per">هدف صعودي</span></div></div><div class="scenario-revenue"><span class="rev-label">السعر / قدم² أرض</span><span class="rev-val">~183 درهم</span></div><div class="scenario-margins"><div class="scenario-margins-label">الأساس</div><div class="margin-row"><span class="margin-label">يتطلب ←</span><span class="margin-val">مشترٍ انتقائي</span></div><div class="margin-row"><span class="margin-label">المدة ←</span><span class="margin-val">احتفاظ أطول</span></div></div><div class="scenario-footnote"><span class="caption">قابل للتحقق فقط بعد تسوية الطرق البلدية مما يرفع القيمة التجارية والتجزئة للأصل</span></div></div>
+</div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">الخلاصة</span><span class="rule"></span></div><div class="conclusion"><div class="conclusion-body"><p>تمثل هذه القطعة <strong>فرصة تجارية متميزة ومُحسّنة</strong> في الحديبة. يُولّد إجمالي استثمار يبلغ نحو <strong>2.52M درهم</strong> — الأرض بالقيمة السوقية العادلة بالإضافة إلى جميع تكاليف التطوير — قيمة تطوير إجمالية تتجاوز <strong>3.15M درهم</strong> مع هامش مطوّر نظيف بنسبة 20%.</p><p>ينبغي أن تستهدف الطوابق الأرضية مستأجرين يعتمدون على الوجهة المقصودة كالعيادات الطبية والمكاتب الإدارية ومراكز العافية — استخدامات غير حساسة لحركة المرور العشوائية. فور تسوية الطرق، سيرتفع الملف التجاري للأصل تلقائياً.</p></div><div class="recommendation-anchor"><div><div class="rec-anchor-label">سعر المرساة الموصى به</div><div class="rec-anchor-headline">استهداف المطورين المتوسطين ومستثمري الإيجار المحليين</div></div><div class="rec-anchor-price">950,000 درهم<span class="vs">أرضية البيع السريع 825,000 درهم</span></div></div></div></div>
+
+<div class="section"><div class="section-heading"><span class="eyebrow">التوصية</span><span class="rule"></span></div><div class="quote-block"><span class="quote-mark">&quot;</span><div class="quote-text">ثبّت التفاوض بثقة حول 950,000 درهم — مدعوماً مباشرةً بنموذج القيمة المتبقية للأرض. لتحقيق سيولة سريعة، يجب أن تستحثّ أي عرض جاد يقترب من 825,000 درهم إتمامَ الصفقة فوراً. العروض فوق مليون درهم قابلة للتحقق لكنها تتطلب فترة احتفاظ أطول قليلاً لاستقطاب مشترٍ يستهدف تحديداً التحسينات البنية التحتية المرتقبة.</div><div class="quote-attribution">— ملاحظة استشارية من نامو العقارية</div></div></div>
+
+<div class="disclaimer"><span class="disclaimer-mark">§</span><div class="disclaimer-body"><strong>سري — للمرسل إليه فقط</strong> — تم إعداد هذا التقرير من قبل شركة نامو العقارية ذ.م.م كتقييم مجاني لأغراض الاستشارة والنقاش فيما يتعلق بالعقار موضوع التقرير. تستند التحليلات والإرشادات السعرية إلى معلومات الأرض المقدمة، وتموضع السوق المرصود، وظروف السوق الحالية كما في يونيو 2026. جميع الأرقام تقديرية ولا ينبغي الاستناد إليها كتقييم رسمي أو نصيحة استثمارية.</div></div>
+
+<div class="page-footer"><div class="left"><span>Namou Properties LLC</span><span class="dot"></span><span>Julphar Office Tower, 1411, Ras Al-Khaimah, UAE</span></div><div class="right"><a href="https://namou.ae" target="_blank">NAMOU.AE</a><span class="page-num">04 / 04</span></div></div>
+</div>
+
+</body></html>
