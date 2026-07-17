@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>William Radiyeh - Marketing Systems, Namou Properties</title>
-<meta name="description" content="William Radiyeh builds marketing systems in n8n, Gemini, and Meta CAPI for Namou Properties. Six years in paid media, brand, and CRM."/>
-<meta property="og:title" content="William Radiyeh - Marketing Systems, Namou Properties"/>
-<meta property="og:description" content="William Radiyeh builds marketing systems in n8n, Gemini, and Meta CAPI for Namou Properties. Six years in paid media, brand, and CRM."/>
+<title>William Radiyeh - Marketing Leadership, AI, and Digital Products</title>
+<meta name="description" content="William Radiyeh is a marketing leader and AI builder creating websites, sales tools, automations, and reporting systems for real estate teams."/>
+<meta property="og:title" content="William Radiyeh - Marketing Leadership, AI, and Digital Products"/>
+<meta property="og:description" content="Marketing leadership, AI implementation, and practical digital products built for real estate teams."/>
 <meta property="og:type" content="website"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%232850FF'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Arial,sans-serif'%20font-size='40'%20font-weight='700'%20fill='%23FFFFFF'%20text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E"/>
 
@@ -39,7 +39,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 html,body{background:var(--ink);color:var(--t-on-dark);font-family:var(--body);-webkit-font-smoothing:antialiased;font-feature-settings:'ss01','ss02','cv01'}
-main{overflow-x:hidden;width:100%;max-width:100%}
+main{overflow-x:clip;width:100%;max-width:100%}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent);color:#fff}
@@ -86,8 +86,9 @@ html{scrollbar-width:thin;scrollbar-color:rgba(241,241,239,.18) transparent}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;width:100%}
 @media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:60px}}
 .hero-kick{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:26px}
-.hero-name{font-family:var(--display);font-weight:800;letter-spacing:-0.04em;line-height:.86;font-size:clamp(2.4rem,7.2vw,6.4rem);text-transform:uppercase}
-.hero-name span{display:block;overflow:hidden}
+.hero-name{font-family:var(--display);font-weight:800;letter-spacing:-0.04em;line-height:.86;font-size:clamp(2.4rem,5.4vw,4.8rem)}
+.hero-name span{display:block;overflow:hidden;white-space:nowrap}
+@media(max-width:520px){.hero-name{font-size:1.9rem;line-height:.92}}
 .hero-rule{height:1px;background:var(--line-paper);margin:34px 0 24px;max-width:520px}
 .hero-role{font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:500;color:var(--t-on-paper-2);max-width:42ch;line-height:1.5}
 .hero-role b{color:var(--t-on-paper);font-weight:700}
@@ -168,25 +169,79 @@ html{scrollbar-width:thin;scrollbar-color:rgba(241,241,239,.18) transparent}
 .drow .dnote{color:var(--t-on-dark-2);font-size:14.5px;margin-top:8px;max-width:60ch;line-height:1.5}
 .drow .dkind{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t-on-dark-3);text-align:right}
 
-/* LIVE list (clickable) */
-.live .drow{grid-template-columns:1fr auto;cursor:pointer}
-.live .drow .lk{font-family:var(--mono);font-size:14px;color:var(--t-on-dark-3);transition:transform .3s,color .25s}
-.live .drow:hover .lk{transform:translate(3px,-3px);color:var(--accent-lift)}
+/* SELECTED WORK - sticky scroll stack */
+.sec-paper .label{color:var(--accent)}
+.sec-paper .sec-title .ac{color:var(--accent)}
+.sec-paper .sec-sub{color:var(--t-on-paper-2)}
+.wk-stack{display:flex;flex-direction:column;gap:40px;margin-top:clamp(40px,6vw,70px)}
+.wk-card{position:relative;top:auto;height:auto;background:#fff;border:1px solid var(--line-paper);border-radius:12px;padding:clamp(26px,4vw,52px);display:grid;grid-template-columns:1fr;gap:22px;align-items:center;overflow:hidden;transform-origin:50% 0;box-shadow:0 -30px 40px -12px rgba(22,22,22,.10), 0 30px 60px -30px rgba(22,22,22,.25)}
+.wk-card.link{cursor:pointer}
+.wk-kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px}
+.wk-title{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1;font-size:clamp(1.9rem,3.4vw,2.9rem);margin-bottom:16px}
+.wk-copy{color:var(--t-on-paper-2);font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.55;max-width:34ch}
+.wk-open{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:inline-flex;gap:7px}
+.wk-visual{position:relative;height:100%;min-height:180px;aspect-ratio:16/10;border-radius:10px;border:1px solid var(--line-paper);overflow:hidden;background:#fff}
+.wk-visual .shot{position:absolute;inset:0;width:100%;height:100%}
+/* card 3 portal mock (pure CSS, one cobalt accent) */
+.portal{position:relative;width:100%;height:100%;min-height:180px;display:grid;grid-template-columns:64px 1fr;background:var(--paper-2)}
+.portal .p-side{border-right:1px solid var(--line-paper);padding:16px 12px;display:flex;flex-direction:column;gap:12px}
+.portal .p-side i{display:block;height:6px;border-radius:3px;background:rgba(22,22,22,.16)}
+.portal .p-side i:nth-child(1){width:18px;height:7px;background:var(--accent);border-radius:2px}
+.portal .p-side i:nth-child(3){width:80%}
+.portal .p-side i:nth-child(4){width:55%}
+.portal .p-main{padding:18px;display:flex;flex-direction:column;gap:12px}
+.portal .p-row{height:clamp(38px,7vh,58px);border:1px solid var(--line-paper);border-radius:8px;background:#fff}
+.portal .p-chip{position:absolute;right:12px;bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t-on-paper-2);background:#fff;border:1px solid var(--line-paper);border-radius:999px;padding:4px 10px}
+@media(min-width:900px){
+  .wk-stack{gap:100px;max-width:1100px;margin-left:auto;margin-right:auto}
+  .wk-card{grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,52px);height:min(560px,72vh)}
+  .wk-card:nth-child(1){position:sticky;top:90px}
+  .wk-card:nth-child(2){position:sticky;top:120px}
+  .wk-card:nth-child(3){position:sticky;top:150px}
+  .wk-visual{height:100%;aspect-ratio:auto}
+}
+@media(max-width:899px){
+  .wk-stack.deck-on{display:block}
+  .wk-stack.deck-on .wk-card{position:absolute;inset:0;height:100%;will-change:transform}
+  .wk-stack.deck-on .wk-card:first-child{position:relative;height:auto}
+}
 
-/* META pipeline (CS4 live signal) */
-.pipe-wrap{position:relative;margin-top:20px}
-.pipe-svg{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);width:100%;height:40px;z-index:0;pointer-events:none;overflow:visible}
-.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;z-index:1}
-.node{position:relative;background:var(--surface);border:1px solid var(--line-dark);border-radius:10px;padding:20px 16px;will-change:box-shadow,border-color}
-.node .nm{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:7px}
-.node .ds{font-size:12.5px;color:var(--t-on-dark-2);line-height:1.45}
-.hash-chip{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--accent-lift);background:rgba(40,80,255,.1);border:1px solid var(--line-dark);border-radius:6px;padding:4px 8px;white-space:nowrap}
-@media(max-width:760px){.pipe-svg{display:none}.pipe{grid-template-columns:1fr;gap:12px}.node{will-change:transform}}
-.setup{margin-top:18px;display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:760px){.setup{grid-template-columns:1fr 1fr;gap:12px 40px}}
-.setup .si{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;color:var(--t-on-dark-2);line-height:1.5}
+/* META single-event journey (CS4) */
+.journey{margin-top:24px;position:relative}
+.journey-stage{position:relative;height:390px;border:1px solid var(--line-dark);border-radius:12px;background:radial-gradient(120% 110% at 50% 45%,var(--surface) 45%,var(--ink) 100%);overflow:hidden;display:none}
+.journey.journey-on .journey-stage{display:block}
+.journey-spine{position:absolute;left:10%;right:10%;top:52%;height:1px;background:rgba(92,123,255,.25)}
+.journey-progress{position:absolute;left:10%;top:52%;height:1px;width:80%;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;box-shadow:0 0 14px rgba(40,80,255,.55)}
+.journey-step{position:absolute;top:36px;width:120px;transform:translateX(-50%);text-align:center;color:var(--t-on-dark-3)}
+.journey-step::after{content:"";position:absolute;left:50%;top:112px;width:9px;height:9px;border-radius:50%;background:var(--surface);border:1px solid var(--line-dark-2);transform:translate(-50%,-50%);transition:background .2s,border-color .2s,box-shadow .2s}
+.journey-step.is-passed,.journey-step.is-active{color:var(--t-on-dark)}
+.journey-step.is-passed::after,.journey-step.is-active::after{background:var(--accent);border-color:var(--accent);box-shadow:0 0 16px rgba(40,80,255,.7)}
+.journey-step strong{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.journey-step span{display:block;margin-top:7px;font-size:12.5px;line-height:1.35;color:var(--t-on-dark-3)}
+.journey-step.is-active span{color:var(--accent-lift)}
+.journey-lead{position:absolute;left:10%;top:52%;z-index:3;width:160px;min-height:96px;padding:14px 16px;border:1px solid rgba(92,123,255,.55);border-radius:8px;background:rgba(14,15,18,.94);box-shadow:0 18px 40px -20px rgba(0,0,0,.8),0 0 24px rgba(40,80,255,.14);transform:translate(-50%,-50%);will-change:transform}
+.journey-lead .jl-source{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-lift);margin-bottom:8px}
+.journey-lead strong{display:block;font-family:var(--mono);font-size:13px;line-height:1.35;color:var(--t-on-dark);overflow-wrap:anywhere}
+.journey-lead small{display:block;margin-top:8px;font-size:12px;color:var(--t-on-dark-3)}
+.journey-branch{position:absolute;top:67%;padding:7px 10px;border:1px solid var(--line-dark);border-radius:6px;background:rgba(14,15,18,.88);font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--t-on-dark-3);opacity:0;transform:translate(-50%,-8px)}
+.journey-branch::before{content:"";position:absolute;left:50%;bottom:100%;width:1px;height:26px;background:var(--line-dark-2)}
+.journey-meta{position:absolute;left:90%;top:52%;width:72px;height:72px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--mono);font-size:10px;line-height:1.25;color:var(--accent-lift);transform:translate(-50%,-50%);box-shadow:0 0 20px rgba(40,80,255,.25)}
+.journey-response{position:absolute;left:90%;top:70%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--accent-lift);opacity:0;white-space:nowrap}
+.journey-static{list-style:none;border-top:1px solid var(--line-dark)}
+.journey-static li{padding:14px 0;border-bottom:1px solid var(--line-dark);color:var(--t-on-dark-2);font-size:13.5px;line-height:1.5}
+.journey-static li b{font-family:var(--display);font-weight:700;color:var(--t-on-dark);font-size:15px;margin-right:10px}
+@media(min-width:761px){
+  .journey.journey-on .journey-static{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+}
+@media(max-width:760px){
+  .journey.journey-on .journey-stage{display:none}
+  .journey-static{display:block}
+}
+.setup{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:12px;overflow:hidden}
+.setup .si{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;color:var(--t-on-dark-2);line-height:1.5;background:var(--ink);padding:18px 20px}
 .setup .si b{color:var(--t-on-dark);font-weight:700}
 .setup .d{width:6px;height:6px;border-radius:50%;background:var(--accent-lift);margin-top:7px}
+@media(max-width:760px){.setup{grid-template-columns:1fr}}
 
 /* CREDENTIALS */
 .cred-grid{display:grid;grid-template-columns:1fr;gap:34px;align-items:start;margin-top:46px}
@@ -240,9 +295,9 @@ footer .row{margin-top:24px;display:flex;gap:30px;flex-wrap:wrap;font-family:var
 .lb-frame{flex:1;width:100%;border:0;background:#fff}
 
 /* reveal */
-.rise{opacity:0;transform:translateY(24px)}
-.rise.in{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
-html:not(.js) .rise{opacity:1;transform:none}
+.rise{opacity:0;transform:translateY(24px);filter:blur(8px)}
+.rise.in{opacity:1;transform:none;filter:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1),filter .55s ease}
+html:not(.js) .rise{opacity:1;transform:none;filter:none}
 
 @media(max-width:680px){
   .drow{grid-template-columns:1fr;gap:6px}
@@ -252,7 +307,7 @@ html:not(.js) .rise{opacity:1;transform:none}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rise{opacity:1!important;transform:none!important}
+  .rise{opacity:1!important;transform:none!important;filter:none!important}
   .intro .stmt .w{opacity:1!important}
   .pv-open{opacity:1!important;transform:none!important}
   .scroll-prog{display:none!important}
@@ -276,9 +331,9 @@ html:not(.js) .rise{opacity:1;transform:none}
     <div class="hero-grid">
       <div>
         <p class="hero-kick">William Radiyeh</p>
-        <h1 class="hero-name"><span>Marketing systems</span><span>that run without me</span></h1>
+        <h1 class="hero-name"><span>I turn marketing</span><span>operations into</span><span>working products</span></h1>
         <div class="hero-rule"></div>
-        <p class="hero-role">Six years in paid media, brand, and CRM. Now I <b>automate the parts everyone else does by hand</b>.</p>
+        <p class="hero-role">Marketing leader and AI builder creating websites, sales tools, automations, and reporting systems for <b>real estate teams</b>.</p>
         <div class="hero-social">
           <a href="https://www.linkedin.com/in/william-radiyeh/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:will.rads@outlook.com">Email</a>
@@ -296,9 +351,9 @@ html:not(.js) .rise{opacity:1;transform:none}
 <!-- INTRO statement (dark) -->
 <section class="sec sec-dark intro"><div class="wrap">
   <p class="label rise">Intro</p>
-  <p class="stmt" id="stmt" style="margin-top:22px">I build the <span class="ac">pipeline</span>, not the one-off.</p>
+  <p class="stmt" id="stmt" style="margin-top:22px">Strategy is only useful when the <span class="ac">team can run it</span>.</p>
   <div class="stmt-foot">
-    <p class="stmt-sub rise">Four systems below. Each replaced a manual process at Namou Properties with a workflow that runs on its own.</p>
+    <p class="stmt-sub rise">I connect creative, media, CRM, data, and AI into practical systems that remove manual work and improve how teams sell.</p>
     <a href="#systems" class="pill rise">See the systems <span class="gt">&rarr;</span></a>
   </div>
 </div></section>
@@ -307,8 +362,8 @@ html:not(.js) .rise{opacity:1;transform:none}
 <section class="sec sec-dark" id="systems"><div class="wrap">
   <div class="sec-head">
     <p class="label rise">Systems</p>
-    <h2 class="sec-title rise">Four <span class="ac">systems</span>.</h2>
-    <p class="sec-sub rise">Built, deployed, running in production at Namou Properties.</p>
+    <h2 class="sec-title scrub-t">Built into the <span class="ac">operation</span>.</h2>
+    <p class="sec-sub rise">Four production systems that replaced repetitive work, improved visibility, and accelerated marketing output at Namou Properties.</p>
   </div>
   <div class="sys">
 
@@ -414,21 +469,33 @@ html:not(.js) .rise{opacity:1;transform:none}
         <span class="sys-cat">Meta CAPI</span>
         <h3 class="sys-h">Rebuilt after the <span class="ac">tracking broke</span></h3>
         <p class="sys-desc">Leads arrive as Click-to-WhatsApp ads. A WhatsApp Cloud API webhook feeds n8n, which keeps only ad-originated messages, dedups them, hashes phone numbers, drops stale events, and posts server-side Purchase events to Meta's Conversions API. Ad sets are managed through the Marketing API. Rebuilt from scratch after a provider change broke attribution.</p>
-        <div class="pipe-wrap">
-          <svg class="pipe-svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
-            <defs><filter id="pipeGlow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#5C7BFF" flood-opacity="0.9"/></filter></defs>
-            <path class="pipe-line" d="M100 20 H900" stroke="rgba(92,123,255,.5)" stroke-width="1.5" fill="none"/>
-            <circle class="pipe-dot" cx="100" cy="20" r="3.5" fill="#5C7BFF" filter="url(#pipeGlow)"/>
-            <circle class="pipe-dot" cx="100" cy="20" r="3.5" fill="#5C7BFF" filter="url(#pipeGlow)"/>
-            <circle class="pipe-dot" cx="100" cy="20" r="3.5" fill="#5C7BFF" filter="url(#pipeGlow)"/>
-          </svg>
-          <div class="pipe">
-            <div class="node"><div class="nm">Webhook intake</div><div class="ds">Catches every inbound WhatsApp message.</div></div>
-            <div class="node"><div class="nm">CTWA filter</div><div class="ds">Keeps only ad-originated leads.</div></div>
-            <div class="node"><div class="nm">Dedup and hash</div><div class="ds">SHA-256 on phone numbers, no duplicates.</div><span class="hash-chip" id="hashChip">+9715 52 xxx xxx</span></div>
-            <div class="node"><div class="nm">Staleness check</div><div class="ds">Drops events past their window.</div></div>
-            <div class="node"><div class="nm">CAPI post</div><div class="ds">Sends server-side Purchase events to Meta.</div></div>
+        <div class="journey" id="journey">
+          <div class="journey-stage" aria-hidden="true">
+            <div class="journey-spine"></div>
+            <div class="journey-progress"></div>
+            <div class="journey-step" style="left:10%"><strong>Webhook</strong><span>Message received</span></div>
+            <div class="journey-step" style="left:30%"><strong>CTWA filter</strong><span>Ad origin confirmed</span></div>
+            <div class="journey-step" style="left:50%"><strong>Dedup + hash</strong><span>Unique and anonymized</span></div>
+            <div class="journey-step" style="left:70%"><strong>Staleness</strong><span>Event window checked</span></div>
+            <div class="journey-step" style="left:90%"><strong>Meta CAPI</strong><span>Purchase event posted</span></div>
+            <div class="journey-lead">
+              <span class="jl-source">WhatsApp lead</span>
+              <strong id="journeyValue">+971 52 000 000</strong>
+              <small id="journeyState">Inbound message</small>
+            </div>
+            <span class="journey-branch" style="left:30%" data-branch="reject">Non-ad filtered out</span>
+            <span class="journey-branch" style="left:50%" data-branch="duplicate">Duplicate merged</span>
+            <span class="journey-branch" style="left:70%" data-branch="stale">Stale event dropped</span>
+            <div class="journey-meta">META<br/>CAPI</div>
+            <span class="journey-response">200 Accepted</span>
           </div>
+          <ol class="journey-static">
+            <li><b>Webhook intake</b> Catches every inbound WhatsApp message.</li>
+            <li><b>CTWA filter</b> Keeps only ad-originated leads.</li>
+            <li><b>Dedup and hash</b> SHA-256 on phone numbers, no duplicates.</li>
+            <li><b>Staleness check</b> Drops events past their window.</li>
+            <li><b>CAPI post</b> Sends server-side Purchase events to Meta.</li>
+          </ol>
         </div>
         <div class="setup">
           <div class="si"><span class="d"></span><div><b>Server-side, not pixel.</b> Purchase events post directly to Meta's Conversions API with action_source set to website.</div></div>
@@ -443,18 +510,54 @@ html:not(.js) .rise{opacity:1;transform:none}
   </div>
 </div></section>
 
-<!-- LIVE (dark) -->
-<section class="sec sec-dark live"><div class="wrap">
+<!-- SELECTED WORK (paper) -->
+<section class="sec sec-paper work" id="work"><div class="wrap">
   <div class="sec-head">
-    <p class="label rise">Live</p>
-    <h2 class="sec-title rise">Live, not <span class="ac">mocked</span>.</h2>
-    <p class="sec-sub rise">Four links. Click through.</p>
+    <p class="label rise">Selected work</p>
+    <h2 class="sec-title scrub-t">Built for the <span class="ac">work</span>.</h2>
+    <p class="sec-sub rise">Digital products designed around real sales, marketing, and operational needs.</p>
   </div>
-  <div class="dlist rise">
-    <div class="drow" data-lb="site" data-src="https://namou.ae/" data-title="Namou Properties" data-link="https://namou.ae/"><div class="drole">namou.ae<div class="dco">Company site. I run the marketing on it.</div></div><span class="lk">&#8599;</span></div>
-    <div class="drow" data-lb="site" data-src="https://namou-maireed-5576-sqft-plot.vercel.app/" data-title="Generated land brochure" data-link="https://properties.namou.ae/maireed-5576-sqft-plot"><div class="drole">Auto-generated brochure<div class="dco">Output of System 01, not a template.</div></div><span class="lk">&#8599;</span></div>
-    <div class="drow" data-lb="html" data-src="assets/land-eval-alhudaibah-after.html" data-title="Bilingual land evaluation"><div class="drole">Bilingual land evaluation<div class="dco">Output of System 02, English and Arabic.</div></div><span class="lk">&#8599;</span></div>
-    <div class="drow" data-lb="site" data-src="https://namou-ae-v1.vercel.app/master-plan" data-title="Interactive master-plan deck" data-link="https://namou-ae-v1.vercel.app/master-plan"><div class="drole">Interactive master-plan deck<div class="dco">Zoning map, payment plans, ROI calculator. Built for investor calls.</div></div><span class="lk">&#8599;</span></div>
+  <div class="wk-stack" id="wkStack">
+
+    <article class="wk-card link" data-lb="site" data-src="https://namou.ae/" data-title="Namou Properties" data-link="https://namou.ae/">
+      <div class="wk-text">
+        <p class="wk-kick">01 / Company site</p>
+        <h3 class="wk-title">Namou Properties</h3>
+        <p class="wk-copy">A clearer digital home bringing the company, its property portfolio, and its investor story into one focused experience.</p>
+        <span class="wk-open">Open <span aria-hidden="true">&#8599;</span></span>
+      </div>
+      <div class="wk-visual">
+        <div class="shot"><iframe data-lazy="https://namou.ae/" title="Namou Properties"></iframe></div>
+      </div>
+    </article>
+
+    <article class="wk-card link" data-lb="site" data-src="https://namou-ae-v1.vercel.app/" data-title="Interactive sales deck" data-link="https://namou-ae-v1.vercel.app/">
+      <div class="wk-text">
+        <p class="wk-kick">02 / Sales</p>
+        <h3 class="wk-title">Interactive Sales Deck</h3>
+        <p class="wk-copy">A live sales environment combining masterplans, payment plans, and investment tools for faster, clearer buyer conversations.</p>
+        <span class="wk-open">Open <span aria-hidden="true">&#8599;</span></span>
+      </div>
+      <div class="wk-visual">
+        <div class="shot"><iframe data-lazy="https://namou-ae-v1.vercel.app/" title="Interactive sales deck"></iframe></div>
+      </div>
+    </article>
+
+    <article class="wk-card">
+      <div class="wk-text">
+        <p class="wk-kick">03 / Partners</p>
+        <h3 class="wk-title">Partner Portal</h3>
+        <p class="wk-copy">A secure workspace connecting brokers with onboarding, agreements, inventory, sales materials, and partner resources.</p>
+      </div>
+      <div class="wk-visual">
+        <div class="portal" aria-hidden="true">
+          <div class="p-side"><i></i><i></i><i></i><i></i></div>
+          <div class="p-main"><div class="p-row"></div><div class="p-row"></div><div class="p-row"></div></div>
+          <span class="p-chip">In build</span>
+        </div>
+      </div>
+    </article>
+
   </div>
 </div></section>
 
@@ -462,7 +565,8 @@ html:not(.js) .rise{opacity:1;transform:none}
 <section class="sec sec-dark" id="experience"><div class="wrap">
   <div class="sec-head">
     <p class="label rise">Experience</p>
-    <h2 class="sec-title rise">Six years, <span class="ac">one direction</span>.</h2>
+    <h2 class="sec-title scrub-t">From campaigns to <span class="ac">systems</span>.</h2>
+    <p class="sec-sub rise">Six years across copy, social, paid media, CRM, and marketing leadership, now focused on building the infrastructure behind growth.</p>
   </div>
   <div class="dlist">
     <div class="drow rise"><div class="dw">Sep 2025 - Now</div><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties</div><div class="dnote">Own marketing and the automation layer under it.</div></div><div class="dkind">Leadership</div></div>
@@ -478,7 +582,8 @@ html:not(.js) .rise{opacity:1;transform:none}
 <section class="sec sec-dark" id="credentials"><div class="wrap">
   <div class="sec-head">
     <p class="label rise">Credentials</p>
-    <h2 class="sec-title rise">Philosophy first, <span class="ac">AI now</span>.</h2>
+    <h2 class="sec-title scrub-t">Business judgment, <span class="ac">technical depth</span>.</h2>
+    <p class="sec-sub rise">A foundation in philosophy and ethics, strengthened by applied AI, implementation training, and hands-on product work.</p>
   </div>
   <div class="cred-grid">
     <div class="cert-grid">
@@ -522,8 +627,8 @@ html:not(.js) .rise{opacity:1;transform:none}
 <!-- CONTACT (dark) -->
 <section class="sec sec-dark" id="contact"><div class="wrap">
   <p class="label rise">Contact</p>
-  <h2 class="contact-h rise" style="margin-top:18px">Talk <span class="ac">systems</span>.</h2>
-  <p class="contact-sub rise">Beirut or Dubai. Email is fastest.</p>
+  <h2 class="contact-h scrub-t" style="margin-top:18px">Let's build what the <span class="ac">team needs</span>.</h2>
+  <p class="contact-sub rise">Available for conversations around marketing leadership, AI implementation, and practical digital products.</p>
   <div class="clist rise">
     <a href="mailto:will.rads@outlook.com"><span class="ck">Email</span><span class="cv">will.rads@outlook.com</span></a>
     <a href="https://www.linkedin.com/in/william-radiyeh/" target="_blank" rel="noopener"><span class="ck">LinkedIn</span><span class="cv">in/william-radiyeh</span></a>
@@ -564,19 +669,20 @@ html:not(.js) .rise{opacity:1;transform:none}
   lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closeLB();});
 
+  /* reusable word wrapper: wraps text words in .w spans, recursing into child elements so nested .ac spans survive */
+  function wrapWords(node){
+    if(node.nodeType===3){
+      var parts=node.nodeValue.split(/(\s+)/),frag=document.createDocumentFragment();
+      parts.forEach(function(p){if(p==='')return;if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(p));return;}
+        var s=document.createElement('span');s.className='w';s.textContent=p;frag.appendChild(s);});
+      node.parentNode.replaceChild(frag,node);
+    }else if(node.nodeType===1&&!node.classList.contains('w')){Array.prototype.slice.call(node.childNodes).forEach(wrapWords);}
+  }
+  function wrapWordsIn(el){Array.prototype.slice.call(el.childNodes).forEach(wrapWords);}
+
   /* split statement into words */
   var stmt=document.getElementById('stmt');
-  if(stmt){
-    var wrapWords=function(node){
-      if(node.nodeType===3){
-        var parts=node.nodeValue.split(/(\s+)/),frag=document.createDocumentFragment();
-        parts.forEach(function(p){if(p==='')return;if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(p));return;}
-          var s=document.createElement('span');s.className='w';s.textContent=p;frag.appendChild(s);});
-        node.parentNode.replaceChild(frag,node);
-      }else if(node.nodeType===1&&!node.classList.contains('w')){Array.prototype.slice.call(node.childNodes).forEach(wrapWords);}
-    };
-    Array.prototype.slice.call(stmt.childNodes).forEach(wrapWords);
-  }
+  if(stmt){wrapWordsIn(stmt);}
 
   /* lazy-load iframe previews (runs always so static previews render under reduced motion) */
   (function(){
@@ -724,58 +830,115 @@ html:not(.js) .rise{opacity:1;transform:none}
     gsap.to('#stmt .w',{opacity:1,ease:'none',stagger:.06,scrollTrigger:{trigger:'#stmt',start:'top 78%',end:'bottom 60%',scrub:.5}});
   }
 
-  /* system 04 live signal pipeline */
-  var pipeWrap=document.querySelector('#systems .pipe-wrap');
-  if(pipeWrap){
-    var isMobile=window.matchMedia('(max-width:760px)').matches;
-    if(!isMobile){
-      var pline=pipeWrap.querySelector('.pipe-line');
-      if(pline){
-        var plen=pline.getTotalLength?pline.getTotalLength():800;
-        gsap.set(pline,{strokeDasharray:plen,strokeDashoffset:plen});
-        gsap.to(pline,{strokeDashoffset:0,ease:'none',
-          scrollTrigger:{trigger:pipeWrap,start:'top 80%',end:'top 40%',scrub:true}});
-      }
-      /* three traveling pulse dots */
-      var dots=pipeWrap.querySelectorAll('.pipe-dot');
-      var dotTweens=[];
-      dots.forEach(function(d,i){
-        var tw=gsap.fromTo(d,{attr:{cx:100},opacity:0},
-          {attr:{cx:900},opacity:1,duration:4,ease:'none',repeat:-1,
-           keyframes:{opacity:[0,1,1,0]},delay:i*1.33,paused:true});
-        dotTweens.push(tw);
-      });
-      /* node ignition master timeline synced to dot travel */
-      var nodes=pipeWrap.querySelectorAll('.node');
-      var igniteTl=gsap.timeline({repeat:-1,paused:true});
-      nodes.forEach(function(n,i){
-        igniteTl.to(n,{boxShadow:'0 0 0 1px #2850FF, 0 10px 34px -8px rgba(40,80,255,.35)',borderColor:'#2850FF',duration:.4,ease:'power2.out'},i*0.8)
-                .to(n,{boxShadow:'0 0 0 0px rgba(40,80,255,0), 0 10px 34px -8px rgba(40,80,255,0)',borderColor:'rgba(241,241,239,.14)',duration:.6,ease:'power2.in'},i*0.8+0.4);
-      });
-      igniteTl.to({},{duration:0.001},4);
-      ScrollTrigger.create({trigger:pipeWrap,start:'top 85%',end:'bottom 15%',
-        onEnter:play,onLeave:pause,onEnterBack:play,onLeaveBack:pause});
-      function play(){dotTweens.forEach(function(t){t.play();});igniteTl.play();}
-      function pause(){dotTweens.forEach(function(t){t.pause();});igniteTl.pause();}
-    }else{
-      /* mobile: nodes ignite sequentially as they scroll in */
-      pipeWrap.querySelectorAll('.node').forEach(function(n){
-        gsap.fromTo(n,{borderLeftWidth:'0px',borderLeftColor:'#2850FF',x:-8},
-          {borderLeftWidth:'2px',borderLeftColor:'#2850FF',x:0,ease:'none',
-           scrollTrigger:{trigger:n,start:'top 90%',end:'top 60%',scrub:true}});
-      });
+  /* major title word-scrub (wrapped past the guard so no-JS/reduced-motion titles stay plain) */
+  document.querySelectorAll('.scrub-t').forEach(function(title){
+    wrapWordsIn(title);
+    gsap.fromTo(title.querySelectorAll('.w'),{opacity:.15},
+      {opacity:1,ease:'none',stagger:.05,
+       scrollTrigger:{trigger:title,start:'top 85%',end:'top 55%',scrub:.5}});
+  });
+
+  /* SYSTEM 04 - one lead transformed through the real pipeline */
+  var journey=document.getElementById('journey');
+  if(journey&&window.matchMedia('(min-width:761px)').matches){
+    journey.classList.add('journey-on');
+    var journeyStage=journey.querySelector('.journey-stage');
+    var journeyLead=journey.querySelector('.journey-lead');
+    var journeyProgress=journey.querySelector('.journey-progress');
+    var journeyValue=document.getElementById('journeyValue');
+    var journeyState=document.getElementById('journeyState');
+    var journeySteps=journey.querySelectorAll('.journey-step');
+    var journeyMeta=journey.querySelector('.journey-meta');
+    var journeyResponse=journey.querySelector('.journey-response');
+    var branchReject=journey.querySelector('[data-branch="reject"]');
+    var branchDuplicate=journey.querySelector('[data-branch="duplicate"]');
+    var branchStale=journey.querySelector('[data-branch="stale"]');
+    var journeyStops=[0,.2,.4,.6,.8];
+    var journeyLabels=[
+      ['+971 52 000 000','Inbound WhatsApp message'],
+      ['+971 52 000 000','CTWA ad origin confirmed'],
+      ['a41f9c2e8b...','Unique lead, SHA-256 hashed'],
+      ['a41f9c2e8b...','Fresh event inside the window'],
+      ['PURCHASE','Posted server-side to Meta']
+    ];
+    function journeyRange(p,start,end){return Math.max(0,Math.min(1,(p-start)/(end-start)));}
+    function journeyBranch(el,p,start,end){
+      var q=journeyRange(p,start,end);
+      el.style.opacity=String(Math.sin(q*Math.PI));
+      el.style.transform='translate(-50%,'+(q*18-8)+'px)';
     }
+    var currentJourneyP=0;
+    function renderJourney(p){
+      currentJourneyP=p;
+      var stageW=journeyStage.clientWidth;
+      var leadW=journeyLead.offsetWidth;
+      var start=stageW*.10;
+      var end=stageW*.90;
+      var x=start+p*(end-start);
+      var leadFade=journeyRange(p,.78,.90);
+      journeyLead.style.transform='translate('+(x-start-leadW*.5)+'px,-50%) scale('+(1-leadFade*.12)+')';
+      journeyProgress.style.transform='scaleX('+p+')';
+      var active=Math.min(4,Math.floor(p*5));
+      journeyValue.textContent=journeyLabels[active][0];
+      journeyState.textContent=journeyLabels[active][1];
+      journeySteps.forEach(function(step,i){
+        step.classList.toggle('is-passed',p>journeyStops[i]+.04);
+        step.classList.toggle('is-active',i===active);
+      });
+      journeyBranch(branchReject,p,.14,.30);
+      journeyBranch(branchDuplicate,p,.34,.50);
+      journeyBranch(branchStale,p,.54,.70);
+      var arrival=journeyRange(p,.76,.90);
+      journeyResponse.style.opacity=String(arrival);
+      journeyResponse.style.transform='translate(-50%,'+(8-8*arrival)+'px)';
+      journeyMeta.style.transform='translate(-50%,-50%) scale('+(1+Math.sin(arrival*Math.PI)*.14)+')';
+      journeyLead.style.opacity=String(1-leadFade);
+    }
+    renderJourney(0);
+    ScrollTrigger.create({trigger:journey,start:'top 80%',end:'bottom 30%',scrub:.45,
+      onUpdate:function(self){renderJourney(self.progress);}});
+    window.addEventListener('resize',function(){renderJourney(currentJourneyP);ScrollTrigger.refresh();});
   }
 
-  /* hash-chip alternating text flip */
-  var hashChip=document.getElementById('hashChip');
-  if(hashChip){
-    var hashStates=['+9715 52 xxx xxx','a41f9c2e8b...'],hashI=0;
-    var hashTl=gsap.timeline({repeat:-1,repeatDelay:0});
-    hashTl.to(hashChip,{y:-4,opacity:0,duration:.28,ease:'power2.in',delay:2,
-      onComplete:function(){hashI=(hashI+1)%hashStates.length;hashChip.textContent=hashStates[hashI];}})
-          .set(hashChip,{y:4})
-          .to(hashChip,{y:0,opacity:1,duration:.28,ease:'power2.out'});
+  /* SELECTED WORK - sticky scroll stack */
+  var wkStack=document.getElementById('wkStack');
+  if(wkStack){
+    var wkCards=Array.prototype.slice.call(wkStack.querySelectorAll('.wk-card'));
+    if(wkCards.length){
+      var mmWk=gsap.matchMedia();
+      mmWk.add('(min-width:900px)',function(){
+        wkCards.forEach(function(card,i){
+          if(i===wkCards.length-1)return;
+          var next=wkCards[i+1];
+          gsap.to(card,{scale:0.95-i*0.03,transformOrigin:'50% 0',ease:'none',
+            scrollTrigger:{trigger:next,start:'top bottom',end:'top top',scrub:true}});
+        });
+      });
+      mmWk.add('(max-width:899px)',function(){
+        wkStack.classList.add('deck-on');
+        var PEEK=[1,.3,.15];
+        wkCards.forEach(function(card,i){
+          var d=Math.min(i,2);
+          gsap.set(card,{zIndex:wkCards.length-i,y:d*14,scale:1-d*0.045,
+            autoAlpha:i>2?0:PEEK[d]});
+        });
+        var T=.55;
+        var tl=gsap.timeline({
+          scrollTrigger:{trigger:wkStack,pin:true,scrub:true,anticipatePin:1,
+            start:'center center',end:'+='+(wkCards.length-1)*70+'%'}
+        });
+        wkCards.forEach(function(card,i){
+          if(i===wkCards.length-1)return;
+          tl.to(card,{yPercent:-40,rotation:7,scale:.92,autoAlpha:0,duration:T,ease:'power1.in'},i)
+            .set(card,{zIndex:0},i+1)
+            .to(wkCards[i+1],{y:0,scale:1,duration:T,ease:'none'},i)
+            .to(wkCards[i+1],{autoAlpha:1,duration:T*.6,ease:'none'},i);
+          if(wkCards[i+2])tl.to(wkCards[i+2],{y:14,scale:.955,autoAlpha:PEEK[1],duration:T,ease:'none'},i);
+          if(wkCards[i+3])tl.to(wkCards[i+3],{autoAlpha:PEEK[2],duration:T,ease:'none'},i);
+        });
+        return function(){wkStack.classList.remove('deck-on');};
+      });
+    }
   }
 
   /* footer big name reveal */
