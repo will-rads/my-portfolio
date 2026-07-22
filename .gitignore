@@ -1,6 +1,7 @@
 node_modules/
 .next/
 .DS_Store
+output/
 assets/inspo-1.jpg
 assets/land-eval-alhudaibah-before.txt
 HANDOFF.md
