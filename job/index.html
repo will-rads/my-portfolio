@@ -145,6 +145,11 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .fstage-close{display:grid;place-items:center;width:2rem;height:2rem;border:0;border-radius:999px;cursor:pointer;color:var(--t-on-dark-3);background:rgba(255,255,255,.7);box-shadow:0 0 0 1px rgba(0,0,0,.05)}
 .fstage-close:hover{color:var(--t-on-dark)}
 .fstage-close svg{width:1rem;height:1rem}
+.fstage-open{display:inline-block;margin-top:.5rem;font-size:var(--t-sm);color:var(--t-on-dark);
+  border-bottom:1px solid var(--line-dark-2);text-decoration:none}
+.fstage-open:hover{color:var(--accent);border-color:var(--accent)}
+.fstage-open[hidden]{display:none}
+.folder.staged .fitem[data-href]{cursor:zoom-in}
 .fstage-hint{position:absolute;inset:auto 0 1.75rem;text-align:center;font-size:12px;color:var(--t-on-dark-3)}
 .folder.staged{position:relative;z-index:110;transform:none!important}
 .folder.staged .flap{pointer-events:none}
@@ -415,10 +420,10 @@ html:not(.js) .rise{opacity:1;transform:none}
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg1)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after.png" alt="Generated brochure page" loading="lazy"/></div></div>
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/land-eval-after.png" alt="Bilingual land evaluation" loading="lazy"/></div></div>
-          <div class="fitem" data-w="34" style="top:8%;width:34%;margin-left:-17%;aspect-ratio:.78"><div class="fcard"><img src="../assets/previews/outreach-report.jpg" alt="Weekly meeting dashboard" loading="lazy"/></div></div>
-          <div class="fitem" data-w="40" style="top:14%;width:40%;margin-left:-20%;aspect-ratio:1.45"><div class="fcard"><img src="../assets/previews/outreach-alert.png" alt="Reply alert email" loading="lazy"/></div></div>
+          <div class="fitem" data-w="32" data-href="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" data-label="Open the generated brochure" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after.png" alt="Generated brochure page" loading="lazy"/></div></div>
+          <div class="fitem" data-w="32" data-href="../assets/land-eval-alhudaibah-after.html" data-label="Open the bilingual evaluation" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/land-eval-after.png" alt="Bilingual land evaluation" loading="lazy"/></div></div>
+          <div class="fitem" data-w="34" data-href="../assets/outreach-weekly-report.pdf" data-label="Open the weekly report" style="top:8%;width:34%;margin-left:-17%;aspect-ratio:.78"><div class="fcard"><img src="../assets/previews/outreach-report.jpg" alt="Weekly meeting dashboard" loading="lazy"/></div></div>
+          <div class="fitem" data-w="40" data-href="../assets/outreach-reply-alert.html" data-label="Open the reply alert" style="top:14%;width:40%;margin-left:-20%;aspect-ratio:1.45"><div class="fcard"><img src="../assets/previews/outreach-alert.png" alt="Reply alert email" loading="lazy"/></div></div>
         </div>
         <div class="flap"><div class="flap-txt"><div><p>Systems</p><small>4 production pipelines</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
@@ -428,9 +433,9 @@ html:not(.js) .rise{opacity:1;transform:none}
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg2)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="44" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/namou-site.jpg" alt="Namou Properties site" loading="lazy"/></div></div>
-          <div class="fitem" data-w="44" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck" loading="lazy"/></div></div>
-          <div class="fitem" data-w="44" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in" loading="lazy"/></div></div>
+          <div class="fitem" data-w="44" data-href="https://namou.ae/" data-label="Open namou.ae" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/namou-site.jpg" alt="Namou Properties site" loading="lazy"/></div></div>
+          <div class="fitem" data-w="44" data-href="https://namou-ae-v1.vercel.app/" data-label="Open the sales deck" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck" loading="lazy"/></div></div>
+          <div class="fitem" data-w="44" data-href="https://portal.namou.ae/" data-label="Open the partner portal" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in" loading="lazy"/></div></div>
         </div>
         <div class="flap"><div class="flap-txt"><div><p>Selected work</p><small>3 live products</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
@@ -440,9 +445,9 @@ html:not(.js) .rise{opacity:1;transform:none}
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg3)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="46" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/oxford-cert.png" alt="Oxford certificate" loading="lazy"/></div></div>
+          <div class="fitem" data-w="46" data-href="https://certify.sbs.ox.ac.uk/a90e0021-117d-4c67-8f2a-5e3b7f58634f" data-label="Verify with Oxford" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/oxford-cert.png" alt="Oxford certificate" loading="lazy"/></div></div>
           <div class="fitem" data-w="46" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/pwc-certificate.png" alt="PwC ElevateME certificate" loading="lazy"/></div></div>
-          <div class="fitem" data-w="46" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/microsoft-cert.png" alt="Microsoft Azure AI Fundamentals certificate" loading="lazy"/></div></div>
+          <div class="fitem" data-w="46" data-href="https://learn.microsoft.com/en-us/users/williamradiyeh-0300/credentials/24138b515e09ea3b" data-label="Verify with Microsoft" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/microsoft-cert.png" alt="Microsoft Azure AI Fundamentals certificate" loading="lazy"/></div></div>
         </div>
         <div class="flap"><div class="flap-txt"><div><p>Credentials</p><small>Oxford, PwC, Microsoft</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
@@ -489,10 +494,10 @@ html:not(.js) .rise{opacity:1;transform:none}
               <div class="t-tilt-glare"></div>
             </div>
           </div>
-          <div class="t-tilt" data-lb="site" data-src="https://namou-maireed-5576-sqft-plot.vercel.app/" data-mobile-src="../assets/previews/brochure-after.png" data-title="Live brochure site (after)" data-link="https://properties.namou.ae/maireed-5576-sqft-plot">
+          <div class="t-tilt" data-lb="site" data-src="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" data-mobile-src="../assets/previews/brochure-after.png" data-title="Live brochure site (after)" data-link="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/">
             <div class="t-tilt-card">
               <span class="pv-label">Pipeline, every ready row</span>
-              <div class="shot"><iframe data-lazy="https://namou-maireed-5576-sqft-plot.vercel.app/" title="Live brochure site (after)"></iframe><img class="mobile-shot" src="../assets/previews/brochure-after.png" alt="Live brochure site preview" loading="eager"/></div>
+              <div class="shot"><iframe data-lazy="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" title="Live brochure site (after)"></iframe><img class="mobile-shot" src="../assets/previews/brochure-after.png" alt="Live brochure site preview" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -973,12 +978,19 @@ html:not(.js) .rise{opacity:1;transform:none}
   var stage=null;
   var overlay=document.createElement('div');
   overlay.className='fstage';
-  overlay.innerHTML='<header class="fstage-bar"><div><b></b><small></small></div>'+
+  overlay.innerHTML='<header class="fstage-bar"><div><b></b><small></small>'+
+    '<a class="fstage-open" target="_blank" rel="noopener" hidden></a></div>'+
     '<button class="fstage-close" type="button" aria-label="Close">'+
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8" stroke-linecap="round"/></svg>'+
-    '</button></header><p class="fstage-hint">&larr; &rarr;</p>';
+    '</button></header><p class="fstage-hint">&larr; &rarr; to move &middot; click the centre card to open it</p>';
   document.body.appendChild(overlay);
-  var oTitle=overlay.querySelector('b'),oMeta=overlay.querySelector('small');
+  var oTitle=overlay.querySelector('b'),oMeta=overlay.querySelector('small'),
+      oOpen=overlay.querySelector('.fstage-open');
+  function setOpenLink(item){
+    var href=item&&item.dataset.href;
+    if(href){oOpen.href=href;oOpen.textContent=item.dataset.label||'Open';oOpen.hidden=false;}
+    else{oOpen.removeAttribute('href');oOpen.textContent='';oOpen.hidden=true;}
+  }
 
   folders.forEach(function(folder){
     var wrap=folder.querySelector('.folder-in');
@@ -1023,7 +1035,11 @@ html:not(.js) .rise{opacity:1;transform:none}
       e.preventDefault();
       if(stage&&stage.folder===folder){
         var hit=e.target.closest('.fitem');
-        if(hit)go(items.indexOf(hit)); else close();
+        if(hit){
+          var i=items.indexOf(hit);
+          if(i===stage.active&&hit.dataset.href)window.open(hit.dataset.href,'_blank','noopener');
+          else go(i);
+        }else close();
         return;
       }
       if(!stage)openStage();
@@ -1042,6 +1058,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         var s=unit/Math.max(el.offsetWidth,el.offsetHeight);
         return i===a?s:s*SIDE;
       }
+      setOpenLink(items[a]);
       var reach=fit(a)*items[a].offsetWidth/2+unit*GAP+unit*SIDE/2;
       items.forEach(function(el,i){
         var d=i-a;
