@@ -117,7 +117,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 
 /* ============ FOLDERS - the template's signature component ============ */
 .folders{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
-.folder{display:block;outline:none;transition:transform .16s var(--ease-out)}
+.folder{display:block;transition:transform .16s var(--ease-out)}
 .folder:active{transform:scale(.98)}
 .folder-in{position:relative;aspect-ratio:20/17;width:100%;perspective:1000px}
 .folder .back{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 1px 2px rgba(0,0,0,.06)) drop-shadow(0 6px 12px rgba(0,0,0,.06)) drop-shadow(0 18px 32px rgba(0,0,0,.07))}
@@ -133,30 +133,33 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 /* front flap: frosted glass, the only other edge so it reads as a fold */
 .flap{position:absolute;left:0;right:0;top:24%;bottom:0;z-index:10;border-radius:7.5%/11.6%;transform-origin:bottom center;background-image:linear-gradient(to bottom,rgba(255,255,255,.5),rgba(255,255,255,.38));backdrop-filter:blur(16px) saturate(180%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 -2px 6px -1px rgba(0,0,0,.08);will-change:transform}
 .flap-txt{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:.5rem;padding:1rem}
+.flap-txt>div{min-width:0}
 .flap-txt p{min-width:0;font-size:13.5px;font-weight:500;color:var(--t-on-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .flap-txt small{display:block;margin-top:1px;font-size:12px;font-weight:400;color:var(--t-on-dark-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .flap-txt svg{width:14px;height:14px;flex-shrink:0;color:var(--t-on-dark-3)}
-/* stage: cards fly out of the folder and become a carousel */
-.fstage{position:fixed;inset:0;z-index:100;background:rgba(250,250,250,.88);backdrop-filter:blur(24px) saturate(140%);opacity:0;pointer-events:none;transition:opacity .24s var(--ease-out)}
-.fstage.open{opacity:1;pointer-events:auto}
-.fstage-bar{position:absolute;inset:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;padding:1.5rem}
-.fstage-bar b{font-size:13.5px;font-weight:500;color:var(--t-on-dark)}
-.fstage-bar small{display:block;margin-top:1px;font-size:12px;color:var(--t-on-dark-3)}
-.fstage-close{display:grid;place-items:center;width:2rem;height:2rem;border:0;border-radius:999px;cursor:pointer;color:var(--t-on-dark-3);background:rgba(255,255,255,.7);box-shadow:0 0 0 1px rgba(0,0,0,.05)}
-.fstage-close:hover{color:var(--t-on-dark)}
-.fstage-close svg{width:1rem;height:1rem}
-.fstage-open{display:inline-block;margin-top:.5rem;font-size:var(--t-sm);color:var(--t-on-dark);
-  border-bottom:1px solid var(--line-dark-2);text-decoration:none}
-.fstage-open:hover{color:var(--accent);border-color:var(--accent)}
-.fstage-open[hidden]{display:none}
-.folder.staged .fitem[data-href]{cursor:zoom-in}
-.fstage-hint{position:absolute;inset:auto 0 1.75rem;text-align:center;font-size:12px;color:var(--t-on-dark-3)}
-.folder.staged{position:relative;z-index:110;transform:none!important}
-.folder.staged .flap{pointer-events:none}
-.folder.staged .fitem{cursor:pointer}
-.folder.staged .fnote{overflow-y:auto}
-.folder.scaled .fcard,.folder.scaled .fnote{border-radius:3.5cqw}
-.folder.scaled .fitem img{border-radius:2cqw}
+/* Native modal keeps the carousel above clipping/transform contexts and traps focus. */
+.fstage{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(250,250,250,.96);color:var(--t-on-dark);overscroll-behavior:contain}
+.fstage[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.fstage::backdrop{background:rgba(250,250,250,.85);backdrop-filter:blur(16px)}
+.fstage-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1.25rem 1.5rem}
+.fstage-bar b{font-size:15px;font-weight:500}
+.fstage-bar small{display:block;margin-top:2px;font-size:13px;color:var(--t-on-dark-2)}
+.fstage-close,.fstage-nav button{display:grid;place-items:center;min-width:44px;min-height:44px;border:1px solid var(--line-dark);border-radius:999px;cursor:pointer;color:var(--t-on-dark);background:#fff;font:inherit}
+.fstage-nav button:disabled{opacity:.35;cursor:default}
+.fstage-track{display:flex;align-items:center;gap:1.5rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:1rem max(6vw,calc((100vw - 720px)/2));scrollbar-width:thin}
+.fstage-item{flex:0 0 min(720px,88vw);min-width:0;scroll-snap-align:center}
+.fstage-card{display:block;width:100%;height:min(62dvh,620px);padding:12px;border:1px solid var(--line-dark);border-radius:16px;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.08);overflow:auto}
+.fstage-card img{width:100%;height:100%;object-fit:contain;border-radius:6px}
+.folder,.fstage-card{-webkit-tap-highlight-color:transparent}
+.fstage-card .fnote{padding:clamp(24px,6vw,64px);border-radius:0;box-shadow:none;overflow:auto}
+.fstage-card .fnote b{font-size:clamp(22px,3vw,32px);line-height:1.3}
+.fstage-card .fnote span{font-size:16px;line-height:1.7;margin-top:1rem}
+.fstage-caption{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem 1rem;padding:.85rem .25rem;font-size:14px}
+.fstage-open{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.fstage-footer{padding:.5rem 1.5rem max(1rem,env(safe-area-inset-bottom));text-align:center}
+.fstage-nav{display:flex;align-items:center;justify-content:center;gap:1.25rem}
+.fstage-count{min-width:4rem;font-size:13px;font-variant-numeric:tabular-nums}
+.fstage-hint{margin-top:.5rem;font-size:12px;color:var(--t-on-dark-2)}
 @media(max-width:600px){.folders{gap:1rem}.flap-txt{padding:.6rem}.flap-txt p{font-size:12px}.flap-txt small{font-size:11px}}
 
 /* SYSTEMS */
@@ -189,7 +192,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 /* tilt */
 :root{--tilt-perspective:1000px;--tilt-return:1000ms;--tilt-return-ease:cubic-bezier(0.22,1,0.36,1);--tilt-follow:400ms;--tilt-follow-ease:cubic-bezier(0.22,1,0.36,1);--tilt-glare-opacity:0.18;--tilt-glare-fade:300ms;--tilt-glare-ease:cubic-bezier(0.22,1,0.36,1);}
 .t-tilt{cursor:pointer;display:block}
-@media(min-width:900px){.t-tilt{touch-action:none}}
+@media(hover:hover) and (pointer:fine){.t-tilt{touch-action:pan-y}}
 .t-tilt-card{position:relative;border-radius:.6rem;overflow:hidden;transform:perspective(var(--tilt-perspective)) rotateX(var(--tilt-rx,0deg)) rotateY(var(--tilt-ry,0deg));transform-style:preserve-3d;transition:transform var(--tilt-return) var(--tilt-return-ease);will-change:transform;border:1px solid var(--line-dark);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 20px -8px rgba(0,0,0,.14)}
 .t-tilt-card.is-tilting{transition:transform var(--tilt-follow) var(--tilt-follow-ease);}
 .t-tilt-glare{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:overlay;background:radial-gradient(circle 95px at var(--tilt-gx,50%) var(--tilt-gy,50%),rgba(255,255,255,.5),rgba(255,255,255,.05) 52%,rgba(255,255,255,0) 84%),radial-gradient(circle 240px at var(--tilt-gx,50%) var(--tilt-gy,50%),rgba(255,255,255,.2),rgba(255,255,255,0) 78%);transition:opacity var(--tilt-glare-fade) var(--tilt-glare-ease);}
@@ -203,14 +206,8 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .shot{position:relative;overflow:hidden;background:#fff}
 .ba-01 .shot,.ba-02 .shot{aspect-ratio:3/4}
 .ba-03 .shot{aspect-ratio:16/11}
-.shot iframe{position:absolute;top:0;left:0;width:400%;height:400%;transform:scale(.25);transform-origin:0 0;pointer-events:none;border:0;background:#fff}
-[data-noframe] .shot iframe{display:none}
-[data-noframe] .mobile-shot{display:block;position:absolute;inset:0}
-.mobile-shot{display:none;width:100%;height:100%;object-fit:cover;object-position:top center;background:#fff}
-@media(max-width:760px){
-  .ba .shot iframe,.wk-visual .shot iframe{display:none}
-  .ba .mobile-shot,.wk-visual .mobile-shot{display:block;position:absolute;inset:0}
-}
+/* Stable thumbnails; the full document/site opens only when requested. */
+.mobile-shot{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;background:#fff}
 
 /* EXPERIENCE list */
 .dlist{border-top:1px solid var(--line-dark);margin-top:1.5rem}
@@ -288,18 +285,24 @@ footer .big .ac{color:inherit}
 footer .row{margin-top:.5rem;display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-on-dark-3)}
 
 /* LIGHTBOX */
-.lb{position:fixed;inset:0;overscroll-behavior:contain;z-index:120;background:rgba(250,250,250,.88);backdrop-filter:blur(24px) saturate(140%);display:none;align-items:center;justify-content:center;padding:2rem 1rem;opacity:0;transition:opacity .3s}
+.lb{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;color:var(--t-on-dark);overscroll-behavior:contain;z-index:120;background:rgba(250,250,250,.88);backdrop-filter:blur(24px) saturate(140%);display:none;align-items:center;justify-content:center;padding:2rem 1rem;opacity:0;transition:opacity .3s}
+.lb::backdrop{background:rgba(250,250,250,.65)}
 .lb.open{display:flex;opacity:1}
 .lb-stage{width:min(1180px,96vw);height:min(86vh,920px);background:#fff;border-radius:.75rem;overflow:hidden;display:flex;flex-direction:column;transform:translateY(10px) scale(.99);transition:transform .35s var(--ease-out);box-shadow:0 2px 6px rgba(0,0,0,.06),0 40px 80px -30px rgba(0,0,0,.35)}
 .lb.open .lb-stage{transform:none}
-.lb-bar{height:44px;background:#fff;border-bottom:1px solid var(--line-dark);display:flex;align-items:center;gap:.5rem;padding:0 .9rem;flex-shrink:0}
+.lb-bar{min-height:52px;background:#fff;border-bottom:1px solid var(--line-dark);display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;flex-shrink:0}
 .lb-dot{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.12)}
-.lb-title{margin-left:.5rem;font-family:var(--body);font-size:13px;color:var(--t-on-dark-2)}
-.lb-actions{margin-left:auto;display:flex;align-items:center;gap:.9rem}
+.lb-title{min-width:0;margin-left:.5rem;font-family:var(--body);font-size:13px;color:var(--t-on-dark-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-actions{margin-left:auto;display:flex;align-items:center;gap:.9rem;flex-shrink:0}
 .lb-actions a{font-family:var(--body);font-size:13px;color:var(--t-on-dark-2);text-transform:none}
 .lb-actions a:hover{color:var(--t-on-dark)}
-.lb-close{background:none;border:0;cursor:pointer;font-size:22px;line-height:1;color:var(--t-on-dark-3);padding:.2rem .4rem}
-.lb-frame{flex:1;width:100%;border:0;background:#fff}
+.lb-close{background:none;border:0;cursor:pointer;font-size:22px;line-height:1;color:var(--t-on-dark-2);min-width:44px;min-height:44px}
+.lb-frame{flex:1;min-height:0;width:100%;border:0;background:#fff}
+.lb-image{flex:1;min-height:0;overflow:auto;background:var(--surface-2)}
+.lb-image img{width:100%;height:auto}
+.lb-image[hidden],.lb-frame[hidden]{display:none}
+.lb-note{font-size:12px;color:var(--t-on-dark-2);padding:.5rem .9rem;border-bottom:1px solid var(--line-dark)}
+@media(max-width:600px){.lb{padding:12px}.lb-stage{width:100%;height:calc(100dvh - 24px)}.lb-bar{flex-wrap:wrap;gap:0;padding:.4rem .75rem}.lb-dot{display:none}.lb-title{flex-basis:100%;margin-left:0}.lb-actions{width:100%;justify-content:space-between;gap:.5rem}.nav-in{flex-wrap:wrap}.nav-in .copy{white-space:nowrap}.nav-links{width:100%;justify-content:space-between;margin-left:0}}
 
 /* ================= LEDGER =================
    One row per shipped thing. The row IS the summary; opening it reveals the
@@ -411,21 +414,20 @@ html:not(.js) .rise{opacity:1;transform:none}
 </header>
 
 
-<!-- FOLDERS - visual index. Hover fans the cards, click flies them out to a
-     carousel. The prose for every one of these lives in the sections below. -->
+<!-- FOLDERS - hover fans the cards; open a folder to browse its examples. -->
 <section class="sec" id="index" style="padding-top:1.5rem"><div class="wrap">
   <div class="folders" id="folders">
 
-    <a class="folder" href="#systems" data-title="Systems" data-meta="4 production pipelines">
+    <a class="folder" href="#systems" data-title="Systems" data-meta="4 examples from my systems">
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg1)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="32" data-href="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" data-label="Open the generated brochure" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after.png" alt="Generated brochure page" loading="lazy"/></div></div>
+          <div class="fitem" data-w="32" data-href="https://namou-brochures.vercel.app/maireed-5576-sqft-plot/" data-label="Open the generated brochure" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after-v2.png" alt="Generated brochure page" loading="lazy"/></div></div>
           <div class="fitem" data-w="32" data-href="../assets/land-eval-alhudaibah-after.html" data-label="Open the bilingual evaluation" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/land-eval-after.png" alt="Bilingual land evaluation" loading="lazy"/></div></div>
           <div class="fitem" data-w="34" data-href="../assets/outreach-weekly-report.pdf" data-label="Open the weekly report" style="top:8%;width:34%;margin-left:-17%;aspect-ratio:.78"><div class="fcard"><img src="../assets/previews/outreach-report.jpg" alt="Weekly meeting dashboard" loading="lazy"/></div></div>
           <div class="fitem" data-w="40" data-href="../assets/outreach-reply-alert.html" data-label="Open the reply alert" style="top:14%;width:40%;margin-left:-20%;aspect-ratio:1.45"><div class="fcard"><img src="../assets/previews/outreach-alert.png" alt="Reply alert email" loading="lazy"/></div></div>
         </div>
-        <div class="flap"><div class="flap-txt"><div><p>Systems</p><small>4 production pipelines</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="flap"><div class="flap-txt"><div><p>Systems</p><small>4 examples from my systems</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
@@ -453,7 +455,7 @@ html:not(.js) .rise{opacity:1;transform:none}
       </div>
     </a>
 
-    <a class="folder" href="#experience" data-title="Experience" data-meta="Six years, six roles">
+    <a class="folder" href="#experience" data-title="Experience" data-meta="Selected roles">
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg4)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
@@ -462,7 +464,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>AI / ML Engineer</b><span>Crypted Security, Dubai. Built AI tooling outside of marketing.</span></div></div>
           <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>Marketing Copywriter</b><span>Nudge Communications. Wrote for brand and CRM before touching automation.</span></div></div>
         </div>
-        <div class="flap"><div class="flap-txt"><div><p>Experience</p><small>Six years, six roles</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="flap"><div class="flap-txt"><div><p>Experience</p><small>Selected roles</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
@@ -489,15 +491,15 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="t-tilt" data-lb="pdf" data-src="../assets/brochure-maireed-5505-before.pdf" data-mobile-src="../assets/previews/brochure-before.png" data-title="Designer brochure (before)">
             <div class="t-tilt-card">
               <span class="pv-label">Designer, one brochure at a time</span>
-              <div class="shot"><iframe data-lazy="../assets/brochure-maireed-5505-before.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH" title="Designer brochure (before)"></iframe><img class="mobile-shot" src="../assets/previews/brochure-before.png" alt="First page of the designer brochure" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/brochure-before.png" alt="First page of the designer brochure" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
           </div>
-          <div class="t-tilt" data-lb="site" data-src="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" data-mobile-src="../assets/previews/brochure-after.png" data-title="Live brochure site (after)" data-link="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/">
+          <div class="t-tilt" data-lb="site" data-src="https://namou-brochures.vercel.app/maireed-5576-sqft-plot/" data-mobile-src="../assets/previews/brochure-after-v2.png" data-title="Live brochure site (after)" data-link="https://namou-brochures.vercel.app/maireed-5576-sqft-plot/">
             <div class="t-tilt-card">
               <span class="pv-label">Pipeline, every ready row</span>
-              <div class="shot"><iframe data-lazy="https://namou-brochures.vercel.app/al-maireed-plot-5576-sqft-html/" title="Live brochure site (after)"></iframe><img class="mobile-shot" src="../assets/previews/brochure-after.png" alt="Live brochure site preview" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/brochure-after-v2.png" alt="Live brochure site preview" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -520,7 +522,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="t-tilt" data-lb="pdf" data-src="../assets/land-eval-alhudaibah-before.pdf" data-mobile-src="../assets/previews/land-eval-before.png" data-title="Plain Word doc (before)">
             <div class="t-tilt-card">
               <span class="pv-label">Word doc by email</span>
-              <div class="shot"><iframe data-lazy="../assets/land-eval-alhudaibah-before.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH" title="Plain Word doc (before)"></iframe><img class="mobile-shot" src="../assets/previews/land-eval-before.png" alt="First page of the original land evaluation" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/land-eval-before.png" alt="First page of the original land evaluation" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -528,7 +530,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="t-tilt" data-lb="html" data-src="../assets/land-eval-alhudaibah-after.html" data-mobile-src="../assets/previews/land-eval-after.png" data-title="Bilingual report (after)">
             <div class="t-tilt-card">
               <span class="pv-label">Bilingual PDF, filed and linked</span>
-              <div class="shot"><iframe data-lazy="../assets/land-eval-alhudaibah-after.html" title="Bilingual report (after)"></iframe><img class="mobile-shot" src="../assets/previews/land-eval-after.png" alt="First page of the bilingual land evaluation" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/land-eval-after.png" alt="First page of the bilingual land evaluation" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -551,7 +553,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="t-tilt" data-lb="html" data-src="../assets/outreach-reply-alert.html" data-mobile-src="../assets/previews/outreach-alert.png" data-title="Reply alert email (sample)">
             <div class="t-tilt-card">
               <span class="pv-label">Instant reply alerts to leadership</span>
-              <div class="shot"><iframe data-lazy="../assets/outreach-reply-alert.html" title="Reply alert email (sample)"></iframe><img class="mobile-shot" src="../assets/previews/outreach-alert.png" alt="LinkedIn reply alert email preview" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/outreach-alert.png" alt="LinkedIn reply alert email preview" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -559,7 +561,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           <div class="t-tilt" data-lb="pdf" data-src="../assets/outreach-weekly-report.pdf" data-mobile-src="../assets/previews/outreach-report.jpg" data-title="Weekly meeting dashboard (sent to the CEO)">
             <div class="t-tilt-card">
               <span class="pv-label">Weekly PDF, meetings booked by seniority</span>
-              <div class="shot"><iframe data-lazy="../assets/outreach-weekly-report.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH" title="Weekly meeting dashboard (sent to the CEO)"></iframe><img class="mobile-shot" src="../assets/previews/outreach-report.jpg" alt="First page of the weekly meeting dashboard" loading="eager"/></div>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/outreach-report.jpg" alt="First page of the weekly meeting dashboard" loading="eager"/></div>
               <button class="pv-open" type="button">View</button>
               <div class="t-tilt-glare"></div>
             </div>
@@ -619,7 +621,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         <button class="wk-open" type="button">View live site</button>
       </div>
       <div class="wk-visual">
-        <div class="shot"><iframe data-lazy="https://namou.ae/" title="Namou Properties"></iframe><img class="mobile-shot" src="../assets/previews/namou-site.jpg" alt="Namou Properties site preview" loading="eager"/></div>
+        <div class="shot"><img class="mobile-shot" src="../assets/previews/namou-site.jpg" alt="Namou Properties site preview" loading="eager"/></div>
       </div>
     </article>
 </div></details>
@@ -633,7 +635,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         <button class="wk-open" type="button">View live site</button>
       </div>
       <div class="wk-visual">
-        <div class="shot"><iframe data-lazy="https://namou-ae-v1.vercel.app/master-plan" title="Interactive sales deck"></iframe><img class="mobile-shot" src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck preview" loading="eager"/></div>
+        <div class="shot"><img class="mobile-shot" src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck preview" loading="eager"/></div>
       </div>
     </article>
 </div></details>
@@ -647,7 +649,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         <button class="wk-open" type="button">View live site</button>
       </div>
       <div class="wk-visual">
-        <div class="shot"><iframe title="Partner Portal"></iframe><img class="mobile-shot" src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in preview" loading="eager"/></div>
+        <div class="shot"><img class="mobile-shot" src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in preview" loading="eager"/></div>
       </div>
     </article>
 </div></details>
@@ -737,15 +739,17 @@ html:not(.js) .rise{opacity:1;transform:none}
 </main>
 
 <!-- LIGHTBOX -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" aria-hidden="true">
+<dialog class="lb" id="lb" aria-labelledby="lbTitle">
   <div class="lb-stage">
     <div class="lb-bar"><span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span>
       <span class="lb-title" id="lbTitle"></span>
       <span class="lb-actions"><a id="lbLink" href="#" target="_blank" rel="noopener" style="display:none">Open in a new tab</a><button class="lb-close" id="lbClose" aria-label="Close">&times;</button></span>
     </div>
+    <p class="lb-note" id="lbNote" hidden>Preview image. Open the original for the complete document or interactive site.</p>
     <iframe class="lb-frame" id="lbFrame" title="preview"></iframe>
+    <div class="lb-image" id="lbImage" hidden><img alt=""/></div>
   </div>
-</div>
+</dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -756,29 +760,34 @@ html:not(.js) .rise{opacity:1;transform:none}
 
   /* lightbox */
   var lb=document.getElementById('lb'),lbFrame=document.getElementById('lbFrame'),lbTitle=document.getElementById('lbTitle'),lbLink=document.getElementById('lbLink'),lbClose=document.getElementById('lbClose');
-  var lbMain=document.getElementById('main'),lbReturn=null;
-  /* inert on the rest of the page is the whole focus trap: Tab has nowhere else
-     to go, so no key handling of our own. */
-  function openLB(src,title,link){lbTitle.textContent=title||'';lbFrame.src=src;if(link){lbLink.href=link;lbLink.style.display='inline';}else{lbLink.style.display='none';}
-    lbReturn=document.activeElement;lb.classList.add('open');lb.setAttribute('aria-hidden','false');
-    if(lbMain)lbMain.inert=true;document.body.style.overflow='hidden';lbClose.focus();}
-  function closeLB(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');
-    if(lbMain)lbMain.inert=false;document.body.style.overflow='';
-    if(lbReturn&&lbReturn.focus)lbReturn.focus();lbReturn=null;
-    setTimeout(function(){lbFrame.src='about:blank';},300);}
+  var lbReturn=null,lbOverflow='';
+  var lbImage=document.getElementById('lbImage'),lbNote=document.getElementById('lbNote');
+  function openLB(el){
+    var src=el.dataset.src,title=el.dataset.title||'Preview',link=el.dataset.link||src;
+    var preview=el.dataset.mobileSrc;
+    // Sites may block iframes; mobile PDF readers need a preview plus the real file.
+    var useImage=preview&&(el.dataset.lb==='site'||window.matchMedia('(max-width:760px)').matches);
+    lbTitle.textContent=title;lbFrame.title=title;lbLink.href=link;lbLink.style.display='inline';
+    lbLink.textContent=el.dataset.lb==='site'?'Open live site ↗':'Open original ↗';
+    lbFrame.hidden=!!useImage;lbImage.hidden=!useImage;lbNote.hidden=!useImage;
+    if(useImage){lbImage.querySelector('img').src=preview;lbImage.querySelector('img').alt=title;}
+    else{lbFrame.src=src;}
+    lbReturn=el.querySelector('button')||document.activeElement;
+    lbOverflow=document.body.style.overflow;
+    lb.classList.add('open');lb.showModal();
+    document.body.style.overflow='hidden';lbClose.focus();
+    lbImage.scrollTop=0;
+  }
+  function closeLB(){lb.classList.remove('open');lb.close();
+    lbFrame.removeAttribute('src');lbImage.querySelector('img').removeAttribute('src');
+    document.body.style.overflow=lbOverflow;
+    if(lbReturn&&lbReturn.focus)lbReturn.focus({preventScroll:true});lbReturn=null;}
   document.querySelectorAll('[data-lb]').forEach(function(el){el.addEventListener('click',function(e){
-    e.stopPropagation();
-    var mobileSrc=el.getAttribute('data-mobile-src');
-    if(mobileSrc&&window.matchMedia('(max-width:760px)').matches){
-      var preview=window.open(mobileSrc,'_blank','noopener');
-      if(preview)preview.opener=null;
-      return;
-    }
-    openLB(el.getAttribute('data-src'),el.getAttribute('data-title'),el.getAttribute('data-link'));
+    e.preventDefault();e.stopPropagation();openLB(el);
   });});
   lbClose.addEventListener('click',closeLB);
   lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closeLB();});
+  lb.addEventListener('cancel',function(e){e.preventDefault();closeLB();});
 
   /* reusable word wrapper: wraps text words in .w spans, recursing into child elements so nested .ac spans survive */
   function wrapWords(node){
@@ -790,22 +799,6 @@ html:not(.js) .rise{opacity:1;transform:none}
     }else if(node.nodeType===1&&!node.classList.contains('w')){Array.prototype.slice.call(node.childNodes).forEach(wrapWords);}
   }
   function wrapWordsIn(el){Array.prototype.slice.call(el.childNodes).forEach(wrapWords);}
-
-  /* lazy-load iframe previews (runs always so static previews render under reduced motion) */
-  (function(){
-    if(window.matchMedia('(max-width:760px)').matches){return;}
-    var frames=Array.prototype.slice.call(document.querySelectorAll('.shot iframe[data-lazy]'));
-    function load(){
-      frames.forEach(function(f,i){
-        setTimeout(function(){
-          var src=f.getAttribute('data-lazy');
-          if(src&&!f.getAttribute('src')){f.src=src;}
-        },i*180);
-      });
-    }
-    if(document.readyState==='complete'){load();}
-    else{window.addEventListener('load',load);}
-  })();
 
   if(reduce||!window.gsap||!window.ScrollTrigger){
     document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');});
@@ -962,167 +955,113 @@ html:not(.js) .rise{opacity:1;transform:none}
 })();
 </script>
 <script>
-/* Folders: hover fans the cards, click flies them out to a full-screen carousel.
-   ponytail: plain CSS transitions instead of a spring library - GSAP is already
-   loaded for the page but nothing here needs physics, only a good ease. */
+/* Folder covers keep their fan animation; native dialog and scroll snap handle browsing. */
 (function(){
   var folders=document.querySelectorAll('.folder');
   if(!folders.length)return;
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var EASE='cubic-bezier(.23,1,.32,1)';
-  var SIDE=.6,GAP=.08,PUSH=4;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var EASE='cubic-bezier(.23,1,.32,1)',stage=null;
   function ms(n){return (reduce?0:n)+'ms';}
-  /* hashed off the index so a card tilts the same way every visit */
-  function tilt(i){var n=Math.sin((i+1)*127.1)*43758.5453;return (n-Math.floor(n))*12-6;}
-
-  var stage=null;
-  var overlay=document.createElement('div');
+  var overlay=document.createElement('dialog');
   overlay.className='fstage';
-  overlay.innerHTML='<header class="fstage-bar"><div><b></b><small></small>'+
-    '<a class="fstage-open" target="_blank" rel="noopener" hidden></a></div>'+
-    '<button class="fstage-close" type="button" aria-label="Close">'+
-    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8" stroke-linecap="round"/></svg>'+
-    '</button></header><p class="fstage-hint">&larr; &rarr; to move &middot; click the centre card to open it</p>';
+  overlay.setAttribute('aria-labelledby','folderTitle');
+  overlay.innerHTML='<header class="fstage-bar"><div><b id="folderTitle"></b><small></small></div>'+
+    '<button class="fstage-close" type="button" aria-label="Close folder" autofocus>&times;</button></header>'+
+    '<div class="fstage-track" tabindex="0" role="region" aria-label="Folder items"></div>'+
+    '<div class="fstage-footer"><div class="fstage-nav">'+
+    '<button type="button" aria-label="Previous item">&larr;</button>'+
+    '<span class="fstage-count" aria-live="polite"></span>'+
+    '<button type="button" aria-label="Next item">&rarr;</button></div>'+
+    '<p class="fstage-hint">Swipe or use the arrows to browse. Select a preview to open the original.</p></div>';
   document.body.appendChild(overlay);
-  var oTitle=overlay.querySelector('b'),oMeta=overlay.querySelector('small'),
-      oOpen=overlay.querySelector('.fstage-open');
-  function setOpenLink(item){
-    var href=item&&item.dataset.href;
-    if(href){oOpen.href=href;oOpen.textContent=item.dataset.label||'Open';oOpen.hidden=false;}
-    else{oOpen.removeAttribute('href');oOpen.textContent='';oOpen.hidden=true;}
+  var track=overlay.querySelector('.fstage-track'),count=overlay.querySelector('.fstage-count');
+  var prev=overlay.querySelector('[aria-label="Previous item"]'),next=overlay.querySelector('[aria-label="Next item"]');
+  function update(){
+    if(!stage)return;
+    var centre=track.getBoundingClientRect().left+track.clientWidth/2,best=Infinity;
+    Array.prototype.forEach.call(track.children,function(el,i){
+      var r=el.getBoundingClientRect(),distance=Math.abs(r.left+r.width/2-centre);
+      if(distance<best){best=distance;stage.active=i;}
+    });
+    count.textContent=(stage.active+1)+' / '+track.children.length;
+    prev.disabled=stage.active===0;next.disabled=stage.active===track.children.length-1;
   }
+  function go(n,instant){
+    if(!stage)return;
+    var index=Math.max(0,Math.min(track.children.length-1,n)),el=track.children[index];
+    var r=el.getBoundingClientRect(),t=track.getBoundingClientRect();
+    track.scrollTo({left:track.scrollLeft+r.left+r.width/2-t.left-track.clientWidth/2,behavior:instant||reduce?'instant':'smooth'});
+    stage.active=index;
+    count.textContent=(index+1)+' / '+track.children.length;
+    prev.disabled=index===0;next.disabled=index===track.children.length-1;
+  }
+  function openStage(folder,items){
+    if(stage)return;
+    stage={folder:folder,active:0,overflow:document.body.style.overflow};
+    overlay.querySelector('b').textContent=folder.dataset.title;
+    overlay.querySelector('small').textContent=folder.dataset.meta;
+    overlay.querySelector('.fstage-hint').textContent=items.some(function(item){return item.dataset.href;})?
+      'Swipe or use the arrows to browse. Select a preview to open the original.':'Swipe or use the arrows to browse.';
+    track.replaceChildren();
+    items.forEach(function(item,i){
+      var image=item.querySelector('img'),note=item.querySelector('.fnote');
+      var title=item.dataset.title||(image?image.alt:note.querySelector('b').textContent);
+      var figure=document.createElement('figure');figure.className='fstage-item';
+      figure.setAttribute('role','group');figure.setAttribute('aria-label',(i+1)+' of '+items.length+': '+title);
+      var card=document.createElement(item.dataset.href?'a':'div');card.className='fstage-card';
+      if(item.dataset.href){card.href=item.dataset.href;card.target='_blank';card.rel='noopener';card.setAttribute('aria-label',item.dataset.label||'Open '+title);}
+      var content=(image||note).cloneNode(true);
+      if(image)content.loading='eager';
+      card.appendChild(content);
+      var caption=document.createElement('figcaption');caption.className='fstage-caption';
+      var name=document.createElement('span');name.textContent=title;caption.appendChild(name);
+      if(item.dataset.href){
+        var link=document.createElement('a');link.className='fstage-open';link.href=item.dataset.href;
+        link.target='_blank';link.rel='noopener';link.textContent=(item.dataset.label||'Open original')+' ↗';caption.appendChild(link);
+      }
+      figure.append(card,caption);track.appendChild(figure);
+    });
+    document.body.style.overflow='hidden';overlay.showModal();go(0,true);
+  }
+  overlay.querySelector('.fstage-close').addEventListener('click',function(){overlay.close();});
+  overlay.addEventListener('close',function(){
+    if(!stage)return;
+    var previous=stage;stage=null;document.body.style.overflow=previous.overflow;
+    track.replaceChildren();previous.folder.focus({preventScroll:true});
+  });
+  prev.addEventListener('click',function(){go(stage.active-1);});
+  next.addEventListener('click',function(){go(stage.active+1);});
+  track.addEventListener('scroll',update,{passive:true});
+  overlay.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){go(stage.active+1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){go(stage.active-1);e.preventDefault();}
+  });
+  addEventListener('resize',function(){if(stage)go(stage.active,true);});
 
   folders.forEach(function(folder){
-    var wrap=folder.querySelector('.folder-in');
-    var flap=folder.querySelector('.flap');
-    var items=[].slice.call(folder.querySelectorAll('.fitem'));
-    var mid=(items.length-1)/2, gaps=Math.max(items.length-1,1);
+    var flap=folder.querySelector('.flap'),items=[].slice.call(folder.querySelectorAll('.fitem'));
+    var mid=(items.length-1)/2,gaps=Math.max(items.length-1,1);
     var widest=Math.max.apply(null,items.map(function(el){return +el.dataset.w||36;}));
     var step=(100-widest)/gaps;
-    var open=false,focus=null;
-    function off(i){return i-mid;}
-    /* translate % resolves against the element's own width, so an identical
-       folder-% offset has to be converted per card or narrow cards fly further */
-    function toEl(i,pct){return (pct/(+items[i].dataset.w||36))*100;}
-    function z(){items.forEach(function(el,i){el.style.zIndex=String(i===focus?items.length+1:items.length-Math.round(Math.abs(off(i))));});}
-    function pose(i){
-      if(!open)return{x:toEl(i,off(i)*6)+'%',y:'0%',r:off(i)*(6/gaps),s:1};
-      var f=i===focus, yields=focus!==null&&!f;
-      return{x:toEl(i,off(i)*step+(yields?Math.sign(i-focus)*PUSH:0))+'%',
-             y:f?'-34%':'-24%',r:f?0:off(i)*(11/gaps),s:f?1.05:1};
-    }
-    function apply(dur,stagger){
+    folder.setAttribute('aria-haspopup','dialog');
+    folder.setAttribute('aria-label','Open '+folder.dataset.title+' folder');
+    function setOpen(open){
+      if(stage)return;
+      flap.style.transition='transform '+ms(open?550:300)+' '+EASE;
+      flap.style.transform='rotateX('+(open?-30:0)+'deg)';
       items.forEach(function(el,i){
-        var p=pose(i);
-        el.style.transition='transform '+ms(dur)+' '+EASE+' '+ms(Math.abs(off(i))*(stagger||0));
-        el.style.transform='translate('+p.x+','+p.y+') rotate('+p.r+'deg) scale('+p.s+')';
+        var offset=i-mid,x=offset*(open?step:6)/(+el.dataset.w||36)*100;
+        el.style.zIndex=String(items.length-Math.round(Math.abs(offset)));
+        el.style.transition='transform '+ms(open?550:300)+' '+EASE;
+        el.style.transform='translate('+x+'%,'+(open?'-24%':'0%')+') rotate('+(offset*(open?11:6)/gaps)+'deg)';
       });
     }
-    function setOpen(v){
-      if(stage)return;
-      open=v; if(!v)focus=null; z();
-      flap.style.transition='transform '+ms(v?550:300)+' '+EASE;
-      flap.style.transform='rotateX('+(v?-30:0)+'deg)';
-      apply(v?550:300,v?40:20);
-    }
-    z();apply(0,0);
-    folder.addEventListener('pointerenter',function(){setOpen(true);});
+    setOpen(false);
+    folder.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')setOpen(true);});
     folder.addEventListener('pointerleave',function(){setOpen(false);});
     folder.addEventListener('focusin',function(){setOpen(true);});
     folder.addEventListener('focusout',function(){setOpen(false);});
-
-    folder.addEventListener('click',function(e){
-      e.preventDefault();
-      if(stage&&stage.folder===folder){
-        var hit=e.target.closest('.fitem');
-        if(hit){
-          var i=items.indexOf(hit);
-          if(i===stage.active&&hit.dataset.href)window.open(hit.dataset.href,'_blank','noopener');
-          else go(i);
-        }else close();
-        return;
-      }
-      if(!stage)openStage();
-    });
-
-    function baseOf(i){
-      var r=wrap.getBoundingClientRect(),el=items[i];
-      return{x:r.left+el.offsetLeft+el.offsetWidth/2,y:r.top+el.offsetTop+el.offsetHeight/2};
-    }
-    function render(dur,stagger){
-      var a=stage.active,unit=Math.min(innerWidth*.46,innerHeight*.52);
-      function fit(i){
-        var el=items[i];
-        if(i===a&&el.querySelector('.fnote'))
-          return Math.min(innerWidth*.6/el.offsetWidth,innerHeight*.82/el.offsetHeight);
-        var s=unit/Math.max(el.offsetWidth,el.offsetHeight);
-        return i===a?s:s*SIDE;
-      }
-      setOpenLink(items[a]);
-      var reach=fit(a)*items[a].offsetWidth/2+unit*GAP+unit*SIDE/2;
-      items.forEach(function(el,i){
-        var d=i-a;
-        var x=d===0?innerWidth/2:innerWidth/2+Math.sign(d)*(reach+(Math.abs(d)-1)*unit*(SIDE+GAP));
-        el.style.zIndex=String(30+items.length-Math.abs(d));
-        el.style.opacity=String(Math.max(.3,1-Math.abs(d)*.16));
-        el.style.transition='transform '+ms(dur)+' '+EASE+' '+ms(Math.abs(d)*(stagger||0))+',opacity '+ms(dur)+' '+EASE;
-        el.style.transform='translate('+(x-stage.base[i].x)+'px,'+(innerHeight/2-stage.base[i].y)+'px) rotate('+(d===0?0:tilt(i))+'deg) scale('+fit(i)+')';
-      });
-    }
-    function openStage(){
-      stage={folder:folder,active:0,base:items.map(function(_,i){return baseOf(i);})};
-      oTitle.textContent=folder.dataset.title||'';
-      oMeta.textContent=folder.dataset.meta||'';
-      overlay.classList.add('open');
-      document.documentElement.style.overflow='hidden';
-      folder.classList.add('staged','scaled');
-      flap.style.transition='transform '+ms(450)+' '+EASE+',opacity '+ms(450)+' '+EASE;
-      flap.style.transform='rotateX(-80deg)';flap.style.opacity='0';
-      render(550,50);
-    }
-    function close(){
-      if(!stage)return;
-      overlay.classList.remove('open');
-      document.documentElement.style.overflow='';
-      folder.classList.remove('scaled');
-      open=false;focus=null;
-      items.forEach(function(el){el.style.opacity='1';});
-      apply(500,30);
-      flap.style.transition='transform '+ms(600)+' '+EASE+' '+ms(300)+',opacity '+ms(300)+' '+EASE+' '+ms(300);
-      flap.style.transform='rotateX(0deg)';flap.style.opacity='1';
-      setTimeout(function(){folder.classList.remove('staged');},900);
-      stage=null;
-    }
-    function go(n){
-      if(!stage)return;
-      var c=Math.max(0,Math.min(items.length-1,n));
-      if(c===stage.active)return;
-      stage.active=c;render(550,0);
-    }
-    folder._stage={close:close,go:go,render:render,items:items};
-  });
-
-  overlay.addEventListener('click',function(e){
-    if(!stage)return;
-    if(e.target===overlay||e.target.closest('.fstage-close'))stage.folder._stage.close();
-  });
-  addEventListener('keydown',function(e){
-    if(!stage)return;
-    var s=stage.folder._stage;
-    if(e.key==='ArrowRight')s.go(stage.active+1);
-    else if(e.key==='ArrowLeft')s.go(stage.active-1);
-    else if(e.key==='Escape')s.close();
-    else return;
-    e.preventDefault();
-  });
-  addEventListener('resize',function(){
-    if(!stage)return;
-    stage.base=stage.folder._stage.items.map(function(_,i){
-      var wrap=stage.folder.querySelector('.folder-in'),el=stage.folder._stage.items[i];
-      var r=wrap.getBoundingClientRect();
-      return{x:r.left+el.offsetLeft+el.offsetWidth/2,y:r.top+el.offsetTop+el.offsetHeight/2};
-    });
-    stage.folder._stage.render(0,0);
+    folder.addEventListener('click',function(e){e.preventDefault();setOpen(false);openStage(folder,items);});
   });
 })();
 </script>
