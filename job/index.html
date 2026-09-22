@@ -211,13 +211,11 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 
 /* EXPERIENCE list */
 .dlist{border-top:1px solid var(--line-dark);margin-top:1.5rem}
-.drow{display:grid;grid-template-columns:1fr;gap:.15rem;align-items:baseline;padding:1.1rem 0;border-bottom:1px solid var(--line-dark);transition:padding .3s var(--ease-out)}
-.drow:hover{padding-left:.6rem}
-.drow .dw{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-on-dark-3)}
-.drow .drole{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:0;margin-top:.35rem}
-.drow .dco{color:var(--t-on-dark-2);font-size:14px;margin-top:1px;font-family:var(--body)}
-.drow .dnote{color:var(--t-on-dark-2);font-size:14px;margin-top:.35rem;max-width:none;line-height:1.55}
-.drow .dkind{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--t-on-dark-3);text-align:left;margin-top:.35rem}
+.drow{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:.9rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line-dark)}
+.drow img{width:40px;height:40px;border-radius:8px;object-fit:cover;display:block;border:1px solid var(--line-dark)}
+.drow .drole{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:0}
+.drow .dco{color:var(--t-on-dark-2);font-size:14px;font-family:var(--body)}
+.drow .dw{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-on-dark-3);text-align:right;white-space:nowrap}
 
 /* SELECTED WORK - plain stack, no sticky theatre */
 .sec-paper .label{color:var(--t-on-dark-3)}
@@ -262,11 +260,12 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .ox-body h4{font-family:var(--display);font-weight:500;font-size:14.5px;line-height:1.35}
 .ox-body .sub{color:var(--t-on-dark-3);font-size:12.5px;margin-top:2px;font-family:var(--body)}
 .edu{border-top:1px solid var(--line-dark)}
-.edu .e{display:grid;grid-template-columns:100px 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line-dark)}
-.edu .ey{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--t-on-dark-3)}
+.edu .e{display:grid;grid-template-columns:36px 1fr auto;gap:.9rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--line-dark)}
+.edu .ey{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--t-on-dark-3);text-align:right;white-space:nowrap}
+.edu img{width:36px;height:36px;border-radius:8px;object-fit:cover;display:block;border:1px solid var(--line-dark)}
 .edu .ei b{font-family:var(--display);font-weight:500;font-size:14.5px;display:block}
 .edu .ei span{color:var(--t-on-dark-2);font-size:13.5px;font-family:var(--body)}
-@media(max-width:600px){.ox-body{padding:.8rem;align-items:flex-start}.edu .e{grid-template-columns:1fr;gap:.2rem}}
+@media(max-width:600px){.ox-body{padding:.8rem;align-items:flex-start}}
 
 /* CONTACT */
 .contact-h{font-family:var(--display);font-weight:600;letter-spacing:-0.01em;line-height:1.25;font-size:1.4rem}
@@ -350,16 +349,6 @@ main:focus{outline:none}
 /* the View chip is hover-revealed, so keyboard focus has to reveal it too */
 button.pv-open,button.wk-open{border:0;cursor:pointer;font:inherit}
 button.wk-open{background:none;padding:0}
-
-/* ---- EXPERIENCE: the date pins while its role scrolls past ---- */
-.dlist{margin-top:2rem}
-@media(min-width:900px){
-  .drow{grid-template-columns:220px minmax(0,1fr) auto;gap:2.5rem;min-height:32vh;align-items:start;padding:2rem 0}
-  .drow:hover{padding-left:0}
-  .drow .dw{position:sticky;top:2.5rem;align-self:start}
-  .drow .drole{margin-top:0;font-size:var(--t-lg)}
-  .drow .dkind{margin-top:0;position:sticky;top:2.5rem}
-}
 
 /* ---- CREDENTIALS: certificates scroll, degrees stay ---- */
 @media(min-width:900px){
@@ -448,7 +437,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg3)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
           <div class="fitem" data-w="46" data-href="https://certify.sbs.ox.ac.uk/a90e0021-117d-4c67-8f2a-5e3b7f58634f" data-label="Verify with Oxford" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/oxford-cert.png" alt="Oxford certificate" loading="lazy"/></div></div>
-          <div class="fitem" data-w="46" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/pwc-certificate.png" alt="PwC ElevateME certificate" loading="lazy"/></div></div>
+          <div class="fitem" data-w="46" data-href="https://certificates.chronus.com/certificates/a3-2e70dc21-72eb-4cfc-813d-d343ec2dfc81-2684938" data-label="Verify with PwC" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/pwc-certificate.png" alt="PwC ElevateME certificate" loading="lazy"/></div></div>
           <div class="fitem" data-w="46" data-href="https://learn.microsoft.com/en-us/users/williamradiyeh-0300/credentials/24138b515e09ea3b" data-label="Verify with Microsoft" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/microsoft-cert.png" alt="Microsoft Azure AI Fundamentals certificate" loading="lazy"/></div></div>
         </div>
         <div class="flap"><div class="flap-txt"><div><p>Credentials</p><small>Oxford, PwC, Microsoft</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
@@ -665,12 +654,12 @@ html:not(.js) .rise{opacity:1;transform:none}
     <p class="sec-sub rise">Six years across copy, social, paid media, CRM, and marketing leadership, now focused on the infrastructure behind commercial growth.</p>
   </div>
   <div class="dlist">
-    <div class="drow rise"><div class="dw">Sep 2025 - Now</div><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties</div><div class="dnote">Own marketing and the automation layer under it.</div></div><div class="dkind">Leadership</div></div>
-    <div class="drow rise"><div class="dw">May - Sep 2025</div><div><div class="drole">Senior Marketing Manager</div><div class="dco">Namou Properties</div><div class="dnote">Built the first pipelines this site shows.</div></div><div class="dkind">Management</div></div>
-    <div class="drow rise"><div class="dw">Jan - May 2025</div><div><div class="drole">Digital Marketing Manager</div><div class="dco">800 Storage, Dubai</div><div class="dnote">Ran paid and CRM for a multi-location operator.</div></div><div class="dkind">Digital</div></div>
-    <div class="drow rise"><div class="dw">2025</div><div><div class="drole">AI / ML Engineer</div><div class="dco">Crypted Security, Dubai</div><div class="dnote">Built AI tooling outside of marketing.</div></div><div class="dkind">Engineering</div></div>
-    <div class="drow rise"><div class="dw">2024 - 2025</div><div><div class="drole">Social Media Manager</div><div class="dco">Creatingz S.A.L</div><div class="dnote">Ran brand and content across client accounts.</div></div><div class="dkind">Social</div></div>
-    <div class="drow rise"><div class="dw">2023 - 2024</div><div><div class="drole">Marketing Copywriter</div><div class="dco">Nudge Communications</div><div class="dnote">Wrote for brand and CRM before touching automation.</div></div><div class="dkind">Creative</div></div>
+    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties</div></div><div class="dw">Sep 2025 - Now</div></div>
+    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Senior Marketing Manager</div><div class="dco">Namou Properties</div></div><div class="dw">May - Sep 2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/800-storage.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Digital Marketing Manager</div><div class="dco">800 Storage, Dubai</div></div><div class="dw">Jan - May 2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/crypted.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">AI / ML Engineer</div><div class="dco">Crypted Security, Dubai</div></div><div class="dw">2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/creatingz.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Social Media Manager</div><div class="dco">Creatingz S.A.L</div></div><div class="dw">2024 - 2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/nudge.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Marketing Copywriter</div><div class="dco">Nudge Communications</div></div><div class="dw">2023 - 2024</div></div>
   </div>
 </div></section>
 
@@ -699,6 +688,7 @@ html:not(.js) .rise{opacity:1;transform:none}
           </div>
           <div class="ox-body">
             <div><h4>ElevateME Mentorship Programme</h4><div class="sub">PwC Middle East</div></div>
+            <a class="pill" style="padding:11px 20px" href="https://certificates.chronus.com/certificates/a3-2e70dc21-72eb-4cfc-813d-d343ec2dfc81-2684938" target="_blank" rel="noopener">Verify credential</a>
           </div>
         </div>
         <div class="oxford microsoft-motion rise">
@@ -713,9 +703,9 @@ html:not(.js) .rise{opacity:1;transform:none}
       </div>
     </div>
     <div class="edu rise">
-      <div class="e"><div class="ey">2024 - 2026</div><div class="ei"><b>MS, Applied Artificial Intelligence</b><span>Lebanese American University</span></div></div>
-      <div class="e"><div class="ey">2023</div><div class="ei"><b>BA, Philosophy, Applied &amp; Business Ethics</b><span>American University of Beirut</span></div></div>
-      <div class="e"><div class="ey">2026</div><div class="ei"><b>Leading AI Implementation Programme</b><span>University of Oxford</span></div></div>
+      <div class="e"><img src="../assets/logos/lau.png" alt="" width="36" height="36" loading="lazy"/><div class="ei"><b>MS, Applied Artificial Intelligence</b><span>Lebanese American University</span></div><div class="ey">2024 - 2026</div></div>
+      <div class="e"><img src="../assets/logos/aub.jpg" alt="" width="36" height="36" loading="lazy"/><div class="ei"><b>BA, Philosophy, Applied &amp; Business Ethics</b><span>American University of Beirut</span></div><div class="ey">2013 - 2018</div></div>
+      <div class="e"><img src="../assets/logos/oxford.png" alt="" width="36" height="36" loading="lazy"/><div class="ei"><b>Leading AI Implementation Programme</b><span>University of Oxford</span></div><div class="ey">2026</div></div>
     </div>
   </div>
 </div></section>
