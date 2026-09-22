@@ -9,6 +9,8 @@ Static portfolio with two pages sharing `assets/`: `index.html` serves `/`, and 
 
 `job/index.html` serves `/job/`. It uses Geist, a white background, folder carousels, and expandable project rows. Native dialogs handle folder browsing and document previews. Thumbnails stay local; every preview links to the original document or site.
 
+Experience and education rows use square logos from `assets/logos/`.
+
 The brochure demo uses `/maireed-5576-sqft-plot/` on `namou-brochures.vercel.app`. Its current preview is `assets/previews/brochure-after-v2.png`; the older preview remains for the main portfolio.
 
 To check the folder and preview flows, serve this folder with `python -m http.server 5599 --bind 127.0.0.1`, then run `node tests/check-job.cjs`. Requires Playwright and Chrome; set `PLAYWRIGHT_MODULE` to an existing Playwright installation if it is not locally resolvable. `PORTFOLIO_URL` overrides the local page URL.
