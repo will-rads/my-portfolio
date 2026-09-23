@@ -12,6 +12,7 @@ async function check(name, fn) {
   try {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
     page.setDefaultTimeout(4000);
+    page.setDefaultNavigationTimeout(30000);
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(base, { waitUntil: 'domcontentloaded' });
@@ -39,7 +40,7 @@ async function check(name, fn) {
         const folder = page.locator('.folder').nth(i);
         await folder.click();
         const items = await page.locator('.fstage-item').count();
-        assert.equal(items, [4, 3, 3, 4][i]);
+        assert.equal(items, [4, 3, 3, 3][i]);
         for (let n = 1; n < items; n++) await page.keyboard.press('ArrowRight');
         assert.equal(await page.locator('.fstage-count').textContent(), `${items} / ${items}`);
         await page.getByRole('button', { name: 'Close folder', exact: true }).click();

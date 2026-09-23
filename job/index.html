@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none}
 
 /* demos break out of the narrow column instead of being squeezed by it */
 @media(min-width:900px){
-  .ba,.journey,.wk-stack,.cred-grid,.dlist,.folders,.ledger{width:var(--wide);margin-left:calc(50% - var(--wide)/2)}
+  .ba,.journey,.wk-stack,.cred-grid,.dlist,.folders,.ledger,.project-grid{width:var(--wide);margin-left:calc(50% - var(--wide)/2)}
 }
 
 /* HEADER - in flow, plain text row, exactly like the template */
@@ -356,6 +356,20 @@ button.wk-open{background:none;padding:0}
   .edu{position:sticky;top:2.5rem;align-self:start}
 }
 
+/* Personal projects: GitHub share cards with context and direct links. */
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;margin-top:2rem}
+.project-card{min-width:0;display:flex;flex-direction:column;background:var(--surface);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.04);overflow:hidden}
+.project-image{display:block;margin:10px 10px 0;border-radius:6px;overflow:hidden;outline:1px solid rgba(0,0,0,.1);outline-offset:-1px}
+.project-image img{width:100%;height:auto;aspect-ratio:2/1;object-fit:contain;background:#fff}
+.project-body{display:flex;flex-direction:column;flex:1;padding:1.25rem;gap:.65rem}
+.project-type{font-family:var(--mono);font-size:11px;color:var(--t-on-dark-2)}
+.project-body h3{font-size:var(--t-base);font-weight:600;line-height:1.4}
+.project-body p{font-size:var(--t-md);color:var(--t-on-dark-2);line-height:1.65}
+.project-links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin-top:auto;padding-top:.5rem}
+.project-links a{display:inline-flex;align-items:center;min-height:44px;font-size:var(--t-sm);color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.project-links a:hover{text-decoration-thickness:2px}
+@media(max-width:899px){.project-grid{grid-template-columns:1fr}.project-body{padding:1.25rem}}
+
 /* reveal */
 .rise{opacity:0;transform:translateY(12px)}
 .rise.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s var(--ease-out)}
@@ -444,16 +458,15 @@ html:not(.js) .rise{opacity:1;transform:none}
       </div>
     </a>
 
-    <a class="folder" href="#experience" data-title="Experience" data-meta="Selected roles">
+    <a class="folder" href="#projects" data-title="Projects" data-meta="3 applied AI projects">
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg4)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>Head of Marketing</b><span>Namou Properties, Sep 2025 to now. Own marketing and the automation layer under it.</span></div></div>
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>Digital Marketing Manager</b><span>800 Storage, Dubai. Ran paid and CRM for a multi-location operator.</span></div></div>
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>AI / ML Engineer</b><span>Crypted Security, Dubai. Built AI tooling outside of marketing.</span></div></div>
-          <div class="fitem" data-w="32" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.72"><div class="fnote"><b>Marketing Copywriter</b><span>Nudge Communications. Wrote for brand and CRM before touching automation.</span></div></div>
+          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/moteur-check" data-label="View Moteur Check on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/moteur-check-github.png" alt="Moteur Check" loading="lazy"/></div></div>
+          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/marketmind-ai" data-label="View MarketMind AI on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/marketmind-github.png" alt="MarketMind AI" loading="lazy"/></div></div>
+          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/ethical-content-moderation" data-label="View the hate speech classifier on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/hate-speech-github.png" alt="Hate Speech Classifier" loading="lazy"/></div></div>
         </div>
-        <div class="flap"><div class="flap-txt"><div><p>Experience</p><small>Selected roles</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="flap"><div class="flap-txt"><div><p>Projects</p><small>3 applied AI projects</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
@@ -707,6 +720,44 @@ html:not(.js) .rise{opacity:1;transform:none}
       <div class="e"><img src="../assets/logos/aub.jpg" alt="" width="36" height="36" loading="lazy"/><div class="ei"><b>BA, Philosophy, Applied &amp; Business Ethics</b><span>American University of Beirut</span></div><div class="ey">2013 - 2018</div></div>
       <div class="e"><img src="../assets/logos/oxford.png" alt="" width="36" height="36" loading="lazy"/><div class="ei"><b>Leading AI Implementation Programme</b><span>University of Oxford</span></div><div class="ey">2026</div></div>
     </div>
+  </div>
+</div></section>
+
+<!-- PERSONAL PROJECTS -->
+<section class="sec" id="projects"><div class="wrap">
+  <div class="sec-head">
+    <p class="label rise">Projects</p>
+    <h2 class="sec-title scrub-t">AI applied to <span class="ac">everyday problems</span>.</h2>
+    <p class="sec-sub rise">Independent builds and research, from checking a generator bill to understanding customer reviews and studying content moderation.</p>
+  </div>
+  <div class="project-grid">
+    <article class="project-card rise">
+      <a class="project-image" href="https://github.com/will-rads/moteur-check" target="_blank" rel="noopener" aria-label="Moteur Check on GitHub"><img src="../assets/previews/moteur-check-github.png" alt="GitHub repository card for will-rads/moteur-check" width="1200" height="600" loading="lazy"/></a>
+      <div class="project-body">
+        <span class="project-type">Live app / ZAKA FUN Challenge</span>
+        <h3>Moteur Check</h3>
+        <p>Photograph a Lebanese generator bill, review the extracted figures, and compare the charges with the Ministry's published tariff. Includes a ready-to-send message in English or Lebanese Arabic.</p>
+        <div class="project-links"><a href="https://moteur-check.vercel.app/" target="_blank" rel="noopener">Try the app &#8599;</a><a href="https://github.com/will-rads/moteur-check" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+      </div>
+    </article>
+    <article class="project-card rise">
+      <a class="project-image" href="https://github.com/will-rads/marketmind-ai" target="_blank" rel="noopener" aria-label="MarketMind AI on GitHub"><img src="../assets/previews/marketmind-github.png" alt="GitHub repository card for will-rads/marketmind-ai" width="1200" height="600" loading="lazy"/></a>
+      <div class="project-body">
+        <span class="project-type">Applied AI / In development</span>
+        <h3>MarketMind AI</h3>
+        <p>A research project connecting customer-review sentiment with marketing decisions. The current work covers review-data analysis and a trained sentiment baseline, with evidence-led campaign generation planned next.</p>
+        <div class="project-links"><a href="https://github.com/will-rads/marketmind-ai" target="_blank" rel="noopener">Explore the project &#8599;</a></div>
+      </div>
+    </article>
+    <article class="project-card rise">
+      <a class="project-image" href="https://github.com/will-rads/ethical-content-moderation" target="_blank" rel="noopener" aria-label="Hate Speech Classifier on GitHub"><img src="../assets/previews/hate-speech-github.png" alt="GitHub repository card for will-rads/ethical-content-moderation" width="1200" height="600" loading="lazy"/></a>
+      <div class="project-body">
+        <span class="project-type">NLP / Research</span>
+        <h3>Hate Speech Classifier</h3>
+        <p>A DistilBERT-based classifier for hate speech, offensive language, and neither. Research includes model evaluation and fairness analysis, with documented limits for use beyond the training data.</p>
+        <div class="project-links"><a href="https://github.com/will-rads/ethical-content-moderation" target="_blank" rel="noopener">GitHub &#8599;</a><a href="https://huggingface.co/will-rads/distilbert-hatespeech-classifier" target="_blank" rel="noopener">Model card &#8599;</a></div>
+      </div>
+    </article>
   </div>
 </div></section>
 
