@@ -7,7 +7,7 @@ Static portfolio with two pages sharing `assets/`: `index.html` serves `/`, and 
 
 ## White folder portfolio
 
-`job/index.html` serves `/job/`. It uses Geist, a white background, folder carousels, and expandable project rows. Native dialogs handle folder browsing and document previews. Thumbnails stay local; every preview links to the original document or site.
+`job/index.html` serves `/job/`. It uses Geist, a white background, folder carousels. Each folder card carries its own story in a `<template class="fdetail-src">`, shown under the card when the folder opens; there are no separate Systems or Selected work sections. Native dialogs handle folder browsing and document previews. Thumbnails stay local; every preview links to the original document or site.
 
 Experience and education rows use square logos from `assets/logos/`.
 

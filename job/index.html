@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none}
 
 /* demos break out of the narrow column instead of being squeezed by it */
 @media(min-width:900px){
-  .ba,.journey,.wk-stack,.cred-grid,.dlist,.folders,.ledger,.project-grid{width:var(--wide);margin-left:calc(50% - var(--wide)/2)}
+  .ba,.journey,.wk-stack,.cred-grid,.dlist,.folders,.project-grid{width:var(--wide);margin-left:calc(50% - var(--wide)/2)}
 }
 
 /* HEADER - in flow, plain text row, exactly like the template */
@@ -117,6 +117,8 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 
 /* ============ FOLDERS - the template's signature component ============ */
 .folders{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+/* 2x2, narrower than the --wide breakout so the grid suits a laptop screen */
+@media(min-width:900px){.folders{width:min(44rem,94vw);margin-left:calc(50% - min(44rem,94vw)/2)}}
 .folder{display:block;transition:transform .16s var(--ease-out)}
 .folder:active{transform:scale(.98)}
 .folder-in{position:relative;aspect-ratio:20/17;width:100%;perspective:1000px}
@@ -159,6 +161,12 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .fstage-footer{padding:.5rem 1.5rem max(1rem,env(safe-area-inset-bottom));text-align:center}
 .fstage-nav{display:flex;align-items:center;justify-content:center;gap:1.25rem}
 .fstage-count{min-width:4rem;font-size:13px;font-variant-numeric:tabular-nums}
+.fstage-item{max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.fstage-item:has(.fdetail) .fstage-card{height:min(48dvh,480px)}
+.fstage-item:has(.fdetail) .fstage-card:has(.fnote){height:auto}
+.fdetail{padding:.25rem .25rem 2.5rem;text-align:left}
+.fdetail .ba,.fdetail .journey{width:auto;margin-left:0}
+.fdetail .sys-h{margin-top:.5rem}
 .fstage-hint{margin-top:.5rem;font-size:12px;color:var(--t-on-dark-2)}
 @media(max-width:600px){.folders{gap:1rem}.flap-txt{padding:.6rem}.flap-txt p{font-size:12px}.flap-txt small{font-size:11px}}
 
@@ -206,6 +214,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .shot{position:relative;overflow:hidden;background:#fff}
 .ba-01 .shot,.ba-02 .shot{aspect-ratio:3/4}
 .ba-03 .shot{aspect-ratio:16/11}
+.ba-05 .shot{aspect-ratio:16/10}
 /* Stable thumbnails; the full document/site opens only when requested. */
 .mobile-shot{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;background:#fff}
 
@@ -303,41 +312,6 @@ footer .row{margin-top:.5rem;display:flex;gap:1rem;flex-wrap:wrap;font-family:va
 .lb-note{font-size:12px;color:var(--t-on-dark-2);padding:.5rem .9rem;border-bottom:1px solid var(--line-dark)}
 @media(max-width:600px){.lb{padding:12px}.lb-stage{width:100%;height:calc(100dvh - 24px)}.lb-bar{flex-wrap:wrap;gap:0;padding:.4rem .75rem}.lb-dot{display:none}.lb-title{flex-basis:100%;margin-left:0}.lb-actions{width:100%;justify-content:space-between;gap:.5rem}.nav-in{flex-wrap:wrap}.nav-in .copy{white-space:nowrap}.nav-links{width:100%;justify-content:space-between;margin-left:0}}
 
-/* ================= LEDGER =================
-   One row per shipped thing. The row IS the summary; opening it reveals the
-   detail in place. ponytail: native <details>, so open/close needs no JS. */
-@supports(interpolate-size:allow-keywords){:root{interpolate-size:allow-keywords}}
-.ledger{margin-top:2rem;border-top:1px solid var(--line-dark)}
-.lrow{border-bottom:1px solid var(--line-dark)}
-.lsum{display:grid;grid-template-columns:2rem 1fr 1rem;gap:.25rem 1rem;align-items:baseline;
-  padding:1.1rem .5rem;cursor:pointer;list-style:none;
-  transition:background .2s var(--ease-out)}
-.lsum::-webkit-details-marker{display:none}
-.lsum:hover{background:rgba(0,0,0,.025)}
-.lnum{font-family:var(--mono);font-size:var(--t-xs);color:var(--t-on-dark-3);font-variant-numeric:tabular-nums}
-.lname{font-family:var(--display);font-weight:500;font-size:var(--t-base);letter-spacing:-.01em;line-height:1.3;min-width:0}
-.lname small{display:block;margin-top:.15rem;font-weight:400;font-size:var(--t-md);color:var(--t-on-dark-2);text-wrap:pretty}
-.lstack{grid-column:2;font-family:var(--mono);font-size:var(--t-xs);color:var(--t-on-dark-3);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lstate{grid-column:2;font-family:var(--mono);font-size:var(--t-xs);color:var(--t-on-dark-3);white-space:nowrap}
-.lchev{grid-column:3;grid-row:1;width:1rem;height:1rem;color:var(--t-on-dark-3);align-self:center;
-  transition:transform .3s var(--ease-out)}
-.lrow[open] .lchev{transform:rotate(90deg)}
-@media(min-width:900px){
-  .lsum{grid-template-columns:2.25rem minmax(0,1.45fr) minmax(0,1fr) 7rem 1rem;gap:1.25rem;padding:1.15rem .5rem}
-  .lstack,.lstate{grid-column:auto;align-self:baseline}
-  .lstate{text-align:right}
-}
-.lbody{padding:0 .5rem 2rem}
-/* the row headline and number already sit in the summary */
-.lbody .sys-num,.lbody .sys-cat,.lbody .wk-kick,.lbody .wk-title{display:none}
-.lbody .sys-block{padding:0;border-top:0;display:block}
-.lbody .wk-card{border:0;border-radius:0;padding:0;box-shadow:none;background:transparent}
-/* block-size alone: content-visibility made the closed subtree unfocusable and
-   kept the buttons unreachable by keyboard even once the row was open */
-.lrow::details-content{block-size:0;overflow:hidden;transition:block-size .35s var(--ease-out)}
-.lrow[open]::details-content{block-size:auto}
-@media(prefers-reduced-motion:reduce){.lrow::details-content{transition:none}}
 
 /* ---- focus, skip link ---- */
 :focus-visible{outline-width:2px;outline-style:solid;outline-color:var(--accent);outline-offset:2px}
@@ -390,7 +364,7 @@ html:not(.js) .rise{opacity:1;transform:none}
 
 <nav><div class="nav-in">
   <span class="copy">&copy; William Radiyeh</span>
-  <span class="nav-links"><a href="#systems">Systems</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></span>
+  <span class="nav-links"><a href="#index">Work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></span>
 </div></nav>
 
 <!-- HERO (light) -->
@@ -405,7 +379,7 @@ html:not(.js) .rise{opacity:1;transform:none}
         <div class="hero-social">
           <a href="https://www.linkedin.com/in/william-radiyeh/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:will.rads@outlook.com">Email</a>
-          <a href="#systems">Work</a>
+          <a href="#index">Work</a>
         </div>
       </div>
       <figure class="hero-portrait">
@@ -421,72 +395,13 @@ html:not(.js) .rise{opacity:1;transform:none}
 <section class="sec" id="index" style="padding-top:1.5rem"><div class="wrap">
   <div class="folders" id="folders">
 
-    <a class="folder" href="#systems" data-title="Systems" data-meta="4 examples from my systems">
+    <a class="folder" href="#index" data-title="Systems" data-meta="5 examples from my systems">
       <div class="folder-in">
         <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg1)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
         <div class="folder-items">
-          <div class="fitem" data-w="32" data-href="https://namou-brochures.vercel.app/maireed-5576-sqft-plot/" data-label="Open the generated brochure" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after-v2.png" alt="Generated brochure page" loading="lazy"/></div></div>
-          <div class="fitem" data-w="32" data-href="../assets/land-eval-alhudaibah-after.html" data-label="Open the bilingual evaluation" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/land-eval-after.png" alt="Bilingual land evaluation" loading="lazy"/></div></div>
-          <div class="fitem" data-w="34" data-href="../assets/outreach-weekly-report.pdf" data-label="Open the weekly report" style="top:8%;width:34%;margin-left:-17%;aspect-ratio:.78"><div class="fcard"><img src="../assets/previews/outreach-report.jpg" alt="Weekly meeting dashboard" loading="lazy"/></div></div>
-          <div class="fitem" data-w="40" data-href="../assets/outreach-reply-alert.html" data-label="Open the reply alert" style="top:14%;width:40%;margin-left:-20%;aspect-ratio:1.45"><div class="fcard"><img src="../assets/previews/outreach-alert.png" alt="Reply alert email" loading="lazy"/></div></div>
-        </div>
-        <div class="flap"><div class="flap-txt"><div><p>Systems</p><small>4 examples from my systems</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </div>
-    </a>
+          <div class="fitem" data-w="32" data-href="https://namou-brochures.vercel.app/maireed-5576-sqft-plot/" data-label="Open the generated brochure" data-title="Brochure pipeline" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/brochure-after-v2.png" alt="Generated brochure page" loading="lazy"/></div>
+          <template class="fdetail-src">
 
-    <a class="folder" href="#work" data-title="Selected work" data-meta="3 live products">
-      <div class="folder-in">
-        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg2)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
-        <div class="folder-items">
-          <div class="fitem" data-w="44" data-href="https://namou.ae/" data-label="Open namou.ae" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/namou-site.jpg" alt="Namou Properties site" loading="lazy"/></div></div>
-          <div class="fitem" data-w="44" data-href="https://namou-ae-v1.vercel.app/" data-label="Open the sales deck" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck" loading="lazy"/></div></div>
-          <div class="fitem" data-w="44" data-href="https://portal.namou.ae/" data-label="Open the partner portal" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in" loading="lazy"/></div></div>
-        </div>
-        <div class="flap"><div class="flap-txt"><div><p>Selected work</p><small>3 live products</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </div>
-    </a>
-
-    <a class="folder" href="#credentials" data-title="Credentials" data-meta="Oxford, PwC, Microsoft">
-      <div class="folder-in">
-        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg3)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
-        <div class="folder-items">
-          <div class="fitem" data-w="46" data-href="https://certify.sbs.ox.ac.uk/a90e0021-117d-4c67-8f2a-5e3b7f58634f" data-label="Verify with Oxford" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/oxford-cert.png" alt="Oxford certificate" loading="lazy"/></div></div>
-          <div class="fitem" data-w="46" data-href="https://certificates.chronus.com/certificates/a3-2e70dc21-72eb-4cfc-813d-d343ec2dfc81-2684938" data-label="Verify with PwC" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/pwc-certificate.png" alt="PwC ElevateME certificate" loading="lazy"/></div></div>
-          <div class="fitem" data-w="46" data-href="https://learn.microsoft.com/en-us/users/williamradiyeh-0300/credentials/24138b515e09ea3b" data-label="Verify with Microsoft" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/microsoft-cert.png" alt="Microsoft Azure AI Fundamentals certificate" loading="lazy"/></div></div>
-        </div>
-        <div class="flap"><div class="flap-txt"><div><p>Credentials</p><small>Oxford, PwC, Microsoft</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </div>
-    </a>
-
-    <a class="folder" href="#projects" data-title="Projects" data-meta="3 applied AI projects">
-      <div class="folder-in">
-        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg4)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
-        <div class="folder-items">
-          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/moteur-check" data-label="View Moteur Check on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/moteur-check-github.png" alt="Moteur Check" loading="lazy"/></div></div>
-          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/marketmind-ai" data-label="View MarketMind AI on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/marketmind-github.png" alt="MarketMind AI" loading="lazy"/></div></div>
-          <div class="fitem" data-w="50" data-href="https://github.com/will-rads/ethical-content-moderation" data-label="View the hate speech classifier on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/hate-speech-github.png" alt="Hate Speech Classifier" loading="lazy"/></div></div>
-        </div>
-        <div class="flap"><div class="flap-txt"><div><p>Projects</p><small>3 applied AI projects</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </div>
-    </a>
-
-  </div>
-</div></section>
-
-<!-- SYSTEMS -->
-<section class="sec sec-dark" id="systems"><div class="wrap">
-  <div class="sec-head">
-    <p class="label rise">Systems</p>
-    <h2 class="sec-title scrub-t">Built into the <span class="ac">operation</span>.</h2>
-    <p class="sec-sub rise">Four production systems that generate client-facing collateral, keep leadership sighted on the pipeline, and hold attribution together. Built and run at Namou Properties.</p>
-  </div>
-  <div class="ledger">
-
-<details class="lrow rise"><summary class="lsum"><span class="lnum">01</span><span class="lname">Brochure pipeline<small>Sheet row in, live site out</small></span><span class="lstack">n8n &middot; Gemini &middot; Vercel</span><span class="lstate">Running</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="sys-block">
-      <div class="sys-num">01</div>
-      <div>
-        <span class="sys-cat">Brochure pipeline</span>
         <h3 class="sys-h">Sheet row in, <span class="ac">live site out</span></h3>
         <p class="sys-desc">Scheduled n8n workflow, 29 nodes. Reads ready rows from a sheet of land plots, pulls the Drive images, runs two Gemini passes to turn a row into a branded HTML page, deploys it to Vercel, and generates a Rebrandly link. Writes the link back to the sheet and marks the row done. No manual steps.</p>
         <div class="ba ba-01">
@@ -509,15 +424,10 @@ html:not(.js) .rise{opacity:1;transform:none}
         </div>
         <p class="pv-note">29 nodes, one schedule, zero manual steps.</p>
         <div class="chips"><span class="chip-t">n8n</span><span class="chip-t">Sheets</span><span class="chip-t">Drive</span><span class="chip-t">Gemini</span><span class="chip-t">Vercel</span><span class="chip-t">Rebrandly</span></div>
-      </div>
-    </article>
-</div></details>
+          </template></div>
+          <div class="fitem" data-w="32" data-href="../assets/land-eval-alhudaibah-after.html" data-label="Open the bilingual evaluation" data-title="Land evaluations" style="top:6%;width:32%;margin-left:-16%;aspect-ratio:.75"><div class="fcard"><img src="../assets/previews/land-eval-after.png" alt="Bilingual land evaluation" loading="lazy"/></div>
+          <template class="fdetail-src">
 
-<details class="lrow rise"><summary class="lsum"><span class="lnum">02</span><span class="lname">Land evaluations<small>One valuation doc out in two languages</small></span><span class="lstack">n8n &middot; Gemini &middot; PDFShift</span><span class="lstate">Running</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="sys-block">
-      <div class="sys-num">02</div>
-      <div>
-        <span class="sys-cat">Land evaluations</span>
         <h3 class="sys-h">One doc, <span class="ac">two languages</span>, no typing</h3>
         <p class="sys-desc">Webhook-triggered n8n pipeline. A plain Word valuation arrives by email, Gemini extracts it to JSON, and the pipeline builds a 4-page bilingual report (English and Arabic, RTL, Tajawal). PDFShift renders the PDF, it's filed in Drive, and a Rebrandly link goes to the MD for approval.</p>
         <div class="ba ba-02">
@@ -540,15 +450,10 @@ html:not(.js) .rise{opacity:1;transform:none}
         </div>
         <p class="pv-note">English and Arabic, right-to-left, same pipeline.</p>
         <div class="chips"><span class="chip-t">n8n</span><span class="chip-t">Gemini</span><span class="chip-t">PDFShift</span><span class="chip-t">Drive</span><span class="chip-t">Rebrandly</span><span class="chip-t">SMTP</span></div>
-      </div>
-    </article>
-</div></details>
+          </template></div>
+          <div class="fitem" data-w="34" data-href="../assets/outreach-weekly-report.pdf" data-label="Open the weekly report" data-title="LinkedIn outreach" style="top:8%;width:34%;margin-left:-17%;aspect-ratio:.78"><div class="fcard"><img src="../assets/previews/outreach-report.jpg" alt="Weekly meeting dashboard" loading="lazy"/></div>
+          <template class="fdetail-src">
 
-<details class="lrow rise"><summary class="lsum"><span class="lnum">03</span><span class="lname">LinkedIn outreach<small>Reply alerts and a weekly meeting report</small></span><span class="lstack">HeyReach &middot; n8n &middot; Sheets</span><span class="lstate">Running</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="sys-block">
-      <div class="sys-num">03</div>
-      <div>
-        <span class="sys-cat">LinkedIn outreach</span>
         <h3 class="sys-h">Visibility the <span class="ac">CEO didn't have</span></h3>
         <p class="sys-desc">HeyReach plus n8n logs every send, accept, reply, and meeting across 9 industry segments to Sheets, and throttles sends per segment. The CEO has no access to the COO's LinkedIn, so replies email leadership the instant they land. A weekly PDF shows every meeting booked, ranked by seniority, so the CEO can see how far up the org the pipeline is reaching.</p>
         <div class="ba ba-03">
@@ -571,90 +476,134 @@ html:not(.js) .rise{opacity:1;transform:none}
         </div>
         <p class="pv-note">9 segments, logged and throttled, no blind spots.</p>
         <div class="chips"><span class="chip-t">HeyReach</span><span class="chip-t">n8n</span><span class="chip-t">Sheets</span><span class="chip-t">PDFShift</span><span class="chip-t">SMTP</span></div>
-      </div>
-    </article>
-</div></details>
+          </template></div>
+          <div class="fitem" data-w="40" data-title="Meta CAPI" style="top:14%;width:40%;margin-left:-20%;aspect-ratio:1.45"><div class="fcard"><div class="fnote"><b>Meta CAPI</b><span>Qualified WhatsApp chats go back to Meta every hour, so ads learn from real leads.</span></div></div>
+          <template class="fdetail-src">
 
-<details class="lrow rise"><summary class="lsum"><span class="lnum">04</span><span class="lname">Meta CAPI<small>Server-side attribution for WhatsApp leads</small></span><span class="lstack">n8n &middot; Meta APIs</span><span class="lstate">Running</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="sys-block">
-      <div class="sys-num">04</div>
-      <div>
-        <span class="sys-cat">Meta CAPI</span>
-        <h3 class="sys-h">Rebuilt after the <span class="ac">tracking broke</span></h3>
-        <p class="sys-desc">Leads arrive as Click-to-WhatsApp ads. A WhatsApp Cloud API webhook feeds n8n, which keeps only ad-originated messages, dedups them, hashes phone numbers, drops stale events, and posts server-side Purchase events to Meta's Conversions API. Ad sets are managed through the Marketing API. Rebuilt from scratch after a provider change broke attribution.</p>
+        <h3 class="sys-h">Meta learns from <span class="ac">real conversations</span></h3>
+        <p class="sys-desc">Click-to-WhatsApp ads used to optimise for any chat. Now an AI agent in the company ERP moves every chat that reaches 5+ messages into a qualified-leads sheet. Every hour, n8n sends each new row with a Meta click ID to the Conversions API as a LeadSubmitted business-messaging event, then marks it sent. The ad sets run on Meta's leads goal, so delivery learns from qualified chats, not taps.</p>
         <div class="journey" id="journey">
           <ol class="journey-static">
-            <li><b>Webhook intake</b> Catches every inbound WhatsApp message.</li>
-            <li><b>CTWA filter</b> Keeps only ad-originated leads.</li>
-            <li><b>Dedup and hash</b> SHA-256 on phone numbers, no duplicates.</li>
-            <li><b>Staleness check</b> Drops events past their window.</li>
-            <li><b>CAPI post</b> Sends server-side Purchase events to Meta.</li>
+            <li><b>Chat qualifies</b> 5+ messages on WhatsApp.</li>
+            <li><b>ERP agent logs it</b> Row lands in the qualified-leads sheet.</li>
+            <li><b>Hourly n8n run</b> Picks rows with a click ID, not yet sent.</li>
+            <li><b>CAPI event</b> LeadSubmitted over WhatsApp business messaging.</li>
+            <li><b>Meta optimises</b> Leads goal learns from those events.</li>
           </ol>
         </div>
         <div class="setup">
-          <div class="si"><span class="d"></span><div><b>Server-side, not pixel.</b> Purchase events post directly to Meta's Conversions API with action_source set to website.</div></div>
-          <div class="si"><span class="d"></span><div><b>Phone numbers hashed.</b> SHA-256 before anything touches Meta, no raw numbers in transit.</div></div>
-          <div class="si"><span class="d"></span><div><b>Ad sets via API.</b> Managed through the Marketing API with a Meta dev app token, not the ads manager UI.</div></div>
-          <div class="si"><span class="d"></span><div><b>Rebuilt once already.</b> A provider change broke tracking. This version replaced it end to end.</div></div>
+          <div class="si"><span class="d"></span><div><b>Click ID, not phone.</b> Events match on the ad's WhatsApp click ID. No phone numbers leave the sheet.</div></div>
+          <div class="si"><span class="d"></span><div><b>Sent once, on time.</b> Each click ID goes once, and events older than 7 days are skipped.</div></div>
+          <div class="si"><span class="d"></span><div><b>One number to judge.</b> Cost per qualified lead, per ad set, from the same sheet.</div></div>
+          <div class="si"><span class="d"></span><div><b>Third rebuild.</b> Provider changes broke tracking twice. This version replaced the old Purchase proxy.</div></div>
         </div>
-        <div class="chips"><span class="chip-t">n8n</span><span class="chip-t">Meta Conversions API</span><span class="chip-t">Meta Marketing API</span><span class="chip-t">WhatsApp Cloud API</span><span class="chip-t">Zoho CRM</span></div>
-      </div>
-    </article>
-</div></details>
+        <div class="chips"><span class="chip-t">n8n</span><span class="chip-t">Meta Conversions API</span><span class="chip-t">Meta Marketing API</span><span class="chip-t">WhatsApp</span><span class="chip-t">Google Sheets</span></div>
+          </template></div>
+          <div class="fitem" data-w="44" data-href="../assets/previews/dashboard-after.jpg" data-label="Open the dashboard preview" data-title="Reporting dashboard" style="top:14%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/dashboard-after.jpg" alt="Weekly reporting dashboard" loading="lazy"/></div>
+          <template class="fdetail-src">
 
-  </div>
-</div></section>
+        <h3 class="sys-h">From scattered PDFs to <span class="ac">one weekly view</span></h3>
+        <p class="sys-desc">Meta, Google, the website, the property portals and outreach each had their own PDF report. Now one dashboard pulls them live: Meta qualified leads and cost per lead, Google Ads, PostHog traffic, Property Finder and Bayut inquiries, meetings and email outreach. Every Monday an email sends the week's numbers, and its link opens a saved copy that matches the email exactly.</p>
+        <div class="ba ba-05">
+          <div class="t-tilt" data-lb="img" data-src="../assets/previews/reports-before.jpg" data-mobile-src="../assets/previews/reports-before.jpg" data-title="Before: one PDF per channel">
+            <div class="t-tilt-card">
+              <span class="pv-label">Before, one PDF per channel</span>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/reports-before.jpg" alt="Five separate PDF reports for Meta, Google, portals, website and ads" loading="lazy"/></div>
+              <button class="pv-open" type="button">View</button>
+              <div class="t-tilt-glare"></div>
+            </div>
+          </div>
+          <div class="t-tilt" data-lb="img" data-src="../assets/previews/dashboard-after.jpg" data-mobile-src="../assets/previews/dashboard-after.jpg" data-title="After: the weekly overview">
+            <div class="t-tilt-card">
+              <span class="pv-label">After, every channel on one page</span>
+              <div class="shot"><img class="mobile-shot" src="../assets/previews/dashboard-after.jpg" alt="Weekly overview dashboard with leads, spend, website and portal numbers" loading="lazy"/></div>
+              <button class="pv-open" type="button">View</button>
+              <div class="t-tilt-glare"></div>
+            </div>
+          </div>
+        </div>
+        <p class="pv-note">6 sources, one login, same numbers as the Monday email.</p>
+        <div class="chips"><span class="chip-t">Vercel</span><span class="chip-t">n8n</span><span class="chip-t">Meta Marketing API</span><span class="chip-t">Google Ads API</span><span class="chip-t">PostHog</span><span class="chip-t">Chart.js</span></div>
+          </template></div>
+        </div>
+        <div class="flap"><div class="flap-txt"><div><p>Systems</p><small>5 examples from my systems</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </a>
 
-<!-- SELECTED WORK (paper) -->
-<section class="sec sec-paper work" id="work"><div class="wrap">
-  <div class="sec-head">
-    <p class="label rise">Selected work</p>
-    <h2 class="sec-title scrub-t">Built for the <span class="ac">work</span>.</h2>
-    <p class="sec-sub rise">Client-facing products built for real sales conversations: the company story, the pitch environment, and the partner workspace.</p>
-  </div>
-  <div class="ledger">
+    <a class="folder" href="#index" data-title="Selected work" data-meta="3 live products">
+      <div class="folder-in">
+        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg2)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
+        <div class="folder-items">
+          <div class="fitem" data-title="Namou Properties" data-w="44" data-href="https://namou.ae/" data-label="Open namou.ae" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/namou-site.jpg" alt="Namou Properties site" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <span class="project-type">Company site</span>
+            <p class="sys-desc">A clearer digital home bringing the company, its property portfolio, and its investor story into one focused experience.</p>
+          </template></div>
+          <div class="fitem" data-title="Interactive Sales Deck" data-w="44" data-href="https://namou-ae-v1.vercel.app/" data-label="Open the sales deck" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <span class="project-type">Sales</span>
+            <p class="sys-desc">A live sales environment combining masterplans, payment plans, and investment tools for faster, clearer buyer conversations.</p>
+          </template></div>
+          <div class="fitem" data-title="Partner Portal" data-w="44" data-href="https://portal.namou.ae/" data-label="Open the partner portal" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <span class="project-type">Partners</span>
+            <p class="sys-desc">A secure workspace connecting brokers with onboarding, agreements, inventory, sales materials, and partner resources. Live behind partner sign-in.</p>
+          </template></div>
+        </div>
+        <div class="flap"><div class="flap-txt"><div><p>Selected work</p><small>3 live products</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </a>
 
-<details class="lrow rise"><summary class="lsum"><span class="lnum">05</span><span class="lname">Namou Properties<small>The company site, portfolio and investor story</small></span><span class="lstack">Web</span><span class="lstate">Live</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="wk-card link" data-lb="site" data-src="https://namou.ae/" data-mobile-src="../assets/previews/namou-site.jpg" data-title="Namou Properties" data-link="https://namou.ae/">
-      <div class="wk-text">
-        <p class="wk-kick">01 / Company site</p>
-        <h3 class="wk-title">Namou Properties</h3>
-        <p class="wk-copy">A clearer digital home bringing the company, its property portfolio, and its investor story into one focused experience.</p>
-        <button class="wk-open" type="button">View live site</button>
+    <a class="folder" href="#credentials" data-title="Credentials" data-meta="Oxford, PwC, Microsoft">
+      <div class="folder-in">
+        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg3)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
+        <div class="folder-items">
+          <div class="fitem" data-title="Leading AI Implementation Programme" data-w="46" data-href="https://certify.sbs.ox.ac.uk/a90e0021-117d-4c67-8f2a-5e3b7f58634f" data-label="Verify with Oxford" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/oxford-cert.png" alt="Oxford certificate" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <p class="sys-desc">Sa&iuml;d Business School, University of Oxford, 2026.</p>
+          </template></div>
+          <div class="fitem" data-title="ElevateME Mentorship Programme" data-w="46" data-href="https://certificates.chronus.com/certificates/a3-2e70dc21-72eb-4cfc-813d-d343ec2dfc81-2684938" data-label="Verify with PwC" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/pwc-certificate.png" alt="PwC ElevateME certificate" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <p class="sys-desc">PwC Middle East.</p>
+          </template></div>
+          <div class="fitem" data-title="Azure AI Fundamentals" data-w="46" data-href="https://learn.microsoft.com/en-us/users/williamradiyeh-0300/credentials/24138b515e09ea3b" data-label="Verify with Microsoft" style="top:18%;width:46%;margin-left:-23%;aspect-ratio:1.42"><div class="fcard"><img src="../assets/microsoft-cert.png" alt="Microsoft Azure AI Fundamentals certificate" loading="lazy"/></div>
+          <template class="fdetail-src">
+            <p class="sys-desc">Microsoft Certified, AI-900.</p>
+          </template></div>
+        </div>
+        <div class="flap"><div class="flap-txt"><div><p>Credentials</p><small>Oxford, PwC, Microsoft</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
-      <div class="wk-visual">
-        <div class="shot"><img class="mobile-shot" src="../assets/previews/namou-site.jpg" alt="Namou Properties site preview" loading="eager"/></div>
-      </div>
-    </article>
-</div></details>
+    </a>
 
-<details class="lrow rise"><summary class="lsum"><span class="lnum">06</span><span class="lname">Interactive Sales Deck<small>Masterplans and payment plans in one place</small></span><span class="lstack">Web</span><span class="lstate">Live</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="wk-card link" data-lb="site" data-src="https://namou-ae-v1.vercel.app/master-plan" data-mobile-src="../assets/previews/sales-deck.jpg" data-title="Interactive sales deck" data-link="https://namou-ae-v1.vercel.app/">
-      <div class="wk-text">
-        <p class="wk-kick">02 / Sales</p>
-        <h3 class="wk-title">Interactive Sales Deck</h3>
-        <p class="wk-copy">A live sales environment combining masterplans, payment plans, and investment tools for faster, clearer buyer conversations.</p>
-        <button class="wk-open" type="button">View live site</button>
+    <a class="folder" href="#projects" data-title="Projects" data-meta="3 applied AI projects">
+      <div class="folder-in">
+        <svg class="back" viewBox="0 0 400 340" aria-hidden="true"><defs><linearGradient id="fg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#e2e2e2"/></linearGradient></defs><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="url(#fg4)"/><path d="M0,26 A26,26 0 0 1 26,0 L154,0 A26,26 0 0 1 180,26 A34,34 0 0 0 214,60 L370,60 A30,30 0 0 1 400,90 L400,310 A30,30 0 0 1 370,340 L30,340 A30,30 0 0 1 0,310 Z" fill="none" stroke="white" stroke-opacity=".8"/></svg>
+        <div class="folder-items">
+          <div class="fitem" data-title="Moteur Check" data-w="50" data-href="https://github.com/will-rads/moteur-check" data-label="View Moteur Check on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/moteur-check-github.png" alt="Moteur Check" loading="lazy"/></div>
+          <template class="fdetail-src">
+        <span class="project-type">Live app / ZAKA FUN Challenge</span>
+        <p class="sys-desc">Photograph a Lebanese generator bill, review the extracted figures, and compare the charges with the Ministry's published tariff. Includes a ready-to-send message in English or Lebanese Arabic.</p>
+        <div class="project-links"><a href="https://moteur-check.vercel.app/" target="_blank" rel="noopener">Try the app &#8599;</a><a href="https://github.com/will-rads/moteur-check" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+      
+          </template></div>
+          <div class="fitem" data-title="MarketMind AI" data-w="50" data-href="https://github.com/will-rads/marketmind-ai" data-label="View MarketMind AI on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/marketmind-github.png" alt="MarketMind AI" loading="lazy"/></div>
+          <template class="fdetail-src">
+        <span class="project-type">Applied AI / In development</span>
+        <p class="sys-desc">A research project connecting customer-review sentiment with marketing decisions. The current work covers review-data analysis and a trained sentiment baseline, with evidence-led campaign generation planned next.</p>
+        <div class="project-links"><a href="https://github.com/will-rads/marketmind-ai" target="_blank" rel="noopener">Explore the project &#8599;</a></div>
+      
+          </template></div>
+          <div class="fitem" data-title="Hate Speech Classifier" data-w="50" data-href="https://github.com/will-rads/ethical-content-moderation" data-label="View the hate speech classifier on GitHub" style="top:18%;width:50%;margin-left:-25%;aspect-ratio:2"><div class="fcard"><img src="../assets/previews/hate-speech-github.png" alt="Hate Speech Classifier" loading="lazy"/></div>
+          <template class="fdetail-src">
+        <span class="project-type">NLP / Research</span>
+        <p class="sys-desc">A DistilBERT-based classifier for hate speech, offensive language, and neither. Research includes model evaluation and fairness analysis, with documented limits for use beyond the training data.</p>
+        <div class="project-links"><a href="https://github.com/will-rads/ethical-content-moderation" target="_blank" rel="noopener">GitHub &#8599;</a><a href="https://huggingface.co/will-rads/distilbert-hatespeech-classifier" target="_blank" rel="noopener">Model card &#8599;</a></div>
+      
+          </template></div>
+        </div>
+        <div class="flap"><div class="flap-txt"><div><p>Projects</p><small>3 applied AI projects</small></div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
-      <div class="wk-visual">
-        <div class="shot"><img class="mobile-shot" src="../assets/previews/sales-deck.jpg" alt="Interactive sales deck preview" loading="eager"/></div>
-      </div>
-    </article>
-</div></details>
-
-<details class="lrow rise"><summary class="lsum"><span class="lnum">07</span><span class="lname">Partner Portal<small>Broker onboarding, inventory and agreements</small></span><span class="lstack">Web</span><span class="lstate">Behind sign-in</span><svg class="lchev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="lbody">
-    <article class="wk-card link" data-noframe data-lb="site" data-src="../assets/previews/portal-login.jpg" data-mobile-src="../assets/previews/portal-login.jpg" data-title="Partner Portal" data-link="https://portal.namou.ae/">
-      <div class="wk-text">
-        <p class="wk-kick">03 / Partners</p>
-        <h3 class="wk-title">Partner Portal</h3>
-        <p class="wk-copy">A secure workspace connecting brokers with onboarding, agreements, inventory, sales materials, and partner resources. Live behind partner sign-in.</p>
-        <button class="wk-open" type="button">View live site</button>
-      </div>
-      <div class="wk-visual">
-        <div class="shot"><img class="mobile-shot" src="../assets/previews/portal-login.jpg" alt="Partner Portal sign-in preview" loading="eager"/></div>
-      </div>
-    </article>
-</div></details>
+    </a>
 
   </div>
 </div></section>
@@ -667,12 +616,12 @@ html:not(.js) .rise{opacity:1;transform:none}
     <p class="sec-sub rise">Six years across copy, social, paid media, CRM, and marketing leadership, now focused on the infrastructure behind commercial growth.</p>
   </div>
   <div class="dlist">
-    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties</div></div><div class="dw">Sep 2025 - Now</div></div>
-    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Senior Marketing Manager</div><div class="dco">Namou Properties</div></div><div class="dw">May - Sep 2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties, Dubai</div></div><div class="dw">Sep 2025 - Now</div></div>
+    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Senior Marketing Manager</div><div class="dco">Namou Properties, Dubai</div></div><div class="dw">May - Sep 2025</div></div>
     <div class="drow rise"><img src="../assets/logos/800-storage.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Digital Marketing Manager</div><div class="dco">800 Storage, Dubai</div></div><div class="dw">Jan - May 2025</div></div>
     <div class="drow rise"><img src="../assets/logos/crypted.png" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">AI / ML Engineer</div><div class="dco">Crypted Security, Dubai</div></div><div class="dw">2025</div></div>
-    <div class="drow rise"><img src="../assets/logos/creatingz.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Social Media Manager</div><div class="dco">Creatingz S.A.L</div></div><div class="dw">2024 - 2025</div></div>
-    <div class="drow rise"><img src="../assets/logos/nudge.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Marketing Copywriter</div><div class="dco">Nudge Communications</div></div><div class="dw">2023 - 2024</div></div>
+    <div class="drow rise"><img src="../assets/logos/creatingz.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Social Media Manager</div><div class="dco">Creatingz S.A.L, Beirut</div></div><div class="dw">2024 - 2025</div></div>
+    <div class="drow rise"><img src="../assets/logos/nudge.jpg" alt="" width="40" height="40" loading="lazy"/><div><div class="drole">Marketing Copywriter</div><div class="dco">Nudge Communications, Beirut</div></div><div class="dw">2023 - 2024</div></div>
   </div>
 </div></section>
 
@@ -807,8 +756,8 @@ html:not(.js) .rise{opacity:1;transform:none}
     var src=el.dataset.src,title=el.dataset.title||'Preview',link=el.dataset.link||src;
     var preview=el.dataset.mobileSrc;
     // Sites may block iframes; mobile PDF readers need a preview plus the real file.
-    var useImage=preview&&(el.dataset.lb==='site'||window.matchMedia('(max-width:760px)').matches);
-    lbTitle.textContent=title;lbFrame.title=title;lbLink.href=link;lbLink.style.display='inline';
+    var useImage=preview&&(el.dataset.lb==='site'||el.dataset.lb==='img'||window.matchMedia('(max-width:760px)').matches);
+    lbTitle.textContent=title;lbFrame.title=title;lbLink.href=link;lbLink.style.display=el.dataset.lb==='img'?'none':'inline';
     lbLink.textContent=el.dataset.lb==='site'?'Open live site ↗':'Open original ↗';
     lbFrame.hidden=!!useImage;lbImage.hidden=!useImage;lbNote.hidden=!useImage;
     if(useImage){lbImage.querySelector('img').src=preview;lbImage.querySelector('img').alt=title;}
@@ -823,9 +772,10 @@ html:not(.js) .rise{opacity:1;transform:none}
     lbFrame.removeAttribute('src');lbImage.querySelector('img').removeAttribute('src');
     document.body.style.overflow=lbOverflow;
     if(lbReturn&&lbReturn.focus)lbReturn.focus({preventScroll:true});lbReturn=null;}
-  document.querySelectorAll('[data-lb]').forEach(function(el){el.addEventListener('click',function(e){
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-lb]');if(!el)return;
     e.preventDefault();e.stopPropagation();openLB(el);
-  });});
+  });
   lbClose.addEventListener('click',closeLB);
   lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
   lb.addEventListener('cancel',function(e){e.preventDefault();closeLB();});
@@ -947,47 +897,6 @@ html:not(.js) .rise{opacity:1;transform:none}
        scrollTrigger:{trigger:title,start:'top 85%',end:'top 55%',scrub:.5}});
   });
 
-  /* SELECTED WORK - sticky scroll stack */
-  var wkStack=document.getElementById('wkStack');
-  if(wkStack){
-    var wkCards=Array.prototype.slice.call(wkStack.querySelectorAll('.wk-card'));
-    if(wkCards.length){
-      var mmWk=gsap.matchMedia();
-      mmWk.add('(min-width:900px)',function(){
-        wkCards.forEach(function(card,i){
-          if(i===wkCards.length-1)return;
-          var next=wkCards[i+1];
-          gsap.to(card,{scale:0.95-i*0.03,transformOrigin:'50% 0',ease:'none',
-            scrollTrigger:{trigger:next,start:'top bottom',end:'top top',scrub:true}});
-        });
-      });
-      mmWk.add('(max-width:899px)',function(){
-        wkStack.classList.add('deck-on');
-        var PEEK=[1,.3,.15];
-        wkCards.forEach(function(card,i){
-          var d=Math.min(i,2);
-          gsap.set(card,{zIndex:wkCards.length-i,y:d*14,scale:1-d*0.045,
-            autoAlpha:i>2?0:PEEK[d]});
-        });
-        var T=.55;
-        var tl=gsap.timeline({
-          scrollTrigger:{trigger:wkStack,pin:true,scrub:true,anticipatePin:1,
-            start:'center center',end:'+='+(wkCards.length-1)*70+'%'}
-        });
-        wkCards.forEach(function(card,i){
-          if(i===wkCards.length-1)return;
-          tl.to(card,{yPercent:-40,rotation:7,scale:.92,autoAlpha:0,duration:T,ease:'power1.in'},i)
-            .set(card,{zIndex:0},i+1)
-            .to(wkCards[i+1],{y:0,scale:1,duration:T,ease:'none'},i)
-            .to(wkCards[i+1],{autoAlpha:1,duration:T*.6,ease:'none'},i);
-          if(wkCards[i+2])tl.to(wkCards[i+2],{y:14,scale:.955,autoAlpha:PEEK[1],duration:T,ease:'none'},i);
-          if(wkCards[i+3])tl.to(wkCards[i+3],{autoAlpha:PEEK[2],duration:T,ease:'none'},i);
-        });
-        return function(){wkStack.classList.remove('deck-on');};
-      });
-    }
-  }
-
   /* footer big name reveal */
   if(document.querySelector('footer .big')){
     gsap.fromTo('footer .big',{yPercent:14},{yPercent:0,ease:'none',
@@ -1013,7 +922,7 @@ html:not(.js) .rise{opacity:1;transform:none}
     '<button type="button" aria-label="Previous item">&larr;</button>'+
     '<span class="fstage-count" aria-live="polite"></span>'+
     '<button type="button" aria-label="Next item">&rarr;</button></div>'+
-    '<p class="fstage-hint">Swipe or use the arrows to browse. Select a preview to open the original.</p></div>';
+    '<p class="fstage-hint"></p></div>';
   document.body.appendChild(overlay);
   var track=overlay.querySelector('.fstage-track'),count=overlay.querySelector('.fstage-count');
   var prev=overlay.querySelector('[aria-label="Previous item"]'),next=overlay.querySelector('[aria-label="Next item"]');
@@ -1042,7 +951,7 @@ html:not(.js) .rise{opacity:1;transform:none}
     overlay.querySelector('b').textContent=folder.dataset.title;
     overlay.querySelector('small').textContent=folder.dataset.meta;
     overlay.querySelector('.fstage-hint').textContent=items.some(function(item){return item.dataset.href;})?
-      'Swipe or use the arrows to browse. Select a preview to open the original.':'Swipe or use the arrows to browse.';
+      'Swipe to browse, scroll down for the story. Select a preview to open the original.':'Swipe to browse, scroll down for the story.';
     track.replaceChildren();
     items.forEach(function(item,i){
       var image=item.querySelector('img'),note=item.querySelector('.fnote');
@@ -1060,7 +969,10 @@ html:not(.js) .rise{opacity:1;transform:none}
         var link=document.createElement('a');link.className='fstage-open';link.href=item.dataset.href;
         link.target='_blank';link.rel='noopener';link.textContent=(item.dataset.label||'Open original')+' ↗';caption.appendChild(link);
       }
-      figure.append(card,caption);track.appendChild(figure);
+      figure.append(card,caption);
+      var story=item.querySelector('template.fdetail-src');
+      if(story){var detail=document.createElement('div');detail.className='fdetail';detail.appendChild(story.content.cloneNode(true));figure.appendChild(detail);}
+      track.appendChild(figure);
     });
     document.body.style.overflow='hidden';overlay.showModal();go(0,true);
   }

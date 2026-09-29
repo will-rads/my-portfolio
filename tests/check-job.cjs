@@ -24,9 +24,9 @@ async function check(name, fn) {
     });
     await check('folder has visible next and previous controls', async () => {
       await page.getByRole('button', { name: 'Next item', exact: true }).click();
-      assert.match(await page.locator('.fstage-count').textContent(), /2\s*\/\s*4/);
+      assert.match(await page.locator('.fstage-count').textContent(), /2\s*\/\s*5/);
       await page.getByRole('button', { name: 'Previous item', exact: true }).click();
-      assert.match(await page.locator('.fstage-count').textContent(), /1\s*\/\s*4/);
+      assert.match(await page.locator('.fstage-count').textContent(), /1\s*\/\s*5/);
     });
     await check('keyboard focus stays inside the open folder', async () => {
       for (let i = 0; i < 12; i++) {
@@ -40,7 +40,7 @@ async function check(name, fn) {
         const folder = page.locator('.folder').nth(i);
         await folder.click();
         const items = await page.locator('.fstage-item').count();
-        assert.equal(items, [4, 3, 3, 3][i]);
+        assert.equal(items, [5, 3, 3, 3][i]);
         for (let n = 1; n < items; n++) await page.keyboard.press('ArrowRight');
         assert.equal(await page.locator('.fstage-count').textContent(), `${items} / ${items}`);
         await page.getByRole('button', { name: 'Close folder', exact: true }).click();
@@ -48,8 +48,8 @@ async function check(name, fn) {
         assert.equal(await page.evaluate(() => document.body.style.overflow), '');
       }
     });
-    await page.locator('.lrow summary').first().click();
-    await page.locator('.ba-01 .pv-open').last().click();
+    await page.locator('.folder').first().click();
+    await page.locator('.fstage .ba-01 .pv-open').last().click();
     await check('mobile brochure keeps a link to the full original', async () => {
       assert.ok(await page.locator('#lb').isVisible(), 'View left the portfolio for a screenshot');
       assert.equal(await page.locator('#lbLink').getAttribute('href'), 'https://namou-brochures.vercel.app/maireed-5576-sqft-plot/');
@@ -62,14 +62,14 @@ async function check(name, fn) {
     });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.locator('.lrow summary').first().click();
-    await page.locator('.ba-01 .pv-open').first().click();
+    await page.locator('.folder').first().click();
+    await page.locator('.fstage .ba-01 .pv-open').first().click();
     await check('PDF preview always offers the original file', async () => {
       assert.ok(await page.locator('#lbLink').isVisible());
       assert.match(await page.locator('#lbLink').getAttribute('href'), /brochure-maireed-5505-before\.pdf/);
     });
     await page.locator('#lbClose').click();
-    await page.locator('.ba-01 .pv-open').first().click();
+    await page.locator('.fstage .ba-01 .pv-open').first().click();
     await check('reopening a preview cannot clear the new preview', async () => {
       await page.waitForTimeout(400);
       assert.match(await page.locator('#lbFrame').getAttribute('src'), /brochure-maireed-5505-before\.pdf/);
@@ -83,11 +83,11 @@ async function check(name, fn) {
       await page.keyboard.press('Escape');
       await folder.click();
       await page.getByRole('button', { name: 'Next item', exact: true }).click();
-      await page.waitForFunction(() => document.querySelector('.fstage-count').textContent === '2 / 4');
+      await page.waitForFunction(() => document.querySelector('.fstage-count').textContent === '2 / 5');
       await page.waitForTimeout(600);
       await page.setViewportSize({ width: 390, height: 844 });
       await page.waitForTimeout(150);
-      assert.equal(await page.locator('.fstage-count').textContent(), '2 / 4');
+      assert.equal(await page.locator('.fstage-count').textContent(), '2 / 5');
       await page.keyboard.press('Escape');
       await page.emulateMedia({ reducedMotion: 'reduce' });
     });
