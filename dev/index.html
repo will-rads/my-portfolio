@@ -355,6 +355,7 @@ html:not(.js) .rise{opacity:1;transform:none}
   .pv-open{opacity:1!important;transform:none!important}
   *{transition:none!important;animation:none!important}
 }
+.flive{position:relative;width:100%;height:100%;overflow:hidden;border-radius:6cqw;container-type:inline-size;background:#fff}.flive iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;pointer-events:none;transform-origin:0 0;transform:scale(.25);transform:scale(calc(100cqw / 1440px))}/* live site, scaled from a 1440px desktop view */
 </style>
 </head>
 <body>
@@ -479,7 +480,7 @@ html:not(.js) .rise{opacity:1;transform:none}
             <div class="chips"><span class="chip-t">JavaScript</span><span class="chip-t">Vercel</span></div>
             <div class="project-links"><a href="https://namou-ae-v1.vercel.app/" target="_blank" rel="noopener">Open the site &#8599;</a></div>
           </template></div>
-          <div class="fitem" data-title="Partner portal" data-w="44" data-href="https://portal.namou.ae/" data-label="Open Partner portal" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><img src="../assets/previews/portal-login.jpg" alt="Partner portal home page" loading="lazy"/></div>
+          <div class="fitem" data-title="Partner portal" data-w="44" data-href="https://portal.namou.ae/" data-label="Open Partner portal" style="top:16%;width:44%;margin-left:-22%;aspect-ratio:1.6"><div class="fcard"><div class="flive" role="img" aria-label="Partner portal, live"><iframe src="https://portal.namou.ae/" loading="lazy" tabindex="-1" title="Namou Partner Portal, live preview" scrolling="no"></iframe></div></div>
           <template class="fdetail-src">
             <span class="project-type">Web app / Partners</span>
             <p class="sys-desc">Brokers sign in for onboarding, agreements, inventory and sales material. Live behind partner sign-in.</p>
@@ -798,7 +799,7 @@ html:not(.js) .rise{opacity:1;transform:none}
       'Swipe to browse, scroll down for the story. Select a preview to open the original.':'Swipe to browse, scroll down for the story.';
     track.replaceChildren();
     items.forEach(function(item,i){
-      var image=item.querySelector('img'),note=item.querySelector('.fnote');
+      var image=item.querySelector('img,.flive'),note=item.querySelector('.fnote');
       var title=item.dataset.title||(image?image.alt:note.querySelector('b').textContent);
       var figure=document.createElement('figure');figure.className='fstage-item';
       figure.setAttribute('role','group');figure.setAttribute('aria-label',(i+1)+' of '+items.length+': '+title);
