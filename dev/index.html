@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>William Radiyeh | Web developer</title>
+<meta name="description" content="William Radiyeh builds websites that run on real data. Laravel, Next.js, React and plain HTML, shipped to Vercel."/>
+<link rel="canonical" href="https://william-radiyeh.vercel.app/dev"/>
+<meta property="og:title" content="William Radiyeh | Web developer"/>
+<meta property="og:description" content="Websites that run on real data. Laravel, Next.js, React and plain HTML, shipped to Vercel."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://william-radiyeh.vercel.app/dev"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%232850FF'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Arial,sans-serif'%20font-size='40'%20font-weight='700'%20fill='%23FFFFFF'%20text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E"/>
+
+<!-- Web-developer edition of the main page: same tokens, fonts, nav, light hero + dark editorial body. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --ink:#0E0F12;
+  --surface:#17191E;
+  --paper:#F1F1EF;
+  --paper-2:#E8E8E4;
+  --t-on-dark:#F1F1EF;
+  --t-on-dark-2:#C9CCD3;
+  --t-on-dark-3:#8B8F98;
+  --t-on-paper:#161616;
+  --t-on-paper-2:#4A4A4A;
+  --accent:#2850FF;
+  --accent-lift:#5C7BFF;
+  --line-dark:rgba(241,241,239,.14);
+  --line-dark-2:rgba(241,241,239,.28);
+  --line-paper:rgba(22,22,22,.16);
+  --display:'Bricolage Grotesque','Host Grotesk',system-ui,sans-serif;
+  --body:'Host Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Space Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--ink);color:var(--t-on-dark);font-family:var(--body);-webkit-font-smoothing:antialiased;font-feature-settings:'ss01','ss02','cv01'}
+main{overflow-x:clip;width:100%;max-width:100%}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--accent-lift);outline-offset:4px;border-radius:2px}
+::selection{background:var(--accent);color:#fff}
+.wrap{max-width:1340px;margin:0 auto;padding:0 28px}
+@media(min-width:900px){.wrap{padding:0 56px}}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;color:var(--accent-lift)}
+.label::before{content:"// ";opacity:.7}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:90;mix-blend-mode:difference}
+.nav-in{max-width:1340px;margin:0 auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;color:#fff}
+@media(min-width:900px){.nav-in{padding:26px 56px}}
+.nav-in .copy{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em}
+.nav-links{display:flex;gap:30px}
+.nav-links a{font-size:13.5px;letter-spacing:.02em;opacity:.85;transition:opacity .25s}
+.nav-links a:hover{opacity:1}
+@media(max-width:760px){.nav-links{gap:16px}.nav-links a{font-size:12.5px}}
+@media(max-width:420px){.nav-in .copy{display:none}}
+
+.scroll-prog{position:fixed;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;z-index:95;pointer-events:none}
+
+html{scrollbar-width:thin;scrollbar-color:rgba(241,241,239,.18) transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(241,241,239,.18);border-radius:8px}
+
+/* sections */
+.sec{padding:clamp(90px,13vw,170px) 0;position:relative}
+.sec-paper{background:var(--paper);color:var(--t-on-paper)}
+.sec-dark{background:var(--ink);color:var(--t-on-dark)}
+.sec-head .label{margin-bottom:22px}
+.sec-title{font-family:var(--display);font-weight:800;letter-spacing:-0.03em;line-height:.95;font-size:clamp(2.3rem,5.4vw,4.6rem);text-wrap:balance}
+.sec-title .ac{color:var(--accent-lift)}
+.sec-sub{margin-top:22px;max-width:54ch;color:var(--t-on-dark-2);font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.55}
+.sec-paper .label{color:var(--accent)}
+.sec-paper .sec-title .ac{color:var(--accent)}
+.sec-paper .sec-sub{color:var(--t-on-paper-2)}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--paper);color:var(--t-on-paper);display:flex;align-items:center;padding:130px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;width:100%}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:60px}}
+.hero-kick{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:26px}
+.hero-name{font-family:var(--display);font-weight:800;letter-spacing:-0.04em;line-height:.86;font-size:clamp(2.6rem,6.4vw,5.8rem)}
+.hero-name span{display:block;overflow:hidden;white-space:nowrap;padding-bottom:.04em}
+.hero-name .ac{color:var(--accent)}
+@media(max-width:520px){.hero-name{font-size:2.35rem;line-height:.92}}
+.hero-rule{height:1px;background:var(--line-paper);margin:34px 0 24px;max-width:520px}
+.hero-role{font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:500;color:var(--t-on-paper-2);max-width:42ch;line-height:1.5}
+.hero-role b{color:var(--t-on-paper);font-weight:700}
+.hero-social{display:flex;gap:24px;margin-top:32px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.hero-social a{color:var(--t-on-paper-2);transition:color .25s;padding:6px 0}
+.hero-social a:hover{color:var(--accent)}
+.hero-portrait{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--paper-2);box-shadow:0 40px 80px -36px rgba(22,22,22,.5)}
+@media(max-width:959px){.hero-portrait{max-width:440px}}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 14%;filter:grayscale(1) contrast(1.06)}
+.hero-portrait .tagcorner{position:absolute;right:18px;bottom:16px;font-family:var(--display);font-weight:700;font-size:1.3rem;line-height:1;color:#fff;text-align:right;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.hero-portrait .tagcorner small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-lift);margin-bottom:6px;font-weight:400}
+
+/* SITES - numbered rows with a screenshot each */
+.sites{margin-top:clamp(50px,7vw,90px)}
+.site{display:grid;grid-template-columns:1fr;gap:26px;padding:clamp(40px,5vw,64px) 0;border-top:1px solid var(--line-dark)}
+@media(min-width:900px){.site{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}}
+.site-num{font-family:var(--display);font-weight:800;font-size:clamp(3.2rem,6vw,5.2rem);line-height:.8;letter-spacing:-0.04em;color:var(--t-on-dark)}
+.site-meta{margin-top:22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-lift)}
+.site-name{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1;font-size:clamp(1.7rem,3.4vw,2.7rem);margin-top:12px}
+.site-line{margin-top:14px;color:var(--t-on-dark-2);font-size:15.5px;line-height:1.6;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip-t{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--t-on-dark-2);border:1px solid var(--line-dark);border-radius:999px;padding:7px 13px}
+.site-go{display:inline-flex;gap:8px;align-items:center;margin-top:24px;padding:6px 0;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--t-on-dark);border-bottom:1px solid var(--line-dark-2);transition:color .25s,border-color .25s}
+.site-go .gt{transition:transform .3s var(--ease)}
+.site-go:hover{color:var(--accent-lift);border-color:var(--accent-lift)}
+.site-go:hover .gt{transform:translate(3px,-3px)}
+.site-shot{position:relative;display:block;aspect-ratio:16/10;border-radius:12px;overflow:hidden;border:1px solid var(--line-dark);background:var(--surface);transition:border-color .3s,transform .5s var(--ease)}
+.site-shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.site-shot:hover{border-color:var(--accent-lift);transform:translateY(-4px)}
+.pv-label{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:#fff;background:rgba(14,15,18,.82);border:1px solid var(--line-dark);border-radius:999px;padding:5px 11px}
+
+.studio{display:grid;grid-template-columns:200px auto 1fr;align-items:baseline;gap:10px 24px;padding:26px 0;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+.studio .sk{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--t-on-dark-3)}
+.studio a{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.6rem);transition:color .25s}
+.studio a:hover{color:var(--accent-lift)}
+.studio .sn{color:var(--t-on-dark-3);font-size:14px;font-family:var(--mono);text-align:right}
+@media(max-width:680px){.studio{grid-template-columns:1fr}.studio .sn{text-align:left}}
+
+/* STACK */
+.dlist{border-top:1px solid var(--line-dark);margin-top:46px}
+.stk{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line-dark)}
+.stk .sk{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-lift)}
+.stk .chips{margin-top:0}
+
+/* HOW I WORK (paper) */
+.steps{display:grid;grid-template-columns:1fr;gap:0;margin-top:clamp(46px,6vw,80px)}
+@media(min-width:900px){.steps{grid-template-columns:repeat(3,1fr);gap:40px}}
+.step{border-top:1px solid var(--line-paper);padding:32px 0 40px}
+.step-num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,6vw,5rem);line-height:.8;letter-spacing:-0.04em;color:var(--accent)}
+.step h3{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.05;font-size:clamp(1.5rem,2.4vw,2rem);margin-top:26px}
+.step p{margin-top:14px;color:var(--t-on-paper-2);font-size:15.5px;line-height:1.6;max-width:36ch}
+
+/* EXPERIENCE - square logo rows, as on /job */
+.drow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line-dark);transition:padding .4s var(--ease)}
+.drow:hover{padding-left:14px}
+.drow img{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid var(--line-dark);background:#fff}
+.drow .drole{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,1.9vw,1.45rem);letter-spacing:-0.01em}
+.drow .dco{color:var(--accent-lift);font-size:14px;margin-top:4px;font-family:var(--mono)}
+.drow .dnote{color:var(--t-on-dark-2);font-size:14.5px;margin-top:6px;line-height:1.5}
+.drow .dw{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--t-on-dark-3);text-align:right;white-space:nowrap}
+.sub-label{margin-top:64px}
+
+/* CONTACT */
+.contact-h{font-family:var(--display);font-weight:800;letter-spacing:-0.035em;line-height:.9;font-size:clamp(2.8rem,9vw,7rem);margin-top:18px}
+.contact-h .ac{color:var(--accent-lift)}
+.contact-sub{margin-top:24px;max-width:46ch;color:var(--t-on-dark-2);font-size:1.1rem;line-height:1.5}
+.clist{margin-top:50px;border-top:1px solid var(--line-dark);max-width:760px}
+.clist a{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 0;border-bottom:1px solid var(--line-dark);transition:padding .4s var(--ease)}
+.clist a:hover{padding-left:14px}
+.clist .ck{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--t-on-dark-3)}
+.clist .cv{font-family:var(--display);font-weight:700;font-size:clamp(1.05rem,2.2vw,1.7rem);transition:color .25s;overflow-wrap:anywhere;text-align:right}
+.clist a:hover .cv{color:var(--accent-lift)}
+
+footer{padding:70px 0 56px;border-top:1px solid var(--line-dark)}
+footer .big{font-family:var(--display);font-weight:800;letter-spacing:-0.04em;line-height:.85;font-size:clamp(2.6rem,11vw,7.5rem);text-transform:uppercase}
+footer .big .ac{color:var(--accent-lift)}
+footer .row{margin-top:24px;display:flex;gap:12px 30px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--t-on-dark-3)}
+footer .row a{transition:color .25s}
+footer .row a:hover{color:var(--accent-lift)}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(24px);filter:blur(8px)}
+.rise.in{opacity:1;transform:none;filter:none;transition:opacity .7s ease,transform .7s var(--ease),filter .55s ease}
+html:not(.js) .rise{opacity:1;transform:none;filter:none}
+
+@media(max-width:680px){
+  .stk{grid-template-columns:1fr;gap:12px}
+  .drow{grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start}
+  .drow img{width:40px;height:40px}
+  .drow .dw{grid-column:2;text-align:left}
+  .clist a{flex-direction:column;align-items:flex-start;gap:6px}
+  .clist .cv{text-align:left}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise{opacity:1!important;transform:none!important;filter:none!important}
+  .scroll-prog{display:none!important}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<div class="scroll-prog" id="scrollProg"></div>
+<nav aria-label="Main"><div class="nav-in">
+  <a href="/" class="copy">&copy; William Radiyeh</a>
+  <span class="nav-links"><a href="#sites">Sites</a><a href="#stack">Stack</a><a href="#work">Process</a></span>
+  <a href="#contact" class="nav-links" style="display:flex">Contact</a>
+</div></nav>
+<main>
+
+<!-- HERO (light) -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-kick">William Radiyeh / Web developer</p>
+        <h1 class="hero-name"><span>I build websites</span><span>that run on</span><span class="ac">real data</span></h1>
+        <div class="hero-rule"></div>
+        <p class="hero-role">Laravel, Next.js, React and plain HTML, shipped to <b>Vercel</b>.</p>
+        <div class="hero-social">
+          <a href="#sites">Sites</a>
+          <a href="mailto:will.rads@outlook.com">Email</a>
+          <a href="https://www.linkedin.com/in/william-radiyeh/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <figure class="hero-portrait">
+        <img src="../assets/headshot.png" alt="William Radiyeh"/>
+        <figcaption class="tagcorner"><small>Laravel / Web</small>Developer</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<!-- SITES (dark) -->
+<section class="sec sec-dark" id="sites"><div class="wrap">
+  <div class="sec-head">
+    <p class="label rise">Sites</p>
+    <h2 class="sec-title scrub-t">Nine sites, <span class="ac">all live</span></h2>
+    <p class="sec-sub rise">Three Laravel builds first. Then company, client and own sites. Every link opens the real thing.</p>
+  </div>
+  <div class="sites">
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">01</div>
+        <p class="site-meta">Laravel 13 / Portfolio demo</p>
+        <h3 class="site-name">OpenTenders</h3>
+        <p class="site-line">Public tenders portal. Every tender and award, in plain words.</p>
+        <div class="chips"><span class="chip-t">Filters</span><span class="chip-t">AI summaries, labelled for staff review</span><span class="chip-t">Awards register</span><span class="chip-t">Complaint form with tracking codes</span><span class="chip-t">Open-data JSON feed</span><span class="chip-t">English and Arabic (RTL)</span></div>
+        <a class="site-go" href="https://opentenders.vercel.app" target="_blank" rel="noopener">opentenders.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://opentenders.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Portfolio demo</span>
+        <img src="../assets/dev/opentenders.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">02</div>
+        <p class="site-meta">Laravel 13 / Portfolio demo</p>
+        <h3 class="site-name">Darlune</h3>
+        <p class="site-line">Booking site for a three-room stone guesthouse on the Lebanese coast.</p>
+        <div class="chips"><span class="chip-t">Availability calendar</span><span class="chip-t">Overlap checks</span><span class="chip-t">Price breakdown</span><span class="chip-t">Front-desk dashboard</span></div>
+        <a class="site-go" href="https://darlune.vercel.app" target="_blank" rel="noopener">darlune.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://darlune.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Portfolio demo</span>
+        <img src="../assets/dev/darlune.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">03</div>
+        <p class="site-meta">Laravel 13 / Portfolio demo</p>
+        <h3 class="site-name">Jarrat</h3>
+        <p class="site-line">Mouneh pantry shop. Olive oil, za'atar and jams from five Lebanese villages.</p>
+        <div class="chips"><span class="chip-t">Cart</span><span class="chip-t">Checkout with delivery zones</span><span class="chip-t">Promo codes</span><span class="chip-t">Order receipts</span></div>
+        <a class="site-go" href="https://jarrat.vercel.app" target="_blank" rel="noopener">jarrat.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://jarrat.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Portfolio demo</span>
+        <img src="../assets/dev/jarrat.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">04</div>
+        <p class="site-meta">HTML / JS / Company site</p>
+        <h3 class="site-name">namou.ae</h3>
+        <p class="site-line">Company site for Namou Properties, my employer. Land plots in Ras Al Khaimah.</p>
+        <div class="chips"><span class="chip-t">52 plots baked from a Google Sheet</span><span class="chip-t">Markdown twins for AI readability</span></div>
+        <a class="site-go" href="https://www.namou.ae" target="_blank" rel="noopener">namou.ae <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://www.namou.ae" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Live, in use</span>
+        <img src="../assets/dev/namou.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">05</div>
+        <p class="site-meta">Next.js / Client</p>
+        <h3 class="site-name">Viktoria Abduly</h3>
+        <p class="site-line">Site for an image consultant in the UAE.</p>
+        <a class="site-go" href="https://viktoria-site.vercel.app/v4" target="_blank" rel="noopener">viktoria-site.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://viktoria-site.vercel.app/v4" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Client site</span>
+        <img src="../assets/dev/viktoria.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">06</div>
+        <p class="site-meta">Next.js</p>
+        <h3 class="site-name">MediaReps</h3>
+        <p class="site-line">Digital billboard and screen advertising across the GCC.</p>
+        <div class="chips"><span class="chip-t">English and Arabic</span></div>
+        <a class="site-go" href="https://mediareps-site.vercel.app" target="_blank" rel="noopener">mediareps-site.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://mediareps-site.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img src="../assets/dev/mediareps.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">07</div>
+        <p class="site-meta">HTML</p>
+        <h3 class="site-name">LEVX Ascensores</h3>
+        <p class="site-line">Elevator maintenance and repair company in Spain.</p>
+        <div class="chips"><span class="chip-t">Three languages</span></div>
+        <a class="site-go" href="https://levx-ascensores.vercel.app" target="_blank" rel="noopener">levx-ascensores.vercel.app <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://levx-ascensores.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img src="../assets/dev/levx.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">08</div>
+        <p class="site-meta">HTML / Landing page</p>
+        <h3 class="site-name">Green Room FX</h3>
+        <p class="site-line">Landing page for a gold and forex market analysis community.</p>
+        <div class="chips"><span class="chip-t">Delivered and accepted Sept 2026</span></div>
+        <a class="site-go" href="https://www.greenroomfx.com" target="_blank" rel="noopener">greenroomfx.com <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://www.greenroomfx.com" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <span class="pv-label">Client site</span>
+        <img src="../assets/dev/greenroom.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+    <article class="site rise">
+      <div>
+        <div class="site-num">09</div>
+        <p class="site-meta">HTML / Own business</p>
+        <h3 class="site-name">sealed.vip</h3>
+        <p class="site-line">My digital invitations business. RSVP, maps and calendars in one link.</p>
+        <a class="site-go" href="https://www.sealed.vip" target="_blank" rel="noopener">sealed.vip <span class="gt" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <a class="site-shot" href="https://www.sealed.vip" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img src="../assets/dev/sealed.webp" alt="" width="1440" height="900" loading="lazy"/>
+      </a>
+    </article>
+
+  </div>
+  <div class="studio rise">
+    <span class="sk">Studio</span>
+    <a href="https://good-taste-inc.vercel.app" target="_blank" rel="noopener">Good Taste Inc <span aria-hidden="true">&#8599;</span></a>
+    <span class="sn">React / TypeScript / Vite agency site</span>
+  </div>
+</div></section>
+
+<!-- STACK (dark) -->
+<section class="sec sec-dark" id="stack" style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <p class="label rise">Stack</p>
+    <h2 class="sec-title scrub-t">What I <span class="ac">build with</span></h2>
+  </div>
+  <div class="dlist">
+    <div class="stk rise"><span class="sk">Frontend</span><div class="chips"><span class="chip-t">HTML/CSS</span><span class="chip-t">Tailwind</span><span class="chip-t">JavaScript</span><span class="chip-t">TypeScript</span><span class="chip-t">React</span><span class="chip-t">Next.js</span></div></div>
+    <div class="stk rise"><span class="sk">Backend</span><div class="chips"><span class="chip-t">PHP</span><span class="chip-t">Laravel</span><span class="chip-t">Python</span></div></div>
+    <div class="stk rise"><span class="sk">Laravel</span><div class="chips"><span class="chip-t">Blade</span><span class="chip-t">Eloquent</span><span class="chip-t">Migrations</span><span class="chip-t">Form Requests</span><span class="chip-t">Feature tests</span></div></div>
+    <div class="stk rise"><span class="sk">Data</span><div class="chips"><span class="chip-t">SQLite</span><span class="chip-t">MySQL-style SQL</span><span class="chip-t">Supabase</span></div></div>
+    <div class="stk rise"><span class="sk">Ship</span><div class="chips"><span class="chip-t">Git/GitHub</span><span class="chip-t">Vercel</span><span class="chip-t">n8n</span></div></div>
+  </div>
+</div></section>
+
+<!-- HOW I WORK (paper) -->
+<section class="sec sec-paper" id="work"><div class="wrap">
+  <div class="sec-head">
+    <p class="label rise">How I work</p>
+    <h2 class="sec-title scrub-t">Same order, <span class="ac">every build</span></h2>
+  </div>
+  <div class="steps">
+    <div class="step rise"><div class="step-num">01</div><h3>Data model first</h3><p>Tables, relations and migrations come before any screen.</p></div>
+    <div class="step rise"><div class="step-num">02</div><h3>Tests before deploy</h3><p>Feature tests cover the main flows before anything goes live.</p></div>
+    <div class="step rise"><div class="step-num">03</div><h3>Ship to a live link</h3><p>Every build ends at a URL you can open. All nine above are live.</p></div>
+  </div>
+</div></section>
+
+<!-- EXPERIENCE (dark) -->
+<section class="sec sec-dark" id="experience"><div class="wrap">
+  <div class="sec-head">
+    <p class="label rise">Experience</p>
+    <h2 class="sec-title scrub-t">Where I <span class="ac">build</span></h2>
+  </div>
+  <div class="dlist">
+    <div class="drow rise"><img src="../assets/logos/namou.png" alt="" width="44" height="44" loading="lazy"/><div><div class="drole">Head of Marketing</div><div class="dco">Namou Properties, Dubai</div><div class="dnote">Built and runs the company website and internal tools.</div></div><div class="dw">Sep 2025 - Now</div></div>
+    <div class="drow rise"><img src="../assets/logos/crypted.png" alt="" width="44" height="44" loading="lazy"/><div><div class="drole">AI / ML Engineer</div><div class="dco">Crypted Security Integration</div><div class="dnote">Azure ML model and a simple web app.</div></div><div class="dw">2025</div></div>
+  </div>
+  <p class="label rise sub-label">Education</p>
+  <div class="dlist" style="margin-top:22px">
+    <div class="drow rise"><img src="../assets/logos/lau.png" alt="" width="44" height="44" loading="lazy"/><div><div class="drole">MS, Applied Artificial Intelligence</div><div class="dco">Lebanese American University</div></div><div class="dw">2024 - 2026</div></div>
+    <div class="drow rise"><img src="../assets/logos/aub.jpg" alt="" width="44" height="44" loading="lazy"/><div><div class="drole">BA, Philosophy, Applied &amp; Business Ethics</div><div class="dco">American University of Beirut</div></div><div class="dw">2013 - 2018</div></div>
+  </div>
+</div></section>
+
+<!-- CONTACT (dark) -->
+<section class="sec sec-dark" id="contact" style="padding-top:0"><div class="wrap">
+  <p class="label rise">Contact</p>
+  <h2 class="contact-h scrub-t">Send me <span class="ac">the brief</span></h2>
+  <p class="contact-sub rise">Laravel builds, portals and public sites.</p>
+  <div class="clist rise">
+    <a href="mailto:will.rads@outlook.com"><span class="ck">Email</span><span class="cv">will.rads@outlook.com</span></a>
+    <a href="tel:+96181940801"><span class="ck">Phone</span><span class="cv">+961 81 940 801</span></a>
+    <a href="https://www.linkedin.com/in/william-radiyeh/" target="_blank" rel="noopener"><span class="ck">LinkedIn</span><span class="cv">in/william-radiyeh</span></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="big">William <span class="ac">Radiyeh</span></div>
+  <div class="row"><span>Web developer</span><a href="/">Main portfolio</a><a href="/job">Job portfolio</a></div>
+</div></footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  if(reduce||!window.gsap||!window.ScrollTrigger){
+    document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');});
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* wraps text words in .w spans, recursing so nested .ac spans survive */
+  function wrapWords(node){
+    if(node.nodeType===3){
+      var frag=document.createDocumentFragment();
+      node.nodeValue.split(/(\s+)/).forEach(function(p){if(p==='')return;if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(p));return;}
+        var s=document.createElement('span');s.className='w';s.textContent=p;frag.appendChild(s);});
+      node.parentNode.replaceChild(frag,node);
+    }else if(node.nodeType===1){Array.prototype.slice.call(node.childNodes).forEach(wrapWords);}
+  }
+
+  gsap.to('#scrollProg',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.documentElement,start:'top top',end:'bottom bottom',scrub:.3}});
+
+  /* hero portrait bloom + parallax */
+  gsap.fromTo('.hero-portrait img',{filter:'grayscale(1) contrast(1.06)',scale:1.06},
+    {filter:'grayscale(0) contrast(1.02)',scale:1,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'60% top',scrub:.6}});
+  gsap.to('.hero-portrait',{yPercent:-6,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'60% top',scrub:.6}});
+
+  /* hero entrance */
+  gsap.from('.hero-kick',{opacity:0,y:16,duration:.7,ease:'power3.out',delay:.1});
+  gsap.from('.hero-name span',{yPercent:110,duration:1,ease:'power4.out',stagger:.1,delay:.15});
+  gsap.from('.hero-rule',{scaleX:0,transformOrigin:'0 50%',duration:.9,ease:'power3.out',delay:.55});
+  gsap.from('.hero-role,.hero-social',{opacity:0,y:18,duration:.8,ease:'power3.out',stagger:.1,delay:.6});
+  gsap.from('.hero-portrait',{opacity:0,y:30,duration:1.1,ease:'power3.out',delay:.35});
+
+  document.querySelectorAll('.rise').forEach(function(el){
+    ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:function(){el.classList.add('in');}});
+  });
+
+  /* screenshots scale up as they enter */
+  document.querySelectorAll('.site-shot img').forEach(function(img){
+    gsap.fromTo(img,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'top 45%',scrub:true}});
+  });
+
+  document.querySelectorAll('.scrub-t').forEach(function(title){
+    Array.prototype.slice.call(title.childNodes).forEach(wrapWords);
+    gsap.fromTo(title.querySelectorAll('.w'),{opacity:.15},
+      {opacity:1,ease:'none',stagger:.05,scrollTrigger:{trigger:title,start:'top 85%',end:'top 55%',scrub:.5}});
+  });
+
+  gsap.fromTo('footer .big',{yPercent:14},{yPercent:0,ease:'none',scrollTrigger:{trigger:'footer',start:'top 92%',end:'top 55%',scrub:true}});
+})();
+</script>
+</body>
+</html>
